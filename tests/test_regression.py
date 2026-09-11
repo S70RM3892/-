@@ -302,3 +302,85 @@ def test_kyodai_math_is_heterogeneous_within_year():
     assert within / between == pytest.approx(3.5, abs=0.3)
     rngs = [max(d[y]) - min(d[y]) for y in yrs]
     assert sum(1 for r in rngs if r == 0) <= 1      # 全問同一評価の年はほぼ無い
+
+
+# --------------------------------------------------------------------------
+# p14 / p15: 使っていなかったデータから出た結果
+# --------------------------------------------------------------------------
+
+def _mod(name):
+    import importlib.util
+    import os
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                        "analysis", name)
+    spec = importlib.util.spec_from_file_location(name[:-3], path)
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    return m
+
+
+def test_all_faculty_panel_is_three_times_larger():
+    """kyodai_official.json は19単位×8年=152観測を持っている。p01 は48しか使っていなかった。"""
+    p14 = _mod("p14_all_faculties.py")
+    panel, group = p14.build_panel()
+    assert len(panel) == 19
+    assert all(len(v) == 8 for v in panel.values())
+    assert sum(1 for u in panel if group[u] == "理") == 14
+    # 満点の再現: 工学部は dep.json の得点率と一致する
+    assert panel["工学部(情報学科)"][2026] == pytest.approx(62.97, abs=0.01)
+    assert panel["工学部(情報学科)"][2019] == pytest.approx(63.86, abs=0.01)
+
+
+def test_informatics_volatility_is_not_special_university_wide():
+    """京大全体を母集団にすると『情報は突出して不安定』は消える。
+
+    改訂で最も重要な逆転。p01 の結論が比較対象の取り方に依存していたことを固定する。
+    """
+    import math as _m
+    from kyodai.stats import detrend as _detrend
+    p14 = _mod("p14_all_faculties.py")
+    panel, group = p14.build_panel()
+    dv = p14.year_demean(panel, group)
+    units = list(panel)
+    df = len(p14.YEARS) - 2
+    res = {u: _detrend([dv[u][y] for y in p14.YEARS]) for u in units}
+    sd = {u: _m.sqrt(sum(x * x for x in res[u]) / df) for u in units}
+    rank = sorted(sd, key=lambda k: -sd[k]).index(p14.FOCUS) + 1
+    assert rank == 8, f"19単位中の順位が変わった: {rank}"
+    ri = [u for u in units if group[u] == "理"]
+    vj = sum(x * x for x in res[p14.FOCUS]) / df
+    vo = sum(x * x for u in ri if u != p14.FOCUS for x in res[u]) / (df * (len(ri) - 1))
+    assert vj / vo < 1.0, "理系単位を母集団にすると分散比は1未満のはず"
+
+
+def test_30point_problems_are_easier_than_35point():
+    """印刷配点30点の大問は35点より易しい。試験開始0秒で得られる無料の手がかり。"""
+    import statistics as st2
+    p15 = _mod("p15_math_structure.py")
+    pairs, by_year = p15.load_diff()
+    g30 = [a for a, b in pairs if b == 30]
+    g35 = [a for a, b in pairs if b == 35]
+    assert len(g30) == 29 and len(g35) == 45
+    assert st2.mean(g35) - st2.mean(g30) == pytest.approx(0.561, abs=0.01)
+    # 年内比較でも同じ向き
+    wins = 0
+    tot = 0
+    for y, rows in by_year.items():
+        a = [x for x, pt in rows if pt == 30]
+        b = [x for x, pt in rows if pt == 35]
+        if a and b:
+            tot += 1
+            wins += st2.mean(b) > st2.mean(a)
+    assert wins / tot > 0.6
+
+
+def test_informatics_perfect_score_is_rarest():
+    """情報Ⅰの満点者は令和8で 1/2907。取りこぼしを満点基準で測ることの限界。"""
+    S = ds.load_dist("dist_r8.csv")
+    rates = {}
+    for k in ("情報Ⅰ", "数学Ⅰ，数学Ａ", "物理", "化学",
+              "英語（リーディング）", "リスニング", "公共，政治・経済"):
+        s = S[k]
+        rates[k] = dict(s["h"]).get(int(s["max"]), 0) / s["n"]
+    assert min(rates, key=lambda k: rates[k]) == "情報Ⅰ"
+    assert rates["情報Ⅰ"] == pytest.approx(0.00034, abs=0.00005)

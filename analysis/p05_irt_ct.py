@@ -251,6 +251,29 @@ def main() -> None:
         print(f"  {label:<10}" + "  ".join(
             f"第{k}問 {v*co:.2f}点({v/tl*100:.0f}%)" for k, v in sorted(agg.items())))
 
+    print(header("8b. 天井の検討 — 満点は現実的な基準か"))
+    print("  ここまでの『取りこぼし』は全て満点との差である。満点が事実上不可能なら、")
+    print("  その差の一部は誰にも回収できない。満点者率を見る。")
+    print(f"  {'科目':<10}{'満点者数':>10}{'受験者':>10}{'満点者率':>10}{'p99.9':>7}{'p99':>6}")
+    for label, key, co in SPEC:
+        s_ = S[key]
+        full = dict(s_["h"]).get(int(s_["max"]), 0)
+        print(f"  {label:<10}{full:>10,}{s_['n']:>10,}{full/s_['n']*100:>9.3f}%"
+              f"{ds.percentile(s_, 99.9):>7}{ds.percentile(s_, 99):>6}")
+    print("  → 情報Ⅰの満点者は 1/2907。全科目中で最も稀（令和8年度）。")
+    print("     一方 令和7年度は 1/212 だった。14倍の変動で、科目として不安定である。")
+    tot_full = tot_ceil = 0.0
+    for label, key, co in SPEC:
+        it, r, _ = fit[label]
+        mx = sum(m for _, _, m, _ in it)
+        e = irt.expected_score(it, r, z_border)
+        tot_full += (mx - e) * co
+        tot_ceil += (ds.percentile(S[key], 99.9) - e) * co
+    print(f"\n  基準を満点から p99.9 に置き換えると: {tot_full:.1f}点 → {tot_ceil:.1f}点"
+          f"（{(1-tot_ceil/tot_full)*100:.0f}%減）")
+    print("  → 効果は小さい。天井の非現実性は、この分析の結論を変えない。")
+    print("     ただし情報Ⅰだけは 1.0点分が『満点近辺の到達不能領域』に当たる。")
+
     print(header("9. この節の限界（結論より先に読むこと）"))
     print("  * 設問データは令和8年度の1年分のみ（data/q_r8.csv）。年次変動は測れていない。")
     print("  * 全国分布は全受験者。京大工志願者の条件付き分布ではない。")

@@ -38,6 +38,8 @@ run p09_rejected.py
 run p11_seats.py
 run p12_risk.py
 run p13_exam_strategy.py
+run p14_all_faculties.py
+run p15_math_structure.py
 
 echo
 echo "=== tests ==="
