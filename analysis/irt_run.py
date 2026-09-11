@@ -24,7 +24,8 @@ for lab,key,cmb,co in SPEC:
             it=sel(base,set(c)); r=calib(it,s['sd']); res.append((at(it,r,2.0),it,r,model(it,r)))
         res.sort(key=lambda t:t[0]); e2,it,r,(m,sd)=res[len(res)//2]
     else:
-        it=items('../data/q_r8.csv',key); r=calib(it,s['sd']); m,sd=model(it,r)
+        it=items('../data/q_r8.csv',key); check_max(it,s['max'])
+        r=calib(it,s['sd']); m,sd=model(it,r)
     FIT[lab]=(it,r,co)
     mx=sum(x[2] for x in it)
     print(f"{lab:<16}{mx:>5.0f}{r:>7.3f}{s['sd']:>7.2f}{m:>8.1f}/{s['mean']:>7.2f}"
@@ -69,3 +70,6 @@ for l,(it,r,co) in FIT.items():
     g1=(mx-e)*co; g2=(100-o)*co; t1+=g1; t2+=g2
     print(f"{l:<16}{e:>9.1f}{o:>10}{co:>6.3f}{g1:>7.1f}{g2:>7.1f}")
 print(f"{'合計':<16}{'':>9}{'':>10}{'':>6}{t1:>7.1f}{t2:>7.1f}")
+print("\n※ この 2 列は独立した 2 手法ではない。左は総得点SDに、右は実質的に上位裾に")
+print("  合わせた同じ模型。単一 r ではSDと裾を同時に再現できないので左が上振れする。")
+print("  上位 2.3% の議論に使うなら裾で較正した側（右, 16.6点）が中心値。rb.py 7. 参照。")
