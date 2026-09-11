@@ -1,7 +1,20 @@
-*.png
-*.jpg
-*.pdf
-*.bin
+# 生成物
+outputs/*.txt
+outputs/*.json
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
 node_modules/
 pylibs/
 *.log
+
+# 画像バイナリ（解析には使わない）
+*.png
+*.jpg
+
+# 注意: *.pdf は意図的に除外していない。
+# 旧版は *.pdf を .gitignore していたため、README が「r9.pdf より座標抽出・検算済み」
+# と書いているのに、その一次資料がリポジトリに存在しないという状態になっていた。
+# 抽出元の PDF は監査の連鎖に必要なので追跡する。
+# ただし配布可否は raw/PROVENANCE.md の判断に従うこと。
