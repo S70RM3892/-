@@ -231,3 +231,74 @@ def test_risk_exchange_rate_equals_abs_z():
     # ちょうど許容量ぶん期待値を捨てると、合格確率は元と同じになるはず
     after = cdf((mu - allowed) / math.sqrt((sp + ds_) ** 2 + sigma ** 2))
     assert after == pytest.approx(base, abs=0.005)
+
+
+# --------------------------------------------------------------------------
+# p13: 二次数学の時間配分フロンティア
+# --------------------------------------------------------------------------
+
+def _p13():
+    import importlib.util
+    import os
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                        "analysis", "p13_exam_strategy.py")
+    spec = importlib.util.spec_from_file_location("p13", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def test_all_six_problems_dominated_only_under_heterogeneity():
+    """k=6（全問に配点比例）が劣るのは、問題の重さに差があるときだけ。
+
+    これが p13 の結論の条件なので、条件そのものを固定する。
+    """
+    p13 = _p13()
+
+    def dominated(tau, beta):
+        d = {k: (ev, sd) for k, ev, sd, _ in p13.strategies(tau, beta)}
+        ev6, sd6 = d[6]
+        return any(ev >= ev6 and sd <= sd6 and (ev > ev6 or sd < sd6)
+                   for k, (ev, sd) in d.items() if k != 6)
+
+    for beta in (0.0, 0.4, 0.8):
+        assert not dominated([75] * 6, beta), "τ一様なら k=6 は劣らないはず"
+        assert not dominated([120] * 6, beta)
+        assert dominated([55, 60, 70, 85, 110, 140], beta), "差があれば k=6 は劣るはず"
+        assert dominated([40, 50, 70, 100, 150, 200], beta)
+
+
+def test_concentrating_lowers_variance_not_raises_it():
+    """絞ると分散は下がる。p12 の素朴な予想（絞る=分散を上げる）は誤り。"""
+    p13 = _p13()
+    tau = [55, 60, 70, 85, 110, 140]
+    d = {k: (ev, sd) for k, ev, sd, _ in p13.strategies(tau, 0.4)}
+    assert d[2][1] < d[4][1], "2問に絞った方が分散が小さいはず"
+    assert d[2][0] < d[4][0], "ただし期待値も下がる"
+
+
+def test_partial_credit_reduces_variance():
+    """部分点が効くほど分散は小さくなる（模型の骨格）。"""
+    p13 = _p13()
+    tau = [55, 60, 70, 85, 110, 140]
+    sds = [p13.strategies(tau, b)[2][2] for b in (0.0, 0.4, 0.8)]
+    assert sds == sorted(sds, reverse=True)
+
+
+def test_kyodai_math_is_heterogeneous_within_year():
+    """京大理系数学は年内の問題差の方が、年ごとの当たり外れより大きい。
+
+    p13 の前提。出典は主観評価なので水準ではなく比だけを固定する。
+    """
+    import json
+    import os
+    import statistics as st2
+    from kyodai import datasets as ds2
+    d = json.load(open(os.path.join(ds2.DATA, "ds.json"), encoding="utf-8"))["daisu"]
+    yrs = sorted(d, key=int)
+    within = st2.mean([st2.pvariance(d[y]) for y in yrs])
+    between = st2.pvariance([st2.mean(d[y]) for y in yrs])
+    assert within > between
+    assert within / between == pytest.approx(3.5, abs=0.3)
+    rngs = [max(d[y]) - min(d[y]) for y in yrs]
+    assert sum(1 for r in rngs if r == 0) <= 1      # 全問同一評価の年はほぼ無い
