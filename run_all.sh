@@ -35,6 +35,8 @@ run p06_niji.py
 run p07_budget.py
 run p08_ratio.py
 run p09_rejected.py
+run p11_seats.py
+run p12_risk.py
 
 echo
 echo "=== tests ==="

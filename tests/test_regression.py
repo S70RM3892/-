@@ -152,3 +152,82 @@ def test_niji_leverage_dominates_ct():
     ct_recoverable_high = 30.0
     assert one_math_question > ct_recoverable_high
     assert one_math_question == pytest.approx(43.75)
+
+
+# --------------------------------------------------------------------------
+# p11 / p12: 前回の分析では見ていなかった量
+# --------------------------------------------------------------------------
+
+SEATS_R6 = {"地球工": 181, "建築": 77, "物理工": 230, "電電": 123, "情報": 87, "理工化": 225}
+SEATS_R9 = {"地球工": 175, "建築": 77, "物理工": 225, "電電": 128, "情報": 94, "理工化": 215}
+
+
+def test_seat_reallocation_direction():
+    """総定員はほぼ不変で、情報と電電にだけ付け替えられている。
+
+    合格最低点を決める4要素（定員・志願者数・学力分布・難易度）のうち、
+    出願前に公開されるのは定員だけ。過去データからは出てこない情報なので
+    一次資料の値をここで固定する。
+    """
+    assert sum(SEATS_R6.values()) == 923
+    assert sum(SEATS_R9.values()) == 914
+    grew = [d for d in SEATS_R9 if SEATS_R9[d] > SEATS_R6[d]]
+    assert set(grew) == {"情報", "電電"}
+    assert SEATS_R9["情報"] / SEATS_R6["情報"] - 1 == pytest.approx(0.0805, abs=0.001)
+
+
+def test_seat_change_shrinks_the_second_choice_gap(panel):
+    """定員の付け替えは、情報と他学科のギャップを縮める向きに働く。"""
+    from kyodai.stats import inv_cdf
+    idx, years = panel
+    pool = 7.2 * 10.25
+    delta = {}
+    for d in ds.DEPS:
+        app = st.mean([idx[(d, y)]["app"] for y in years])
+        delta[d] = pool * (inv_cdf(1 - SEATS_R9[d] / app) - inv_cdf(1 - SEATS_R6[d] / app))
+    assert delta["情報"] < 0          # 定員増 → 最低点は下がる
+    assert delta["理工化"] > 0        # 定員減 → 最低点は上がる
+    assert delta["情報"] == pytest.approx(-4.4, abs=0.2)
+    for d in ds.DEPS[1:]:
+        assert delta["情報"] - delta[d] < 0, f"{d}: ギャップが縮まっていない"
+
+
+def test_own_variance_dominates_cutoff_variance():
+    """全不確実性のうち相手側（合格最低点）が占めるのは1〜2割以下。
+
+    この研究が8年パネルで精密に推定してきたのは、その小さい方だった。
+    """
+    sigma = 10.63
+    for sp in (30, 45, 64.5, 80):
+        share = sigma ** 2 / (sp ** 2 + sigma ** 2)
+        assert share < 0.12
+    assert 10.63 ** 2 / (64.5 ** 2 + 10.63 ** 2) == pytest.approx(0.026, abs=0.002)
+
+
+def test_variance_helps_when_behind_and_hurts_when_ahead():
+    """P = Φ(μ/s) の s に関する符号が μ の符号で反転すること。"""
+    from kyodai.stats import cdf
+    sigma = 10.63
+
+    def P(mu, sp):
+        return cdf(mu / math.sqrt(sp ** 2 + sigma ** 2))
+
+    assert P(-36.2, 80) > P(-36.2, 45)     # 下にいる人は分散が大きい方が有利
+    assert P(+36.2, 80) < P(+36.2, 45)     # 上にいる人は逆
+    assert P(0.0, 80) == pytest.approx(P(0.0, 45))   # ラインちょうどでは無関係
+    # 大きさ: μ=-36.2 で sp を 64.5→45 に下げると 7ポイント以上落ちる
+    assert (P(-36.2, 64.5) - P(-36.2, 45)) * 100 == pytest.approx(7.3, abs=0.3)
+
+
+def test_risk_exchange_rate_equals_abs_z():
+    """許容できる期待値の損失 = |z| × Δs という形になっていること。"""
+    from kyodai.stats import cdf
+    sigma, sp, mu = 10.63, 64.5, -36.2
+    s = math.sqrt(sp ** 2 + sigma ** 2)
+    z = mu / s
+    ds_ = 20.0
+    allowed = abs(z) * ds_
+    base = cdf(mu / s)
+    # ちょうど許容量ぶん期待値を捨てると、合格確率は元と同じになるはず
+    after = cdf((mu - allowed) / math.sqrt((sp + ds_) ** 2 + sigma ** 2))
+    assert after == pytest.approx(base, abs=0.005)
