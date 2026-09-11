@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="ja"><!-- InstanceBegin template="/Templates/default.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- InstanceBeginEditable name="pageInfo" -->
+  <title>代々木ゼミナール（予備校） | 入試情報</title>
+  <meta name="description" content="大学受験予備校の代々木ゼミナール 入試情報 京都大学の入試データを掲載しています。 2024入試状況　7.2025年度入試の変更点
+">
+  <meta name="keywords" content="入試情報,大学受験,予備校,代ゼミ,代々木ゼミナール">
+<!-- InstanceEndEditable -->
+  <!--<link rel="stylesheet" href="/common/css/all.css">-->
+  <link rel="stylesheet" href="/common/css/all_pc.css">
+  <link rel="stylesheet" href="/common/css/style_sp.css">
+    <link rel="stylesheet" type="text/css" href="/common/css/header.css">
+  <link rel="stylesheet" href="/common/css/parts.css">
+<!-- InstanceBeginEditable name="head" -->
+  <link rel="stylesheet" type="text/css" href="/nyushi/data/common/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,400,500,700,900&display=swap" rel="stylesheet">
+<!-- InstanceEndEditable -->
+  <!--[if lt IE 9]><script src="/common/js/vendor/polyfill.js"></script><![endif]-->
+<!-- InstanceParam name="pageTitle" type="text" value="入試情報" -->
+<!-- InstanceParam name="category" type="text" value="nyushi" -->
+<!-- InstanceParam name="sub_category" type="text" value="" -->
+<!-- InstanceParam name="showAside" type="boolean" value="true" -->
+<!-- InstanceParam name="localNavCurrent" type="text" value="" -->
+
+</head>
+<body id="page-top" class="single-column">
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PH4WC2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PH4WC2');</script>
+<!-- End Google Tag Manager -->
+<div class="page-container category-nyushi">
+
+    <!--▽ヘッダーエリアここから▽-->
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/common/js/header.js?20260819172218"></script>
+<link rel="stylesheet" href="/common/css/common.css?20260819172218">
+<link rel="stylesheet" href="/common/css/header.css?20260819172218">
+<script>
+  // 校舎アイコン切替フラグ取得
+  function getKosyaIconChangeFlag() {
+    let curPath = window.location.pathname;
+    if (curPath.endsWith("/")) {
+      curPath += "index.html";
+    }
+    const HONBU_PATH = "/honbu/index.html";
+    const FUKUOKA_PATH = "/fukuoka/index.html";
+    const NAGOYA_PATH = "/nagoya/index.html";
+    const NIIGATA_PATH = "/niigata/index.html";
+    const OSAKA_PATH = "/osaka/index.html";
+    const SAPPORO_PATH = "/sapporo/index.html";
+    const kosyaPathList = [HONBU_PATH, SAPPORO_PATH, NIIGATA_PATH, NAGOYA_PATH, OSAKA_PATH, FUKUOKA_PATH];
+    let kosyaIconChangeFlag = "";
+    if (kosyaPathList.includes(curPath)) {
+      if (curPath === HONBU_PATH) {
+        kosyaIconChangeFlag = "01";
+      } else if (curPath === SAPPORO_PATH) {
+        kosyaIconChangeFlag = "05";
+      } else if (curPath === NIIGATA_PATH) {
+        kosyaIconChangeFlag = "10";
+      } else if (curPath === NAGOYA_PATH) {
+        kosyaIconChangeFlag = "04";
+      } else if (curPath === OSAKA_PATH) {
+        kosyaIconChangeFlag = "23";
+      } else if (curPath === FUKUOKA_PATH) {
+        kosyaIconChangeFlag = "11";
+      }
+    }
+    return kosyaIconChangeFlag;
+  }
+
+  // 校舎アイコン切り替え
+  function kosyaIconChange(schoolCode) {
+    if (schoolCode) {
+      // ロゴ切り替え（共通処理）
+      $('#logo').hide();
+      $('#schoollogo').show();
+
+      // 校舎コードと対応する要素IDのマッピング
+      const schoolMap = {
+        "01": { icon: "#schoolIcon01", access: "#schoolAccess01" }, // 本部校
+        "05": { icon: "#schoolIcon05", access: "#schoolAccess05" }, // 札幌校
+        "10": { icon: "#schoolIcon10", access: "#schoolAccess10" }, // 新潟校
+        "04": { icon: "#schoolIcon04", access: "#schoolAccess04" }, // 名古屋校
+        "23": { icon: "#schoolIcon23", access: "#schoolAccess23" }, // 大阪校
+        "11": { icon: "#schoolIcon11", access: "#schoolAccess11" }  // 福岡校
+      };
+
+      // マッピングに存在すれば対象を表示
+      if (schoolMap[schoolCode]) {
+        $(schoolMap[schoolCode].icon).show();
+        $(schoolMap[schoolCode].access).show();
+      }
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    try {
+      const res = await fetch("/yozemi/isLogin", { cache: "no-store" });
+      if (!res.ok) throw new Error("HTTPエラー: " + res.status);
+      const data = await res.json();
+      const kosyaIconChangeFlag = getKosyaIconChangeFlag();
+      if (data[0]) {
+        //ログイン済み
+        if (data[2] == "1" && data[4] == "1") {
+          //保護者アカウント
+          $('#acountChange').show();
+        }
+        const schoolCode = (!kosyaIconChangeFlag && data[3]) ? data[3] : kosyaIconChangeFlag;
+        kosyaIconChange(schoolCode);
+        $('#beforeLogin').hide();
+        $('#afterLogin').show();
+        $('#mypageUserNameText').text(data[0] + 'さん');
+      } else {
+        kosyaIconChange(kosyaIconChangeFlag);
+      }
+      $('#cartCounter').text(data[1]);
+    } catch (error) {
+      console.error("Error initializing side menu:", error);
+    }
+  });
+</script>
+
+<script src="/resources/js/techtouch.js"></script>
+<header class="cmn_header">
+    <div class="header_flex">
+        <div id="logo" class="logo">
+            <a href="/" id="schoolMainLogo">
+                <img src="/common/img/logo.svg" width="231" height="69" alt="代々木ゼミナール">
+            </a>
+        </div>
+        <div class="schoollogo" id="schoollogo" style="display:none">
+            <a href="/" class="schoollogo__school">
+                <img src="/common/img/logo_school.svg" width="139" height="41" alt="代々木ゼミナール">
+            </a>
+            <div class="schoollogo__name">
+                <!-- 本部校 -->
+                <a href="/honbu/index.html" id="schoolIcon01" style="display:none">
+                    <img src="/common/img/logo_name_honbu.png" width="157" height="26" alt="代々木ゼミナール 本部校" class="school_logo">
+                </a>
+
+                <!-- 札幌校 -->
+                <a href="/sapporo/index.html" id="schoolIcon05" style="display:none">
+                    <img src="/common/img/logo_name_sapporo.png" width="60" height="26" alt="代々木ゼミナール 札幌校" class="school_logo">
+                </a>
+
+                <!-- 新潟校 -->
+                <a href="/niigata/index.html" id="schoolIcon10" style="display:none">
+                    <img src="/common/img/logo_name_niigata.png" width="60" height="26" alt="代々木ゼミナール 新潟校" class="school_logo">
+                </a>
+
+                <!-- 名古屋校 -->
+                <a href="/nagoya/index.html" id="schoolIcon04" style="display:none">
+                    <img src="/common/img/logo_name_nagoya.png" width="76" height="26" alt="代々木ゼミナール 名古屋校" class="school_logo">
+                </a>
+
+                <!-- 大阪校 -->
+                <a href="/osaka/index.html" id="schoolIcon23" style="display:none">
+                    <img src="/common/img/logo_name_osaka.png" width="60" height="26" alt="代々木ゼミナール 大阪校" class="school_logo">
+                </a>
+
+                <!-- 福岡校 -->
+                <a href="/fukuoka/index.html" id="schoolIcon11" style="display:none">
+                    <img src="/common/img/logo_name_fukuoka.png" width="76" height="26" alt="代々木ゼミナール 福岡校" class="school_logo">
+                </a>
+            </div>
+        </div>
+                <div class="logo70th">
+            <a href="https://www.i-note.jp/yozemi/70th/index.html" target="_blank"><img src="/common/img/logo70th.svg" width="60" height="70" alt="70周年"></a>
+        </div>
+        <div class="header_content">
+            <div class="header_content_upper">
+                <nav class="submenu" data-nosnippet>
+                    <ul>
+                        <!-- 校舎へのアクセス -->
+                        <!-- 本部校 -->
+                        <li class="school_access" style="display:none" id="schoolAccess01"><a href="/honbu/index.html#schoolDesc"><span>校舎へのアクセス</span></a></li>
+
+                        <!-- 札幌校 -->
+                        <li class="school_access" style="display:none" id="schoolAccess05"><a href="/sapporo/index.html#schoolDesc"><span>校舎へのアクセス</span></a></li>
+
+                        <!-- 新潟校 -->
+                        <li class="school_access" style="display:none" id="schoolAccess10"><a href="/niigata/index.html#schoolDesc"><span>校舎へのアクセス</span></a></li>
+
+                        <!-- 名古屋校 -->
+                        <li class="school_access" style="display:none" id="schoolAccess04"><a href="/nagoya/index.html#schoolDesc"><span>校舎へのアクセス</span></a></li>
+
+                        <!-- 大阪校 -->
+                        <li class="school_access" style="display:none" id="schoolAccess23"><a href="/osaka/index.html#schoolDesc"><span>校舎へのアクセス</span></a></li>
+
+                        <!-- 福岡校 -->
+                        <li class="school_access" style="display:none" id="schoolAccess11"><a href="/fukuoka/index.html#schoolDesc"><span>校舎へのアクセス</span></a></li>
+                        <li><a href="/request/" class="doc"><span>資料請求</span></a></li>
+                        <li class="course sp"><a href="/yozemi/general"><span>講座検索・申込</span></a></li>
+                        <li><a href="/yozemi/toiawaseForm/init" class="contact"><span>お問い合わせ</span></a></li>
+                    </ul>
+                </nav>
+                <!--↓google検索-->
+                <script>
+                    (function () {
+                        var cx = '008738588316661898099:aqczi0jl6ug';
+                        var gcse = document.createElement('script');
+                        gcse.type = 'text/javascript';
+                        gcse.async = true;
+                        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                        var s = document.getElementsByTagName('script')[0];
+                        s.parentNode.insertBefore(gcse, s);
+                    })();
+                </script>
+                <gcse:search></gcse:search>
+                <!--↑google検索-->
+            </div>
+            <nav class="mainmenu" data-nosnippet>
+                <ul>
+                    <li>
+                        <div class="parent">
+                            <a href="/course/"><span>コース案内</span></a>
+                            <button class="child_toggle"></button>
+                        </div>
+                        <ul class="child">
+                            <li><a href="/course/">受講案内トップ</a></li>
+                            <li><a href="/course/high3.html">高校3年生</a></li>
+                            <li><a href="/course/high2.html">高校2年生</a></li>
+                            <li><a href="/course/high1.html">高校1年生</a></li>
+                            <li><a href="/course/daigaku.html">大学受験科</a></li>
+                            <li><a href="/course/online/">オンラインコース</a></li>
+                            <li><a href="/course/kobetsu/">個別指導スクール</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="parent">
+                            <a href="/kosha_ryo/"><span>校舎案内</span></a>
+                            <button class="child_toggle"></button>
+                        </div>
+                        <ul class="child">
+                            <li><a href="/honbu/index.html">本部校</a></li>
+                            <li><a href="/sapporo/index.html">札幌校</a></li>
+                            <li><a href="/niigata/index.html">新潟校</a></li>
+                            <li><a href="/nagoya/index.html">名古屋校</a></li>
+                            <li><a href="/osaka/index.html">大阪南校</a></li>
+                            <li><a href="/fukuoka/index.html">福岡校</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="parent">
+                            <a href="/seminar_event/"><span>セミナー・イベント</span></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="parent">
+                            <a href="/moshi/"><span>模試</span></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="parent">
+                            <a href="/koushi/"><span>講師紹介</span></a>
+                            <button class="child_toggle"></button>
+                        </div>
+                        <ul class="child">
+                            <li><a href="/koushi/#course_english">英语</a></li>
+							<li><a href="/koushi/#course_math">数学</a></li>
+							<li><a href="/koushi/#course_national">国語</a></li>
+							<li><a href="/koushi/#course_physics">物理</a></li>
+							<li><a href="/koushi/#course_science">化学</a></li>
+							<li><a href="/koushi/#course_living">生物</a></li>
+							<li><a href="/koushi/#course_geology">地学</a></li>
+							<li><a href="/koushi/#course_japanese_history">日本史</a></li>
+							<li><a href="/koushi/#course_world_history">世界史</a></li>
+							<li><a href="/koushi/#course_geography">地理</a></li>
+							<li><a href="/koushi/#course_citizens">公民</a></li>
+							<li><a href="/koushi/#course_information">情報</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="parent">
+                            <a href="/nyushi/"><span>入試情報</span></a>
+                            <button class="child_toggle"></button>
+                        </div>
+                        <ul class="child">
+                            <li><a href="/nyushi_menu/kokkouritsu/">国公立大学入試情報</a></li>
+                            <li><a href="/nyushi_menu/shiritsu/">私立・準大学入試情報</a></li>
+                            <li><a href="/nyushi/data/index.html">主要大学入試データ</a></li>
+                            <li><a href="/nyushi/kisochishiki/index.html">大学入試の基礎知識</a></li>
+                            <li><a href="/nyushi/daigaku_list.html">大学一覧</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="parent">
+                            <a href="/books/"><span>書籍案内</span></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="parent">
+                            <a href="/liberalarts/"><span>教養・実学</span></a>
+                            <button class="child_toggle"></button>
+                        </div>
+                        <ul class="child">
+                            <li><a href="/liberalarts/">教養・実学講座一覧</a></li>
+                            <li><a href="/kentei/">各種テスト・検定</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <a href="/yozemi/general" class="course btn pc_tab"><span class="btn_text">講座検索</span></a>
+        <a href="/yozemi/cart" class="cart btn"><span class="btn_text">カート</span><span class="counter" id="cartCounter">0</span></a>
+
+        <!-- アカウント切り替え -->
+        <a href="/yozemi/mypage/parents/change" class="acount_change" style="display:none" id="acountChange"><span>アカウント<br>切り替え</span></a>
+
+        <!-- マイページ ログイン前 -->
+        <div class="mypage" id="beforeLogin">
+            <div class="mypage_inner">
+                <span class="mypage_title"><span class="pc_tab_inline">代ゼミ</span>マイページ</span>
+                <button class="mypage_login">ログイン</button>
+            </div>
+        </div>
+
+        <!-- マイページ ログイン後 -->
+        <div class="mypage login" style="display:none" id="afterLogin">
+            <div class="mypage_inner">
+                <span class="mypage_title"><span class="pc_tab_inline">代ゼミ</span>マイページ</span>
+                <span class="mypage_text" id="mypageUserNameText"></span>
+            </div>
+        </div>
+
+        <button class="menu_btn"><span class="menu_btn_text">MENU</span></button>
+    </div>
+</header>
+
+<script>
+$(document).ready(function() {
+    // ヘッダーメニューの学科リンククリックイベント
+    $('header').on('click', 'a[href*="#course_"]', function(e) {
+        // デフォルトのアンカー遷移を防止
+        e.preventDefault();
+        
+        const href = $(this).attr('href');
+        const hash = this.hash; // 例: "#course_english"
+        const anchorId = hash.substring(1); // 例: "course_english"
+        const listPageUrl = href.split('#')[0]; // リストページベースURL
+        
+        // 現在ページが講師リストページか判定
+        const isListPage = window.location.pathname.includes('/koushi/') && 
+                          ($('.teacherBox').length > 0 || $('.searchBox__taxonomy').length > 0);
+        
+        if (isListPage) {
+            // 1. リストページ内：カスタムナビゲーション
+            // 古いsessionStorageをクリア
+            sessionStorage.clear();
+            
+            // 新しいteacherStateを設定
+            const newState = {
+                tab: 'course',
+                anchor: anchorId
+            };
+            sessionStorage.setItem('teacherState', JSON.stringify(newState));
+            
+            // メニューからのナビゲーションをマーキング
+            sessionStorage.setItem('menuNavigation', 'true');
+            sessionStorage.setItem('menuNavigationAnchor', anchorId);
+            sessionStorage.setItem('menuNavigationTime', Date.now().toString());
+            
+            // リストページ内での処理
+            const $activeTabButton = $('.searchBox__taxonomy button.is-active');
+            const currentTab = $activeTabButton.length ? $activeTabButton.data('taxonomy') : null;
+            
+			closeMobileMenu();
+			
+            if (currentTab === 'course') {
+                // 学科分類ですでに表示中の場合は直接スクロール
+                scrollToAnchor(hash);
+            } else {
+                // 学科分類に切り替えてからスクロール
+                $('.searchBox__taxonomy button[data-taxonomy="course"]').trigger('click');
+                setTimeout(() => {
+                    scrollToAnchor(hash);
+                }, 500);
+            }
+        } else {
+            // 2. 詳細ページなど他ページからはリストページへ遷移
+            // 古いsessionStorageをクリア
+            sessionStorage.clear();
+            
+            // 新しいteacherStateを設定
+            const newState = {
+                tab: 'course',
+                anchor: anchorId
+            };
+            sessionStorage.setItem('teacherState', JSON.stringify(newState));
+            
+            // メニューからのナビゲーションをマーキング
+            sessionStorage.setItem('menuNavigation', 'true');
+            sessionStorage.setItem('menuNavigationAnchor', anchorId);
+            sessionStorage.setItem('menuNavigationTime', Date.now().toString());
+            
+            window.location.href = listPageUrl + hash;
+        }
+    });
+    
+    // アンカーへのスムーススクロール関数
+    function scrollToAnchor(hash) {
+        const $target = $(hash);
+        if ($target.length) {
+            const headerHeight = $('.cmn_header').outerHeight() || 0;
+            const scrollTop = $target.offset().top - headerHeight - 20;
+            $('html, body').animate({ scrollTop: scrollTop }, 600);
+        }
+    }
+    
+    // モバイルメニューを閉じる関数
+    function closeMobileMenu() {
+        // メニューボタンを探してクリックイベントを発火
+        const $menuButton = $('.menu_btn');
+        if ($menuButton.length) {
+            // メニューが開いているかどうかをチェック
+            // メニューが開いている場合、ボタンをクリックして閉じる
+            // 実際の実装はサイトのメニュー構造に依存します
+            
+            // 方法1: メニューボタンを直接クリック
+            $menuButton.trigger('click');
+            
+            // 方法2: メニューの開閉状態を制御するクラスを削除
+            // 例: $('body').removeClass('menu-open');
+            // 例: $('.cmn_header').removeClass('menu-open');
+            // 実際の実装に合わせて調整してください
+        }
+    }
+    
+    // リストページロード完了後の特別処理
+    if (window.location.pathname.includes('/koushi/') && 
+        ($('.teacherBox').length > 0 || $('.searchBox__taxonomy').length > 0)) {
+        
+        const menuNavTime = sessionStorage.getItem('menuNavigationTime');
+        const now = Date.now();
+        
+        // 最近（5秒以内）のメニューナビゲーションをチェック
+        if (menuNavTime && (now - parseInt(menuNavTime) < 5000)) {
+            const menuNavAnchor = sessionStorage.getItem('menuNavigationAnchor');
+            
+            if (menuNavAnchor) {
+                // ページ完全ロードを待って処理
+                setTimeout(() => {
+                    const $activeTabButton = $('.searchBox__taxonomy button.is-active');
+                    const currentTab = $activeTabButton.length ? $activeTabButton.data('taxonomy') : null;
+                    
+                    if (currentTab !== 'course') {
+                        // 学科分類に自動切り替え
+                        $('.searchBox__taxonomy button[data-taxonomy="course"]').trigger('click');
+                        
+                        setTimeout(() => {
+                            // 指定アンカーへ自動スクロール
+                            scrollToAnchor('#' + menuNavAnchor);
+                            
+                            // メニューナビゲーションマーカーを削除
+                            sessionStorage.removeItem('menuNavigation');
+                            sessionStorage.removeItem('menuNavigationAnchor');
+                            sessionStorage.removeItem('menuNavigationTime');
+                        }, 800);
+                    } else {
+                        // すでに学科分類の場合は直接スクロール
+                        scrollToAnchor('#' + menuNavAnchor);
+                        
+                        // メニューナビゲーションマーカーを削除
+                        sessionStorage.removeItem('menuNavigation');
+                        sessionStorage.removeItem('menuNavigationAnchor');
+                        sessionStorage.removeItem('menuNavigationTime');
+                    }
+                }, 300);
+            }
+        }
+    }
+});
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    if (!document.querySelector('link[rel="canonical"]')) {
+
+      var url = location.origin + location.pathname;
+
+      // index.html を削除（存在する場合
+      url = url.replace(/index\.html$/, '');
+
+      var link = document.createElement('link');
+      link.rel = 'canonical';
+      link.href = url;
+
+      document.getElementsByTagName('head')[0].appendChild(link);
+    }
+  });
+</script>
+    <!--△ヘッダーエリアここまで△-->
+
+  <nav class="none breadcrumbs">
+    <p>
+      <a href="/">トップ</a> <span class="arrow">&rsaquo;</span> <!-- InstanceBeginEditable name="breadcrumbs" --><!--
+      --><a href="/nyushi/">入試情報</a> <span class="arrow">&rsaquo;</span> <!--
+      --><a href="/nyushi/kokkouritu/kokkouritsu/1252279_3531.html">京都大学</a> <span class="arrow">&rsaquo;</span> <!--
+      --><a class="current">入試状況</a>
+<!-- InstanceEndEditable -->
+    </p>
+  <!-- /.breadcrumbs -->
+  </nav>
+
+
+  <div class="content">
+
+  <!--▽サイドエリアここから▽-->
+<!--△サイドエリアここまで△-->
+    <main role="main" class="main-content">
+<!-- InstanceBeginEditable name="mainContent" -->
+      <header class="page-title">
+        <h1>京都大学</h1>
+      </header>
+
+      <div class="mod-frame">
+          <ul class="mod-button-link-large opt-w175">
+            <li class="is-current"><span>入試状況</span></li>
+            <li><a href="kyodai_25_1.html">2025年度</a></li>
+            <li><a href="kyodai_24_1.html">2024年度</a></li>
+            <li><a href="kyodai_data_1.html">各種データ推移</a></li>
+          </ul>
+        </div>
+        <hr class="mod-hr-dotted mt20 mb20">
+        <div class="mod-frame">
+          <ul class="mod-link-list-horizontal">
+            <li><a href="index.html">1.一般選抜 志願概況</a></li>
+            <li><a href="kyodai_jokyo_2.html">2.地区別状況</a></li>
+            <li><a href="kyodai_jokyo_3.html">3.現役割合</a></li>
+            <li><a href="kyodai_jokyo_4.html">4.男女割合</a></li>
+            <li><a href="kyodai_jokyo_5.html">5.合格者の得点</a></li>
+			<li><a href="kyodai_jokyo_6.html">6.特色入試の状況</a></li>
+			<li><a href="kyodai_jokyo_7.html">7.2025年度入試の変更点</a></li>
+			<li><a href="kyodai_jokyo_8.html">8.2026年度入試の変更点</a></li>
+              
+          </ul>
+        </div>
+
+<div id="wrapper">
+<div id="kyodai">
+
+<div id="contents">
+
+      <!--div class="mod-frame"-->
+<!--div class="select clearfix">
+<script type="text/javascript" src="js/todai.js"></script>
+</div-->
+
+<div id="main" class="clear">
+<div class="border"><a name="senbatsu15" id="senbatsu15"></a>
+<!--<div class="h4">-->
+<div class="section-title">
+<h2>7.2025年度入試の変更点</h2>
+</div>
+<div class="content-title" style="font-size: 80%;">
+<h4>（1）一般選抜</h4>
+</div>
+<div class="text_box clearfix" style="font-size:140%;">
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;共通テストについては、『情報Ⅰ』がすべての学部・学科で必須となりますが、学部・学科ごとに配点比率が異なります。配点比率が最も高いのが工学部（50/225点・22.2％）、最も低いのが文学部および教育学部（15/265点・5.7％）となっています。特に、工学部では情報に加えこれまで第1段階選抜にのみ活用していた数学と理科がそれぞれ25点満点で配点され、共通テストの結果がこれまで以上に重要となりそうです。そのほか配点に変更がある募集区分は下記のとおりです。</span>
+	<p>&emsp;</p>
+<p class="indent weight-bold size-60px color-normal">2025年度一般選抜において、配点に変更のある募集区分</p>
+<!--<span class="weight-bold">【一般選抜（一般入試）】</span><br/>-->
+<div class="local-title" style="font-size: 70%;">
+<h4>文系学部（総合人間・教育・経済学部の文系含む）</h4>
+</div>
+	<p class="sp_on clear-both" style="font-size: 1.4rem!important;">※横にスクロールできます。</p>
+	<div class="table_scroll">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-size:1.1rem" class="width_150">
+  <thead>
+<tr>
+<th class="align-middle" width="10%" rowspan="2">区分</th>
+<th class="align-middle" rowspan="2" width="9%">年度</th>
+<th class="align-middle" colspan="7" width="40%">共通テスト</th>
+<td class="align-middle" rowspan="2" width="1%">&nbsp;</td>
+<th class="align-middle" colspan="7" width="40%">2次試験</th>
+</tr>
+<tr>
+<th class="align-middle">国</th>
+<th class="align-middle">歴公</th>
+<th class="align-middle">数</th>
+<th class="align-middle">理</th>
+<th class="align-middle">外</th>
+<th class="align-middle">情</th>
+	<th class="align-middle">合計</th>
+<th class="align-middle">国</th>
+<th class="align-middle">地歴</th>
+<th class="align-middle">数</th>
+<th class="align-middle">理</th>
+<th class="align-middle">外</th>
+<th class="align-middle">合計</th>
+</tr>
+  </thead>
+  <tbody>
+
+<tr>
+	<td class="align-center non" rowspan="2">法</td>
+	<td class="center">24</td>
+	<td class="center">（200）</td>
+	<td class="center">（200）</td>
+	<td class="center">（200）</td>
+	<td class="center">（100）</td>
+	<td class="center" >（200）</td>
+	<td class="center">―</td>
+	<td class="center"><span>270</span><br>（900）</td>
+	<td class="align-middle" rowspan="8" width="1%">&nbsp;</td>
+	<td class="center">150</td>
+	<td class="center">100</td>
+	<td class="center">150</td>
+	<td class="center">-</td>
+	<td class="center">150</td>
+	<td class="center">550</td>
+</tr>
+<tr style="font-weight: bold">
+	<td class="center">25</td>
+	<td class="center">（200）</td>
+	<td class="center">（200）</td>
+	<td class="center">（200）</td>
+	<td class="center">（100）</td>
+	<td class="center" >（200）</td>
+	<td class="center">（50）</td>
+	<td class="center"><span>285</span><br>（950）</td>
+	<td class="center">150</td>
+	<td class="center">100</td>
+	<td class="center">150</td>
+	<td class="center">-</td>
+	<td class="center">200</td>
+	<td class="center">600</td>
+</tr>
+
+<tr>
+	<td class="align-center non" rowspan="2">薬</td>
+	<td class="center">24</td>
+	<td class="center">50</td>
+	<td class="center">50</td>
+	<td class="center">50</td>
+	<td class="center">50</td>
+	<td class="center">50</td>
+	<td class="center">―</td>
+	<td class="center">250</td>
+	<td class="center">100</td>
+	<td class="center">-</td>
+	<td class="center">200</td>
+	<td class="center">200</td>
+	<td class="center">200</td>
+	<td class="center">700</td>
+</tr>
+<tr style="font-weight: bold">
+	<td class="center">25</td>
+	<td class="center style-lined">40</td>
+	<td class="center style-lined">40</td>
+	<td class="center style-lined">40</td>
+	<td class="center style-lined">40</td>
+	<td class="center">40</td>
+	<td class="center">20</td>
+	<td class="center">220</td>
+	<td class="center">100</td>
+	<td class="center">-</td>
+	<td class="center">200</td>
+	<td class="center">200</td>
+	<td class="center">200</td>
+	<td class="center">700</td>
+</tr>
+<tr>
+	<td class="align-center non" rowspan="2">工</td>
+	<td class="center">24</td>
+	<td class="center">50</td>
+	<td class="center">100</td>
+	<td class="center">＊</td>
+	<td class="center">＊</td>
+	<td class="center">50</td>
+	<td class="center">―</td>
+	<td class="center">200</td>
+	<td class="center">100</td>
+	<td class="center">-</td>
+	<td class="center">250</td>
+	<td class="center">250</td>
+	<td class="center">200</td>
+	<td class="center">800</td>
+</tr>
+<tr style="font-weight: bold">
+	<td class="center">25</td>
+	<td class="center">25</td>
+	<td class="center">50</td>
+	<td class="center">25</td>
+	<td class="center">25</td>
+	<td class="center">50</td>
+	<td class="center">50</td>
+	<td class="center">225</td>
+	<td class="center">100</td>
+	<td class="center">-</td>
+	<td class="center">250</td>
+	<td class="center">250</td>
+	<td class="center">200</td>
+	<td class="center">800</td>
+</tr>
+<tr>
+	<td class="align-center non" rowspan="2">農</td>
+	<td class="center">24</td>
+	<td class="center">100</td>
+	<td class="center">100</td>
+	<td class="center">50</td>
+	<td class="center">50</td>
+	<td class="center">50</td>
+	<td class="center">―</td>
+	<td class="center">350</td>
+	<td class="center">100</td>
+	<td class="center">-</td>
+	<td class="center">200</td>
+	<td class="center">200</td>
+	<td class="center">200</td>
+	<td class="center">700</td>
+</tr>
+<tr style="font-weight: bold">
+	<td class="center">25</td>
+	<td class="center">70</td>
+	<td class="center">100</td>
+	<td class="center">50</td>
+	<td class="center">50</td>
+	<td class="center">50</td>
+	<td class="center">30</td>
+	<td class="center">350</td>
+	<td class="center">100</td>
+	<td class="center">-</td>
+	<td class="center">200</td>
+	<td class="center">200</td>
+	<td class="center">200</td>
+	<td class="center">700</td>
+</tr>	
+  </tbody>
+</table>
+<span>＊：第１段階選抜のみに利用</span>		
+	</div>
+	<p>&emsp;</p>		
+<p class="indent weight-bold size-60px color-normal">共通テストの出題教科・科目・選択方法</p>
+<div class="local-title" style="font-size: 70%;">
+<h4>文系学部（総合人間・教育・経済学部の文系含む）</h4>
+</div>
+	<p class="sp_on clear-both" style="font-size: 1.4rem!important;">※横にスクロールできます。</p>
+	<div class="table_scroll">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-size:1.1rem" class="width_150">
+  <thead>
+<tr>
+<th class="align-middle" width="20%">教科</th>
+<th class="align-middle">科目</th>
+<th class="align-middle">選択方法</th>
+</tr>
+  </thead>
+  <tbody>
+<tr>
+	<td class="align-center non">国語</td>
+	<td class="left">『国語』</td>
+	<td class="left">必須</td>
+</tr>
+ <tr>
+	<td class="align-center non">地理歴史</td>
+	<td class="left">『地理総合、地理探究』、『歴史総合、日本史探究』、『歴史総合、世界史探究』</td>
+	<td class="left" rowspan="2">2科目選択<br>（公民は１科目まで） ※</td>
+</tr>
+<tr>
+	<td class="align-center non">公民</td>
+	<td class="left">『公共、倫理』、『公共、政治・経済』</td>
+</tr>
+<tr>
+	<td class="align-center non">数学</td>
+	<td class="left">『数学Ⅰ、数学Ａ』、『数学Ⅱ、Ｂ、Ｃ』</td>
+	<td class="left">2科目必須</td>
+</tr>
+<tr>
+	<td class="align-center non">理科</td>
+	<td class="left">『物理基礎／化学基礎／生物基礎／地学基礎』、『物理』、『化学』、『生物』、『地学』</td>
+	<td class="left">「基礎2」、「専門2」から選択</td>
+</tr>
+<tr>
+	<td class="align-center non">外国語</td>
+	<td class="left">『英語』、『ドイツ語』、『フランス語』、『中国語』、『韓国語』</td>
+	<td class="left">1科目選択</td>
+</tr>
+<tr>
+	<td class="align-center non">情報</td>
+	<td class="left">『情報Ⅰ』</td>
+	<td class="left">必須</td>
+</tr>
+  </tbody>
+</table>
+	</div>
+<span>※）法学部は『歴史総合、日本史探究』、『歴史総合、世界史探究』いずれか必須</span>
+
+	
+<div class="local-title" style="font-size: 70%; margin-top: 1%">
+<h4>理系学部 （総合人間・教育・経済学部の理系含む）</h4>
+</div>
+	
+
+	<p class="sp_on clear-both" style="font-size: 1.4rem!important;">※横にスクロールできます。</p>
+	<div class="table_scroll">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-size:1.1rem" class="width_150">
+  <thead>
+<tr>
+<th class="align-middle" width="20%">教科</th>
+<th class="align-middle">科目</th>
+<th class="align-middle">選択方法</th>
+</tr>
+  </thead>
+  <tbody>
+<tr>
+	<td class="align-center non">国語</td>
+	<td class="left">『国語』</td>
+	<td class="left">必須</td>
+</tr>
+ <tr>
+	<td class="align-center non">地理歴史</td>
+	<td class="left">『地理総合、地理探究』、『歴史総合、日本史探究』、『歴史総合、世界史探究』</td>
+	<td class="left" rowspan="2">1科目選択</td>
+</tr>
+<tr>
+	<td class="align-center non">公民</td>
+	<td class="left">『公共、倫理』、『公共、政治・経済』</td>
+</tr>
+<tr>
+	<td class="align-center non">数学</td>
+	<td class="left">『数学Ⅰ、数学Ａ』、『数学Ⅱ、Ｂ、Ｃ』</td>
+	<td class="left">2科目必須</td>
+</tr>
+<tr>
+	<td class="align-center non">理科</td>
+	<td class="left">『物理』、『化学』、『生物』、『地学』</td>
+	<td class="left">2科目選択 ※1 ※2 ※3</td>
+</tr>
+<tr>
+	<td class="align-center non">外国語</td>
+	<td class="left">『英語』、『ドイツ語』、『フランス語』、『中国語』、『韓国語』</td>
+	<td class="left">1科目選択</td>
+</tr>
+<tr>
+	<td class="align-center non">情報</td>
+	<td class="left">『情報Ⅰ』</td>
+	<td class="left">必須</td>
+</tr>
+  </tbody>
+</table>
+	</div>
+<span>※1）経済学部（理系）は理科1科目のみ<br>
+※2）医学部は『物理』、『化学』、『生物』から2科目選択<br>
+	※3）工学部は『物理』必須<br /></span><br />
+
+<p class="indent weight-bold size-60px color-normal">2次試験の出題教科・科目</p>
+
+
+	<p class="sp_on clear-both" style="font-size: 1.4rem!important;">※横にスクロールできます。</p>
+	<div class="table_scroll">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-size:1.1rem" class="width_150">
+  <thead>
+<tr>
+<th class="align-middle" width="15%">教科</th>
+<th class="align-middle" width="15%">科目</th>
+<th class="align-middle">出題範囲</th>
+</tr>
+  </thead>
+  <tbody>
+<tr>
+	<td class="align-center non">国語</td>
+	<td class="align-center non">&nbsp;</td>
+	<td class="left">「現代の国語」、「言語文化」、「論理国語」、「文学国語」、「古典探究」</td>
+</tr>
+ <tr>
+	<td class="align-center non" rowspan="3">地理歴史</td>
+	<td class="align-center non">日本史</td>
+	<td class="left">「日本史探究」</td>
+</tr>
+<tr>
+	<td class="align-center non">世界史</td>
+	<td class="left">「世界史探究」</td>
+</tr>
+<tr>
+	<td class="align-center non">地理</td>
+	<td class="left">「地理探究」</td>
+</tr>
+<tr>
+	<td class="align-center non">数学（文系）</td>
+	<td class="align-center non">&nbsp;</td>
+	<td class="left">「数学Ⅰ」、「数学Ⅱ」、「数学Ａ」、「数学Ｂ（数列）」、「数学Ｃ（ベクトル）」</td>
+</tr>
+<tr>
+	<td class="align-center non">数学（理系）</td>
+	<td class="align-center non">&nbsp;</td>
+	<td class="left">「数学Ⅰ」、「数学Ⅱ」、「数学Ⅲ」、「数学Ａ」、「数学Ｂ（数列）」、<br>「数学Ｃ（ベクトル、平面上の曲線と複素数平面）」</td>
+</tr>
+<tr>
+	<td class="align-center non" rowspan="4">理科</td>
+	<td class="align-center non">物理</td>
+	<td class="left">「物理基礎・物理」</td>
+</tr>
+<tr>
+	<td class="align-center non">化学</td>
+	<td class="left">「化学基礎・化学」</td>
+</tr>
+<tr>
+	<td class="align-center non">生物</td>
+	<td class="left">「生物基礎・生物」</td>
+</tr>
+<tr>
+	<td class="align-center non">地学</td>
+	<td class="left">「地学基礎・地学」</td>
+</tr>
+<tr>
+	<td class="align-center non" rowspan="4">外国語</td>
+	<td class="align-center non">英語</td>
+	<td class="left">「英語コミュニケーションⅠ」、「英語コミュニケーションⅡ」、「英語コミュニケーションⅢ」、「論理・表現Ⅰ」、「論理・表現Ⅱ」、「論理・表現Ⅲ」を合わせて『英語』として出題
+</td>
+</tr>
+<tr>
+	<td class="align-center non">ドイツ語</td>
+	<td class="left">「ドイツ語」</td>
+</tr>
+<tr>
+	<td class="align-center non">フランス語</td>
+	<td class="left">「フランス語」</td>
+</tr>
+<tr>
+	<td class="align-center non">中国語</td>
+	<td class="left">「中国語」</td>
+</tr>
+  </tbody>
+</table></div>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;『情報Ⅰ』の新設により、共通テストの配点が変更された学部・学科も多く、それに伴って共通テストと2次試験の比率も変化しています。特に経済学部（理系）では『情報Ⅰ』の配点が50点と他の学部・学科と比べても高く、共通テストの合計点が250点から300点満点に変更されたこともあり、2次試験の比率が2024年度から4％減となっています。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;それに対して、下記の通り法学部や薬学部では、配点が変更されたことで現行入試より2次試験の比率が高まっており、今まで以上に2次試験の出来が合否を分ける可能性があります。<br /><br /></span>
+<p class="indent weight-bold size-60px color-normal">一般選抜の配点・比率比較（2024・2025年度）</p>
+	<p class="sp_on clear-both" style="font-size: 1.4rem!important;">※横にスクロールできます。</p>
+	<div class="table_scroll">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-size:1.1rem" class="width_150">
+  <thead>
+<tr>
+<th class="align-middle" width="20%" rowspan="2">学部等</th>
+<th class="align-middle" colspan="2" width="35%">共通：2次</th>
+<th class="align-middle" colspan="2" width="35%">2次比率</th>
+</tr>
+<tr>
+<th class="align-middle">24年</th>
+<th class="align-middle">25年</th>
+<th class="align-middle">24年</th>
+<th class="align-middle">25年</th>
+</tr>
+	</thead>
+  <tbody>
+<tr>
+	<td class="align-center non">総合人間<br>（文系）</td>
+	<td class="center align-middle">150:650</td>
+	<td class="center align-middle">175:650</td>
+	<td class="center align-middle">81％</td>
+	<td class="center align-middle">79％</td>
+</tr>
+<tr>
+	<td class="align-center non">総合人間<br>（理系）</td>
+	<td class="center align-middle">100:700</td>
+	<td class="center align-middle">125:700</td>
+	<td class="center align-middle">88％</td>
+	<td class="center align-middle">85％</td>
+</tr>
+<tr>
+	<td class="align-center non">文</td>
+	<td class="center">250:500</td>
+	<td class="center">250:500</td>
+	<td class="center">67％</td>
+	<td class="center">67％</td>
+</tr>
+<tr>
+	<td class="align-center non">教育<br>（文系）</td>
+	<td class="center align-middle">250:650</td>
+	<td class="center align-middle">265:650</td>
+	<td class="center align-middle">72％</td>
+	<td class="center align-middle">71％</td>
+</tr>
+<tr>
+	<td class="align-center non">教育<br>（理系）</td>
+	<td class="center align-middle">250:650</td>
+	<td class="center align-middle">265:650</td>
+	<td class="center align-middle">72％</td>
+	<td class="center align-middle">71％</td>
+</tr>
+<tr>
+	<td class="align-center non">法</td>
+	<td class="center">270:550</td>
+	<td class="center">285:600</td>
+	<td class="center">67％</td>
+	<td class="center">68％</td>
+</tr>
+<tr>
+	<td class="align-center non">経済<br>（文系）</td>
+	<td class="center align-middle">250:500</td>
+	<td class="center align-middle">300:550</td>
+	<td class="center align-middle">67％</td>
+	<td class="center align-middle">65％</td>
+</tr>
+<tr>
+	<td class="align-center non">経済<br>（理系）</td>
+	<td class="center align-middle">250:650</td>
+	<td class="center align-middle">300:650</td>
+	<td class="center align-middle">72％</td>
+	<td class="center align-middle">68％</td>
+</tr>
+<tr>
+	<td class="align-center non">理</td>
+	<td class="center">225:975</td>
+	<td class="center">250:975</td>
+	<td class="center">81％</td>
+	<td class="center">80％</td>
+</tr>
+<tr>
+	<td class="align-center non">医・医</td>
+	<td class="center">250:1000</td>
+	<td class="center">275:1000</td>
+	<td class="center">80％</td>
+	<td class="center">78％</td>
+</tr>
+<tr>
+	<td class="align-center non">医・人間健康科</td>
+	<td class="center">250:750</td>
+	<td class="center">275:750</td>
+	<td class="center">75％</td>
+	<td class="center">73％</td>
+</tr>
+<tr>
+	<td class="align-center non">薬</td>
+	<td class="center">250:700</td>
+	<td class="center">220:700</td>
+	<td class="center">74％</td>
+	<td class="center">76％</td>
+</tr>
+<tr>
+	<td class="align-center non">工</td>
+	<td class="center">200:800</td>
+	<td class="center">225:800</td>
+	<td class="center">80％</td>
+	<td class="center">78％</td>
+</tr>
+<tr>
+	<td class="align-center non">農</td>
+	<td class="center">350:700</td>
+	<td class="center">350:700</td>
+	<td class="center">67％</td>
+	<td class="center">67％</td>
+</tr>
+  </tbody>
+</table>
+	</div></div>
+<div class="content-title" style="font-size: 80%;">
+<h4>（2）特色入試</h4>
+</div>
+<div class="text_box clearfix" style="font-size:140%;">
+　一般選抜と同様に、特色入試においても共通テストでは『情報Ⅰ』が受験必須となります。『情報Ⅰ』は素点の100点満点で活用する募集単位も多く、各科目合計1,000点満点でそれぞれの募集単位で設けられている基準点を満たす必要があります。また、地理歴史・公民では『地理総合／歴史総合／公共』で受験することはできません。　<br>
+　加えて法学部と経済学部では、実施方法等に変更があります。　<br>
+　法学部はこれまで特色入試ながら後期日程として実施していましたが、2025年度より学校推薦型選抜として秋以降に実施されます。現行入試では共通テストと2次試験（小論文）の成績で合否を判定していましたが、2025年度以降は出願要件に英語外部・検定試験スコアの提出が必須となり、学校長の推薦（各校2名、男性は1名まで）が必要になります。<br>
+&nbsp;&nbsp;&nbsp;また、経済学部では現行入試と推薦人数に変更はありませんが、男女共学校においては男性の上限は文系型・理系型それぞれ1名までとなります。また、共通テストの必要科目に変更があり、2024年度入試までは文系型入試で『世界史Ｂ』が必須の2科目でしたが、2025年度以降は地理歴史・公民から2科目選択（『公共,倫理』、『公共,政治･経済』の組み合わせは不可）になり、世界史が必須ではなくなります。また、理系型入試でも『物理』必須の2科目でしたが、『物理』、『化学』いずれか必須に変わり、また『地学』の選択も可能になります。<br><br />
+
+	<p class="indent weight-bold size-60px color-normal">法学部・経済学部の実施方法等　 <span class="color-normal size-small weight-normal">※変更点は下線部</span></p>  
+	<p class="sp_on clear-both" style="font-size: 1.4rem!important;">※横にスクロールできます。</p>
+	<div class="table_scroll">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-size:1.1rem" class="width_150">
+  <thead>
+<tr>
+<th class="align-middle">学部</th>
+<th class="align-middle">区分</th>
+<th class="align-middle" width="40%">変更前（2024年度）</th>
+<th class="align-middle" width="40%">変更後（2025年度）</th>
+</tr>
+  </thead>
+  <tbody>
+<tr>
+	<td class="align-center non" rowspan="2">法</td>
+	<td class="center">実施日程</td>
+	<td class="left">後期日程（3/12）</td>
+	<td class="left"><u>学校推薦型選抜として秋以降に実施</u><br>
+	※出願期間：11/1～8・１次選考発表：11/28<br>
+　2次選考12/14・２次選考発表1/10<br>
+　最終合格発表：2/12</td>
+</tr>
+<tr>
+	<td class="center">出願要件</td>
+	<td class="left">（特になし）</td>
+	<td class="left style-lined">英語外部・検定試験スコアの提出、学校長の推薦（各学校2名、男性は1名まで）が必須</td>
+</tr>
+ <tr>
+	<td class="align-center non" rowspan="3">経済</td>
+	<td class="center">出願要件</td>
+	<td class="left">各学校長が推薦できる人数は文系型、理系型それぞれ2名まで</td>
+	<td class="left">各学校長が推薦できる人数は、文系型、理系型それぞれ2名<span class="style-lined">（男女ともに在学する学校における男性の上限はそれぞれ1名）</span>まで</td>
+</tr>
+<tr>
+	<td class="align-center" rowspan="2">評価方法</td>
+	<td class="left">【文系型入試】<br>共テ地歴公民：『世界史Ｂ』が必須の2科目選択</td>
+	<td class="left">【文系型入試】<br>共テ地歴公民：<span class="style-lined">『歴史総合・世界史探究』、『歴史総合・日本史探究』、『地理総合・地理探究』、『公共・倫理』、『公共、政治･経済』</span>から2科目選択<br><span class="style-lined">（『公共・倫理』、『公共、政治･経済』の組み合わせは不可）</span></td>
+</tr>
+<tr>
+	<td class="left">【理系型入試】<br>共テ理科：『物理』が必須の2科目選択。『地学』は選択不可</td>
+	<td class="left">【理系型入試】<br>共テ理科：『物理』、『化学』、『生物』、<span class="style-lined">『地学』</span>から2科目選択（『物理』、<span class="style-lined">『化学』</span>のうち少なくとも1科目を選択）</td>
+</tr>
+  </tbody>
+</table>
+	</div>
+	
+	
+</div>
+<div class="content-title" style="font-size: 80%;">
+<h4>（3）旧教育課程履修者に対する経過措置</h4>
+</div>
+<div class="text_box clearfix" style="font-size:140%;">
+<div class="local-title" style="font-size:70%">
+<h5>共通テスト（一般選抜・特色入試共通）</h5>
+</div>
+ <span class="weight-bold">地理歴史、公民</span><br>
+&nbsp;&nbsp;&nbsp;新教育課程による出題科目に加えて『旧世界史Ｂ』、『旧日本史Ｂ』、『旧地理Ｂ』、『旧倫理、旧政治･経済』を選択することができます。<br>
+<br>
+<span class="weight-bold">数学</span><br>
+&nbsp;&nbsp;&nbsp;新教育課程による出題科目に加えて『旧数学Ⅰ・旧数学Ａ』、『旧数学Ⅱ・旧数学Ｂ』を選択することができます。<br><br>
+<span class="weight-bold">情報</span><br>
+&nbsp;&nbsp;&nbsp;新教育課程による出題科目に加えて『旧情報』を選択することができます。<br>
+
+<div class="local-title" style="font-size:70%">
+<h5>2次試験（一般選抜）</h5>
+</div>
+&nbsp;&nbsp;&nbsp;必要に応じて旧教育課程履修者にも配慮して出題されます。
+        
+</div>
+<!--
+
+➊文系型入試<br>
+<ul style="font-size:70%;">
+<li>・提出書類と共通テストの成績が総合評価されます。</li>
+<li>・共通テストの合計得点が900点満点中概ね80％以上で、「世界史Ｂ」、「外国語」の2科目がいずれも概ね90％以上の者について、提出書類をＡ・Ｂ・Ｃ・Ｄの4段階で評価し、Ａの者が合格となります。</li>
+</ul>
+<br>
+➊理系型入試<br>
+<ul style="font-size:70%;">
+<li>・提出書類と共通テストの成績が総合評価されます。</li>
+<li>・共通テストの合計得点が900点満点中概ね80％以上で、「数学Ⅰ・Ａ」、「数学Ⅱ・Ｂ」、「物理」の3科目がいずれも概ね90％以上の者について、提出書類をＡ・Ｂ・Ｃ・Ｄの4段階で評価し、Ａの者が合格となります。</li>
+</ul>
+    
+<div class="local-title" style="font-size: 70%;">
+<h5>【解説】消える　経済学部の「論文入試」</h5>
+</div>
+　経済学部特色入試の選抜区分が2023年度以降、総合型選抜から学校推薦型選抜に変更されます。文系型と理系型に分けて実施され、それぞれの募集人員が15人、10人となります（学部合計の人数に変更はありません）。Society 5.0の時代を見据え、経済分野でも重要となる数理的能力を重視した選抜が特色入試でも「理系型」として組み込まれました。「文系型」では共通テストの「世界史Ｂ」が必須となり、「外国語」とともに概ね90％以上の得点率が求められています。また、提出書類の「学びの設計書」には、大学院に進学した場合どのような研究をしたいかという抱負を含めなければならず、大学院への進学に興味がある受験生を求めていることがわかります。　<br>
+　現行の経済学部特色入試（総合型選抜）は、2015年以前の一般入試（一般選抜）で実施されていた「論文入試」の流れをくむ長文読解力と論述力が求められる内容で、論文試験の配点が高い選抜でした。2023年度入試からは、募集人員も文系型と理系型に分割し、提出書類と共通テストの成績を総合して合格者が決定される方式となっています。　<br>
+　経済学部卒業後の進路は80.0％が就職、大学院進学は9.6％、その他10.4％となっています（2020年度卒業生）。現状の進学率は1割未満ですので、高大接続を重視し推薦要件等のハードルを今までより高くすることで、特色入試で受け入れたい学生を明確にし、大学院進学者増に繋げたい意図が見えます。
+
+<div class="content-title" style="font-size: 80%;">
+<h4>医学部医学科</h4>
+</div>
+ <span class="weight-bold">【提出書類】</span><br>
+学校教育法第１条に規定されている学校かつ国際バカロレア認定校（ＤＰ）を卒業見込みの者は、調査書に加えて国際バカロレア資格の成績証明書の写しが必要となります。
+    
+<div class="content-title" style="font-size: 80%;">
+<h4>医学部人間健康科学科</h4>
+</div>
+ <span class="weight-bold">【提出書類・出願要件】</span><br>
+第１次選考の事前提出書類に調査書が加わり、出願要件から「調査書の全体の学習成績の状況が概ね4.0以上の者」の項目が削除されます。<br>
+<br>
+<span class="weight-bold">【共通テスト利用教科科目】</span><br>
+先端看護科学コースと先端リハビリテーション科学コース（先端作業療法学講座）は同一、先端リハビリテーション科学コース（先端理学療法学講座）は別途設定、となります。
+
+<div class="content-title" style="font-size: 80%;">
+<h4>薬学部薬科学科</h4>
+</div>
+ <span class="weight-bold">【出願要件】</span><br>
+出願要件で、英語民間試験の条件が緩和され下記の通り薬学科と同一の要件になります。<br>
+TOEFL iBT、IELTS（アカデミック・モジュール）、実用英語検定（英検）（英検CBT・英検S-CBT・英検S-Interviewも認める）のうち少なくとも１つを受験し、TOEFL iBT、IELTS（アカデミック・モジュール）にあっては受験者成績書の原本を提出できる者、または実用英語検定（英検）にあっては合格証明書の原本を提出できる者。
+    
+<div class="content-title" style="font-size: 80%;">
+<h4>工学部</h4>
+</div>
+ <span class="weight-bold">【募集人員】</span><br>
+地球工学科、建築学科、工業化学科の3学科で募集人員が以下の通り増員されます。<br>
+地球工学科「4名（1名増）」、建築学科「3名（1名増）」、工業化学科「10名（3名増）」
+<br>
+<br>
+<span class="weight-bold">【提出書類】</span><br>
+建築学科、物理工学科において提出書類に「顕著な活動実績の概要（本人作成）」が加わります。
+<br>
+<br>
+<span class="weight-bold">【推薦要件・人数】</span><br>
+物理工学科、電気電子工学科、情報学科で学校長が推薦できる人数は、各１名から男女各１名の合計2名まで、工業化学科は1名から2名まで、となります。
+    
+<div class="content-title" style="font-size: 80%;">
+<h4>農学部</h4>
+</div>
+ <span class="weight-bold">【募集人員】</span><br>
+森林科学科で募集人員が5名から7名に増員されます。
+<br>
+<br>
+<span class="weight-bold">【求める人物像】</span><br>
+食品生物科学科で大学院修士・博士後期課程への進学に加えて、以下の内容が求められます。<br>
+「国内外のアカデミックなポジション（大学、国の研究機関等）で、世界トップレベルの食と健康に関する基礎研究を推進する人材」
+-->
+</div>
+<p class="mod-page-top">
+                <a href="#page-top">ページのトップへ</a>
+              </p>
+<!--<div class="pagetop"><a href="#top"><img src="../common/images/pagetop.gif" alt="このページのトップへ" width="108" height="10" border="0" /></a></div>-->
+</div>
+</div>
+      </div></div>
+
+<!--
+      <hr class="mod-hr-dotted mt20 mb20">
+
+      <div class="mod-box-button">
+        <p class="align-center"><a href="#" target="_blank">2013年度より過去のデータはこちら<span class="mod-icon-window">別ウィンドウで開く</span></a></p>
+      </div>
+-->
+      <div class="mod-adobe-reader">
+        <figure class="mod-adobe-reader_object"><a href="http://get.adobe.com/jp/reader/" target="_blank"><img src="/common/img/module/adobe-reader_btn01.png" alt="ADOBE READER ダウンロード" width="158" height="39"></a></figure>
+        <div class="mod-adobe-reader_body">
+          <p>PDFファイルをご覧いただくには、アドビシステムズ社が配布しているAdobe Reader（無償）が必要です。<br>
+          Adobe Readerをインストールすることにより、PDFファイルの閲覧・印刷などが可能になります。</p>
+          <p class="mod-link space-near"><a href="http://get.adobe.com/jp/reader/" target="_blank">Adobe Readerのダウンロード</a><span class="mod-icon-window">別ウィンドウで開く</span></p>
+        </div>
+      </div>
+      </div><!--/div-->
+<!-- InstanceEndEditable -->
+    <!-- /.main-content -->
+    </main>
+
+  <!-- /.content -->
+  </div>
+
+<!--▽フッターエリアここから▽-->  
+<footer role="contentinfo" class="page-footer">
+    <div class="none">
+    <div class="footer-lower">
+      <p class="return-top"><a href="#page-top"><img src="/common/img/layout/footer_return-top_img01.png" alt="ページの上部に戻る" width="52" height="35"></a></p>
+      <div class="inner">
+        <nav class="footer-nav">
+          <ul>
+            <li><a href="/course/">受講案内</a></li>
+            <li><a href="/moshi/">SAPIX YOZEMI GROUP模試</a></li>
+            <li><a href="/nyushi/">入試情報</a></li>
+            <li><a href="/kosha_ryo/">校舎・寮案内</a></li>
+            <li><a href="/seminar_event/">セミナー・イベント</a></li>
+            <li><a href="/books/">書籍案内</a></li>
+            <li><a href="/request/">資料請求</a></li>
+          </ul>
+          <ul>
+            <li><a href="/sitemap/">サイトマップ</a></li>
+            <li><a href="/privacy/">プライバシー・ポリシー</a></li>
+			<li><a href="/studentnotebook/">学生心得</a></li>
+            <li><a href="/law/">特定商取引法に基づく表示</a></li>
+            <li><a href="/harassment/">ハラスメント防止について</a></li>
+            <li><a href="/jinzai/">人材募集</a></li>
+          </ul>
+          <ul>
+            <li><a href="/yozemi/toiawaseForm/init" target="_blank">お問い合わせ</a><span class="mod-icon-window">別ウィンドウで開く</span></li>
+          </ul>
+        </nav>
+        <p class="footer-group-mark"><a href="http://sapix-yozemi.com/" target="_blank" style="display:inline-block;"><img src="/common/img/footlogo_group.png" alt="SAPIX YOZEMI GROUP　代々木ゼミナール"></a></p>
+      </div>
+    </div>
+    <p class="copyright"><small>Copyright 代々木ゼミナール</small><small>掲載内容の無断転載を禁じます</small></p>
+
+
+
+
+
+    </div>
+    <div class="sp_on">
+<p class="return-top"><a href="#page-top"><img src="/sp/common/img/layout/footer_return-top_img01.png" alt="ページの先頭へ" width="106" height="13"></a></p>
+
+<section class="mod-frame opt-bg-gray footer-conversion">
+  <ul class="mod-button-link-list opt-horizontal">
+    <li class="has-important"><a href="/request/" class="js-equal-heights">資料請求</a></li>
+    <!--<li class="has-important"><a href="/sp/kozamoshikomi/" class="js-equal-heights">インターネット申込</a></li>-->
+  </ul>
+</section>
+
+<nav class="footer-nav">
+  <ul>
+    <li class=""><a href="/sitemap/">サイトマップ</a></li>
+    <li class=""><a href="/privacy/">プライバシー・ポリシー</a></li>
+	 <li class=""><a href="/studentnotebook/">学生心得</a></li>
+    <li class=""><a href="/law/">特定商取引法に基づく表示</a></li>
+    <li class=""><a href="/harassment/">ハラスメント防止について</a></li>
+    <li class=""><a href="/jinzai/index.html">人材募集</a></li>
+    <li class="has-icon-window"><a href="http://sapix-yozemi.com/" target="_blank">SAPIX YOZEMI GROUP</a></li>
+  </ul>
+</nav>
+				
+<!--	<div class="footer-pc-link">
+		<p><a href="/index.html" id="anchorToPcInSp">PCサイトを表示する</a></p>
+	</div>  -->
+<div class="footer-group-link" style="display:flex; justify-content: center;">	
+<a href="http://sapix-yozemi.com/" target="_blank" style="display:inline-block;"><img src="/common/img/footlogo_group.png" alt="SAPIX YOZEMI GROUP　代々木ゼミナール"></a>
+</div>
+
+  <p class="copyright">Copyright 代々木ゼミナール 掲載内容の無断転載を禁じます。</p>
+
+
+
+
+    </div>
+
+  <!-- /.page-footer -->
+  </footer> 
+      <!--△フッターエリアここまで△-->
+<!-- /.page-container -->
+</div>
+
+<script src="/common/js/vendor/libs.js"></script>
+<script src="/common/js/all.min.js"></script>
+<script src="/common/js/vendor/jquery.bxslider.min.js"></script>
+<script src="/sp/common/js/smartphone.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/common/js/common.js"></script>
+<!-- InstanceBeginEditable name="script" -->
+<!-- InstanceEndEditable -->
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,86 @@
+[
+ {
+  "subject": "rikeisuugaku",
+  "year": 2025,
+  "q": 1,
+  "field": "複素数平面，定積分の計算",
+  "diff": "やや易"
+ },
+ {
+  "subject": "rikeisuugaku",
+  "year": 2025,
+  "q": 2,
+  "field": "整数の性質",
+  "diff": "標準"
+ },
+ {
+  "subject": "rikeisuugaku",
+  "year": 2025,
+  "q": 3,
+  "field": "微分法",
+  "diff": "標準"
+ },
+ {
+  "subject": "rikeisuugaku",
+  "year": 2025,
+  "q": 4,
+  "field": "空間ベクトル",
+  "diff": "やや難"
+ },
+ {
+  "subject": "rikeisuugaku",
+  "year": 2025,
+  "q": 5,
+  "field": "いろいろな曲線",
+  "diff": "標準"
+ },
+ {
+  "subject": "rikeisuugaku",
+  "year": 2025,
+  "q": 6,
+  "field": "確率",
+  "diff": "やや難"
+ },
+ {
+  "subject": "rikeisuugaku",
+  "year": 2026,
+  "q": 1,
+  "field": "微分法",
+  "diff": "標準"
+ },
+ {
+  "subject": "rikeisuugaku",
+  "year": 2026,
+  "q": 2,
+  "field": "空間図形",
+  "diff": "標準"
+ },
+ {
+  "subject": "rikeisuugaku",
+  "year": 2026,
+  "q": 3,
+  "field": "整数",
+  "diff": "やや難"
+ },
+ {
+  "subject": "rikeisuugaku",
+  "year": 2026,
+  "q": 4,
+  "field": "平面図形",
+  "diff": "やや難"
+ },
+ {
+  "subject": "rikeisuugaku",
+  "year": 2026,
+  "q": 5,
+  "field": "積分法",
+  "diff": "標準"
+ },
+ {
+  "subject": "rikeisuugaku",
+  "year": 2026,
+  "q": 6,
+  "field": "確率、数列",
+  "diff": "標準"
+ }
+]

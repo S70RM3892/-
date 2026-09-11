@@ -1,0 +1,51 @@
+
+<!-- ══════════ 03 演習 ══════════ -->
+<div id="p-drill" role="tabpanel" aria-labelledby="t-drill" hidden>
+
+  <section>
+    <div class="sh"><span class="n">なぜ</span><h2>模試は年5回、過去問は毎週</h2>
+      <p class="hint">Phase 5 が要求する σ_z は<b>実測が2点しかありません</b>。模試を待っていても年5回しか増えない。過去問を本番時間で解いて記録すれば<b>毎週1点</b>増えます。ここが最大のボトルネック解消です。</p></div>
+    <div class="note"><b>点数だけ書いても意味がありません。</b>年度ごとに難易度が違うので、素点は比較できない。記録すべきは <b>①大問ごとの得点 ②所要時間 ③捨てると判断したか</b> の3つです。分野と難易度は<a href="https://claude.ai/code/artifact/ec774bdf-d3c8-41cd-aa4c-2f41fc9343fa">出題地図</a>の29年分が自動で入るので、<b>落とした問題の分野分布</b>が勝手に出ます。</div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">記録</span><h2>セット別</h2>
+      <p class="hint">理系数学150分・6問・200点。配点は本番でも問題用紙に印刷されているので、演習でも必ず見て配分を決めてください。分野／難度／配点は判明分が自動で入ります（空欄は上書き可）。</p></div>
+    <div id="drill-body"></div>
+    <div class="acts"><button id="adddrill" type="button">＋ セットを追加</button>
+      <span class="flag" style="margin-left:auto;color:var(--muted)" id="drill-n">—</span></div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">集計</span><h2>どこで落としているか</h2></div>
+    <div class="strip4">
+      <div class="c"><dt>平均得点率</dt><dd id="dr-rate">—</dd><div class="nt" id="dr-raten">—</div></div>
+      <div class="c"><dt>セット数 ／ 総時間</dt><dd id="dr-n">—</dd><div class="nt">記録できた演習量</div></div>
+      <div class="c key"><dt>点／分</dt><dd id="dr-eff">—</dd><div class="nt" id="dr-effn">150分で200点なら1.33</div></div>
+      <div class="c"><dt>捨て問の精度</dt><dd id="dr-skip">—</dd><div class="nt" id="dr-skipn">—</div></div>
+    </div>
+
+    <div class="sh" style="margin-top:22px;border:none;padding:0"><h2 style="font-size:15px">難易度帯ごとの得点率</h2></div>
+    <p class="hint">易しい問題での取りこぼしは、難しい問題での失点より高くつきます ── 周りが取るからです。<b>易・やや易で9割を切っていたら、そこが最優先</b>。</p>
+    <div class="prof" id="dr-band"></div>
+
+    <div class="sh" style="margin-top:22px;border:none;padding:0"><h2 style="font-size:15px">分野別の失点</h2></div>
+    <p class="hint">配点で重みづけした失点の大きい順。右端は<a href="https://claude.ai/code/artifact/ec774bdf-d3c8-41cd-aa4c-2f41fc9343fa#s-bunya">出題地図</a>での現行課程12年の出題回数で、<b>「よく出るのに落としている」分野が上に来ます</b>。</p>
+    <div class="scroll"><table class="dtab">
+      <thead><tr><th>分野</th><th>配点計</th><th>得点計</th><th>得点率</th><th>失点</th><th>12年で</th></tr></thead>
+      <tbody id="dr-field"><tr><td colspan="6" style="color:var(--muted)">セットを記録すると出ます</td></tr></tbody>
+    </table></div>
+    <div class="note shu"><b>この表が処方です。</b>失点が大きく、かつ出題回数が多い分野の上位2つが、次の1か月でやることになります。出題地図の「最優先」チップと一致していれば確度が高い。<br><br>ただし<b>1セットでは偶然です</b>。3セット以上そろってから読んでください。</div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">次</span><h2>まだ埋まっていないもの</h2></div>
+    <div class="panel">
+      <label class="ck"><input type="checkbox" id="ck10"><span><b>3セット以上</b>記録した<small>分野別の失点が偶然でなくなる最低ライン</small></span></label>
+      <label class="ck"><input type="checkbox" id="ck11"><span>自己採点と<b>解答の照合</b>をして、論証の穴を数えた<small>開示例では自己採点が ±10〜25点ずれている。点差より「なぜずれたか」が情報</small></span></label>
+      <label class="ck"><input type="checkbox" id="ck12"><span><b>捨てた問題が実際に難しかったか</b>を確認した<small>上の「捨て問の精度」。判断が逆なら、150分の使い方そのものが失点源</small></span></label>
+    </div>
+    <div class="note"><b>投入時間あたりの伸び（限界効用）はまだ出せません。</b>科目に+10時間入れたとき評価偏差値が何ポイント動くか ── これを回帰するには、演習量と成績の対応点が最低でも6〜8点必要です。いまは2点。<br><br>だから先に量を作る。この表が埋まるまで、科目配分は<b>σ（数学43.0 &gt; 理科28.9 &gt; 英語18.5 &gt; 国語11.3）と換算率</b>で決めるのが現状の最善です。</div>
+  </section>
+
+</div>

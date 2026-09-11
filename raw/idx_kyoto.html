@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="Shift_JIS" />
+<title>京都大学掲示板 - 受験掲示板・100点BBS【大学受験解答速報掲示板・受験生応援掲示板】</title>
+<meta name="robots" content="index,follow" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="-1" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1" />
+<link rel="manifest" href="https://www.100ten.info/manifest.webmanifest" />
+<link rel="apple-touch-icon" sizes="180x180" href="icon-192x192.png">
+    <script>
+        window.addEventListener('load', function () {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register("/sw.js")
+                    .then(function (registration) {
+                        console.log("serviceWorker registed.");
+                    }).catch(function (error) {
+                        console.warn("serviceWorker error.", error);
+                    });
+            }
+        });
+    </script>
+<style type="text/css">
+<!--
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://www.100ten.info/css/pc-style.css" />
+<script src="https://www.100ten.info/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="https://www.100ten.info/js/jquery.socialbutton-1.9.1.min.js" type="text/javascript"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EE2YC0373N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EE2YC0373N');
+</script>
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#0000FF" vlink="#0000FF">
+
+
+
+<div id="wrap">
+  <div class="header clearfix">
+    <div id="site-title"><a href="https://www.100ten.info/"><img src="https://www.100ten.info/img/logo.png" alt="受験掲示板・100点BBS【大学受験解答速報掲示板・受験生応援掲示板】"></a></div>
+    <form method="get" action="https://www.100ten.info/allSearch.php" id="searchform">
+    <input type="text" name="keyword" size="" value="" placeholder="全板-タイトル・本文・投稿者名で検索" id="searchform-keyword">
+    <input type="image" src="https://www.100ten.info/img/magnifyingGlass.png" alt="検索" id="searchform-btn">
+    </form>
+  </div>
+  <div class="bbsMenu">
+		<ul class="bbsList">
+<div class="menu-bbslist-container"><ul id="menu-bbslist" class="menu"><li id="menu-item-11" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11"><a href="https://www.100ten.info/">TOP</a></li>
+<li id="menu-item-37" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-37"><a href="https://www.100ten.info/bbs/national/">国立大学</a></li>
+<li id="menu-item-38" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-38"><a href="https://www.100ten.info/bbs/public/">公立大学</a></li>
+<li id="menu-item-39" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-39"><a href="https://www.100ten.info/bbs/private/">私立大学</a></li>
+<li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="https://www.100ten.info/rounin/">浪人生掲示板</a></li>
+<li id="menu-item-24" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a href="https://www.100ten.info/medical/">医学部受験掲示板</a></li>
+</ul></div>
+		</ul>
+		<ul class="bbsList">
+<div class="menu-bbslist2-container"><ul id="menu-bbslist2" class="menu"><li id="menu-item-33" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-33"><a href="https://www.100ten.info/bbs/study/">勉強掲示板</a></li>
+<li id="menu-item-25" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25"><a href="https://www.100ten.info/center/">共通テスト</a></li>
+<li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-34"><a href="https://www.100ten.info/juku/">塾・予備校掲示板</a></li>
+<li id="menu-item-42" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-42"><a href="https://www.100ten.info/etc/">その他の掲示板</a></li>
+<li id="menu-item-36" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-36"><a href="https://www.100ten.info/talk/">雑談</a></li>
+<li id="menu-item-35" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-35"><a href="https://www.100ten.info/bbs/how/">使い方</a></li>
+</ul></div>    </div>
+
+  <div id="inner" class="clearfix">
+    <div id="sideWrap">
+   <div class="widget"><p class="heading">カテゴリー</p><div class="menu-category-container"><ul id="menu-category" class="menu"><li id="menu-item-60" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-60"><a href="https://www.100ten.info/bbs/teidai/">旧帝大</a></li>
+<li id="menu-item-61" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-61"><a href="https://www.100ten.info/bbs/nankan/">難関国公立大学</a></li>
+<li id="menu-item-62" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-62"><a href="https://www.100ten.info/bbs/sansyo/">旧三商大</a></li>
+<li id="menu-item-63" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-63"><a href="https://www.100ten.info/bbs/soukei/">早慶・上智・ICU</a></li>
+<li id="menu-item-64" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-64"><a href="https://www.100ten.info/bbs/rgmarch/">RGMARCH</a></li>
+<li id="menu-item-65" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-65"><a href="https://www.100ten.info/bbs/seisei/">成成獨国武明</a></li>
+<li id="menu-item-66" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-66"><a href="https://www.100ten.info/bbs/nittou/">日東駒専</a></li>
+<li id="menu-item-67" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-67"><a href="https://www.100ten.info/bbs/daitoua/">大東亜帝国</a></li>
+<li id="menu-item-68" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-68"><a href="https://www.100ten.info/bbs/kkdr/">関関同立</a></li>
+<li id="menu-item-69" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-69"><a href="https://www.100ten.info/bbs/skkr/">産近甲龍</a></li>
+<li id="menu-item-70" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-70"><a href="https://www.100ten.info/bbs/outou/">摂神追桃</a></li>
+<li id="menu-item-256" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-256"><a href="https://www.100ten.info/bbs/nd/">防大・防医・航空</a></li>
+<li id="menu-item-71" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-71"><a href="https://www.100ten.info/bbs/oversea/">海外の大学・その他</a></li>
+</ul>
+<div align="center">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 100ten200*200allpage -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:200px;height:200px"
+     data-ad-client="ca-pub-9713004086829671"
+     data-ad-slot="5116658347"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+</div></div><div class="widget"><p class="heading">国立大学掲示板</p><div class="menu-national-container"><ul id="menu-national" class="menu"><li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="https://www.100ten.info/bbs/hokkaido/">北海道の国立大学</a></li>
+<li id="menu-item-44" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-44"><a href="https://www.100ten.info/bbs/touhoku/">東北の国立大学</a></li>
+<li id="menu-item-72" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-72"><a href="https://www.100ten.info/bbs/tokyo/">東京の国立大学</a></li>
+<li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="https://www.100ten.info/bbs/kantou/">関東の国立大学(東京以外)</a></li>
+<li id="menu-item-46" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-46"><a href="https://www.100ten.info/bbs/chubu/">中部の国立大学</a></li>
+<li id="menu-item-47" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-47"><a href="https://www.100ten.info/bbs/kinki/">近畿の国立大学</a></li>
+<li id="menu-item-48" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-48"><a href="https://www.100ten.info/bbs/shikoku/">中国・四国の国立大学</a></li>
+<li id="menu-item-49" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-49"><a href="https://www.100ten.info/bbs/kyusyu/">九州・沖縄の国立大学</a></li>
+</ul></div></div><div class="widget"><p class="heading">公立大学掲示板</p><div class="menu-public-container"><ul id="menu-public" class="menu"><li id="menu-item-74" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-74"><a href="https://www.100ten.info/bbs/phokkaido/">北海道・東北の公立大学</a></li>
+<li id="menu-item-75" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-75"><a href="https://www.100ten.info/bbs/pkantou/">関東の公立大学</a></li>
+<li id="menu-item-76" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-76"><a href="https://www.100ten.info/bbs/pchubu/">中部の公立大学</a></li>
+<li id="menu-item-77" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-77"><a href="https://www.100ten.info/bbs/pkinki/">近畿の公立大学</a></li>
+<li id="menu-item-78" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-78"><a href="https://www.100ten.info/bbs/pshikoku/">中国・四国の公立大学</a></li>
+<li id="menu-item-79" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-79"><a href="https://www.100ten.info/bbs/pkyusyu">九州・沖縄の公立大学</a></li>
+<li id="menu-item-154" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-154"><a href="https://www.100ten.info/bbs/pjc/">公立短期大学</a></li>
+</ul></div></div>
+
+<div align="center">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 100ten200*200allpageunder -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:200px;height:200px"
+     data-ad-client="ca-pub-9713004086829671"
+     data-ad-slot="6593391542"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<div class="widget"><p class="heading">私立大学掲示板</p><div class="menu-private-container"><ul id="menu-private" class="menu"><li id="menu-item-80" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-80"><a href="https://www.100ten.info/bbs/hokkaidop/">北海道の私立大学</a></li>
+<li id="menu-item-81" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-81"><a href="https://www.100ten.info/bbs/touhokup/">東北の私立大学</a></li>
+<li id="menu-item-84" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-84"><a href="https://www.100ten.info/bbs/kantoup/">関東の私立大学</a></li>
+<li id="menu-item-82" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82"><a href="https://www.100ten.info/bbs/chubup/">中部の私立大学</a></li>
+<li id="menu-item-83" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-83"><a href="https://www.100ten.info/bbs/kinkip/">近畿の私立大学</a></li>
+<li id="menu-item-85" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-85"><a href="https://www.100ten.info/bbs/chugokup/">中国の私立大学</a></li>
+<li id="menu-item-86" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-86"><a href="https://www.100ten.info/bbs/shikokup/">四国の私立大学</a></li>
+<li id="menu-item-87" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-87"><a href="https://www.100ten.info/bbs/kyusyup/">九州の私立大学</a></li>
+<li id="menu-item-248" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-248"><a href="https://www.100ten.info/bbs/daigakuinp/">大学院大学</a></li>
+</ul></div></div><div class="widget"><p class="heading">その他の掲示板</p><div class="menu-etc-container"><ul id="menu-etc" class="menu"><li id="menu-item-88" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-88"><a href="https://www.100ten.info/aruaru/">受験あるある</a></li>
+<li id="menu-item-89" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-89"><a href="https://www.100ten.info/news/">受験ニュース</a></li>
+<li id="menu-item-90" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-90"><a href="https://www.100ten.info/daigaku/">大学受験総合掲示板</a></li>
+<li id="menu-item-91" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-91"><a href="https://www.100ten.info/howto/">勉強法掲示板</a></li>
+<li id="menu-item-92" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-92"><a href="https://www.100ten.info/dentistry/">歯学部受験掲示板</a></li>
+<li id="menu-item-93" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-93"><a href="https://www.100ten.info/veterinary/">獣医学部受験掲示板</a></li>
+<li id="menu-item-94" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-94"><a href="https://www.100ten.info/public/">国公立大学総合掲示板</a></li>
+<li id="menu-item-95" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-95"><a href="https://www.100ten.info/GMARCH/">RGMARCH総合掲示板</a></li>
+<li id="menu-item-96" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-96"><a href="https://www.100ten.info/private/">私立大学総合掲示板</a></li>
+<li id="menu-item-97" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-97"><a href="https://www.100ten.info/center/">共通テスト掲示板</a></li>
+<li id="menu-item-98" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-98"><a href="https://www.100ten.info/sankin/">産近甲龍総合掲示板</a></li>
+<li id="menu-item-99" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-99"><a href="https://www.100ten.info/english/">英語の勉強掲示板</a></li>
+<li id="menu-item-100" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-100"><a href="https://www.100ten.info/math/">数学の勉強掲示板</a></li>
+<li id="menu-item-101" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-101"><a href="https://www.100ten.info/japanese/">国語の勉強掲示板</a></li>
+<li id="menu-item-102" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-102"><a href="https://www.100ten.info/physics/">物理の勉強掲示板</a></li>
+<li id="menu-item-103" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-103"><a href="https://www.100ten.info/chemistry/">化学の勉強掲示板</a></li>
+<li id="menu-item-104" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-104"><a href="https://www.100ten.info/biology/">生物の勉強掲示板</a></li>
+<li id="menu-item-105" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-105"><a href="https://www.100ten.info/earthscience/">地学の勉強掲示板</a></li>
+<li id="menu-item-106" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-106"><a href="https://www.100ten.info/worldhistory/">世界史の勉強掲示板</a></li>
+<li id="menu-item-107" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-107"><a href="https://www.100ten.info/japanesehistory/">日本史の勉強掲示板</a></li>
+<li id="menu-item-108" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-108"><a href="https://www.100ten.info/geography/">地理の勉強掲示板</a></li>
+<li id="menu-item-109" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-109"><a href="https://www.100ten.info/ethics/">倫理政経の勉強掲示板</a></li>
+<li id="menu-item-110" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-110"><a href="https://www.100ten.info/rounin/">浪人生掲示板</a></li>
+<li id="menu-item-111" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-111"><a href="https://www.100ten.info/kamen/">仮面浪人掲示板</a></li>
+<li id="menu-item-112" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-112"><a href="https://www.100ten.info/sjuken/">再受験掲示板</a></li>
+<li id="menu-item-113" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-113"><a href="https://www.100ten.info/juku/">塾・予備校掲示板</a></li>
+<li id="menu-item-114" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-114"><a href="https://www.100ten.info/talk/">雑談</a></li>
+<li id="menu-item-115" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-115"><a href="https://www.100ten.info/etc/">その他の掲示板</a></li>
+<li id="menu-item-116" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-116"><a href="https://www.100ten.info/high/">高校受験掲示板</a></li>
+<li id="menu-item-117" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-117"><a href="https://www.100ten.info/jrhigh/">中学受験掲示板</a></li>
+<li id="menu-item-118" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-118"><a href="https://www.100ten.info/ojuken/">お受験掲示板</a></li>
+<li id="menu-item-119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-119"><a href="https://www.100ten.info/mensa/">メンサMENSA掲示板</a></li>
+<li id="menu-item-119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-119"><a href="https://www.100ten.info/jyukensapuri/">受験サプリ掲示板</a></li>
+<li id="menu-item-119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-119"><a href="https://www.100ten.info/manage/">運営/管理人への要望</a></li>
+</ul>
+
+<p class="heading">関連掲示板</p>
+<ul>
+        <li><a href="https://www.100ten.info/">大学受験掲示板100点BBS</a></li>
+ <li><a href="https://www.100ten.info/highbbs/">高校受験掲示板100点BBS【高校入試】</a></li>
+</ul>
+
+</div></div> 
+    </div><div id="mainWrap">
+  
+  <div class="page-title">京都大学掲示板</div>
+  
+  <a href="https://www.100ten.info/tokyo/">東京大学</a> / 
+<a href="https://www.100ten.info/kyoto/">京都大学</a> / 
+<a href="https://www.100ten.info/osaka/">大阪大学</a> / 
+<a href="https://www.100ten.info/touhoku/">東北大学</a> / 
+<a href="https://www.100ten.info/nagoya/">名古屋大学</a> / 
+<a href="https://www.100ten.info/kyushu/">九州大学</a> /
+<a href="http://www.100ten.info/hokudai/">北海道大学</a> /
+<a href="https://www.100ten.info/upco/">大阪公立大学</a> / 
+<a href="https://www.100ten.info/kobe/">神戸大学</a> 
+  <div align="center">
+  <a href="https://www.100ten.info/kyoto/write.php" class="header-button"><img src="https://www.100ten.info/emojila/emjimg2/docomo/e14.gif" border="0" />スレッド作成</a><a href="https://www.100ten.info/kyoto/thSearch.php" class="header-button"><img src="https://www.100ten.info/emojila/emjimg2/docomo/119.gif" border="0" />検索</a><a href="https://www.100ten.info/kyoto/bbsNewImg.php" class="header-button"><img src="https://www.100ten.info/emojila/emjimg2/docomo/68.gif" border="0" />画像一覧</a>
+  </div>
+  
+  <div class="frame"><span id="order-link">
+  <a href="./">通常順(更新)</a>|<a href="./?sort=1">レス多順</a>|<a href="./?sort=2">スレッド作成順</a>|<a href="./?sort=3">累計アクセス順</a>|<a href="./?sort=4">本日アクセス順</a>|<a href="./?sort=2026-09-09">前日(2026-09-09)人気順</a><br>
+  </span></div>
+  
+  <div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1444/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    <span class="new-icon-th">NEW</span>
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">京大、女性限定で入学支援金30万円wwwww</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/09/10 19:31&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">10</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">705</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/19/" class="clearfix">
+
+    <div class="thread-inframe1"><img src="https://www.100ten.info/fitimg/resize.php?img=https://www.100ten.info/data/kyoto/file/1/19/tBlmE_19_0-1.jpg&w=55&h=55&q=92&id=kyoto&tid=19" class="img-frame"></div>
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    <span class="new-icon-th">NEW</span>
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">京都大学掲示板（その1）</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/09/10 19:30&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">607</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">99025</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1488/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    <span class="new-icon-th">NEW</span>
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">恋人にするなら同志社、結婚するなら京大</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/09/10 06:18&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">247</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">5143</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1421/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    <span class="new-icon-th">NEW</span>
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">ま○こ枠は悪</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/09/10 03:23&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">148</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">4441</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/385/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    <span class="new-icon-th">NEW</span>
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">オススメの映画教えてクレメンス</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/09/09 21:34&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">153</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">17786</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1358/" class="clearfix">
+
+    <div class="thread-inframe1"><img src="https://www.100ten.info/fitimg/resize.php?img=https://www.100ten.info/data/kyoto/file/2/1358/RUbPj_1358_0-1.png&w=55&h=55&q=92&id=kyoto&tid=1358" class="img-frame"></div>
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    <span class="new-icon-th">NEW</span>
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">ここで京大行きたい音頭をすると合格【第二番】</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/09/09 20:32&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">339</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">9951</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1499/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    <span class="new-icon-th">NEW</span>
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">東大に価値創造学部とかいう創価学会みたいな学部ができて完全に格下になったと話題に</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/09/07 08:45&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">5</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">209</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1438/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    <span class="new-icon-th">NEW</span>
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">俺たちの京大からノーベル賞</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/09/04 19:28&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">59</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">2830</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1498/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    <span class="new-icon-th">NEW</span>
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">旧７帝大で最下位の不名誉、京大が「アメとムチ」で返上したい「汚名」</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/08/31 20:23&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">5</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">226</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1495/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    <span class="new-icon-th">NEW</span>
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">高校1年生からできる対策・勉強法</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/08/31 20:22&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">13</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">397</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1496/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    <span class="new-icon-th">NEW</span>
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">勉強の唯一のモチベが熊野寮なんやが</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/08/30 13:32&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">7</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">290</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/248/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">京大の理科は科目間の得点調整があるかどうか</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/08/23 19:55&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">575</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">72020</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1497/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">東大出身者、米国の制裁対象になるwww</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/08/19 11:10&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">0</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">162</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1410/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">京大理系 VS 東大文系</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/08/18 09:58&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">494</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">13060</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1398/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">合格発表まで日本史しりとり【その2】</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/08/10 23:17&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">702</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">15250</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1482/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">京大自由英作文について</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/08/07 08:08&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">26</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">950</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/204/" class="clearfix">
+
+    <div class="thread-inframe1"><img src="https://www.100ten.info/fitimg/resize.php?img=https://www.100ten.info/data/kyoto/file/1/204/GaDq3_204_0-1.jpg&w=55&h=55&q=92&id=kyoto&tid=204" class="img-frame"></div>
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">京大生だけど質問ある？</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/08/04 06:02&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">40</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">13344</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1494/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">京都大学「異例の総長選考」が波紋、教職員投票で「3位」が新総長に…教員ら反発「なぜ説明がない」</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/07/30 23:35&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">11</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">331</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/136/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">京大工学部の人ら～（その2）</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/07/29 20:54&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">793</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">157143</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1490/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">京大の卒業生、また画期的なことをする</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/07/29 20:54&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">5</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">363</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1493/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">利根川進さん死去</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/07/29 20:33&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">9</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">296</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/156/" class="clearfix">
+
+    <div class="thread-inframe1"><img src="https://www.100ten.info/fitimg/resize.php?img=https://www.100ten.info/data/kyoto/file/1/156/6HEJL_156_0-1.jpg&w=55&h=55&q=92&id=kyoto&tid=156" class="img-frame"></div>
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">【2027年】京都大学入試解答速報掲示板【京大解答速報】</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/07/23 21:42&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">6</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">1596</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1492/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">【祝】京都大学、国際卓越大学認定</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/07/23 11:07&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">16</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">466</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1009/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">合格発表まで理数しりとり</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/07/16 11:06&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">706</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">38304</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1491/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">京大、政府に買収されるw</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/07/04 07:29&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">1</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">193</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1366/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">底辺youtuberガリベン太郎</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/06/21 14:21&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">22</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">2060</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1481/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">入寮禁止の吉田寮に入って退学処分喰らう馬鹿w</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/06/14 16:22&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">8</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">641</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/234/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">2018年京大実戦・京大オープンスレ【その5】</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/05/29 15:16&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">832</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">176398</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/1483/" class="clearfix">
+
+    
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">【永遠のライバル】京大 VS 理科大</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/05/29 08:35&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">13</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">862</span>view</span>
+    </div>
+   
+  </a>
+</div>
+<div class="thread-frame clearfix">
+  <a href="https://www.100ten.info/kyoto/155/" class="clearfix">
+
+    <div class="thread-inframe1"><img src="https://www.100ten.info/fitimg/resize.php?img=https://www.100ten.info/data/kyoto/file/1/155/Sokot_155_0-1.jpg&w=55&h=55&q=92&id=kyoto&tid=155" class="img-frame"></div>
+    <div class="thread-inframe2">
+    <img src="https://www.100ten.info/img/th_icon.png" class="th_icon">
+    
+    </div>
+
+    <div class="thread-inframe3">
+    <span class="thread-title">【2026年】京都大学入試解答速報掲示板【京大解答速報】</span><br>
+    <span class="thread-title-sub"><img src="https://www.100ten.info/img/th_clock.png">2026/05/21 14:32&nbsp;&nbsp;<img src="https://www.100ten.info/img/th_lognum.png"><span style="color:red; font-weight:bold;">5</span>件 &nbsp;&nbsp;<span style="color:blue; font-weight:bold;"></span>　<span style="color:red; font-weight:bold;">1883</span>view</span>
+    </div>
+   
+  </a>
+</div>
+
+  
+  <center>
+  <span class="page-jump-button-off">前へ</span>｜<a href="./2" class="page-jump-button-on">次へ</a><br>
+  <div class="pager"><span class="latest">最初</span><span class="here">1</span><a href="./2">2</a><a href="./3">3</a><a href="./4">4</a><a href="./5">5</a><a href="./6">6</a><a href="./7">7</a><a href="./8">8</a><a href="./9">9</a><a href="./10">10</a><a href="./47" class="last">最後</a></div>
+  </center>
+  
+  
+</div>  </div>
+  
+  <div id="footer">
+    <ul>
+      <li><a href="https://www.100ten.info/rule.php">利用規約</a></li>
+      ｜
+      <li><a href="https://www.100ten.info/privacypolicy.php">プライバシーポリシー</a></li>
+      ｜
+      <li><a href="https://www.100ten.info/info.php">お知らせ</a></li>
+      ｜
+      <li><a href="https://www.100ten.info/mail.php">お問い合わせ</a></li>
+      ｜
+      <li><a href="https://www.100ten.info/advertise.php">広告掲載</a></li>
+      ｜
+      <li><a href="https://www.100ten.info/delRequest.php">削除依頼</a></li>
+      ｜
+      <li><a href="https://www.100ten.info/isp.php">捜査関係事項照会</a></li>
+    </ul>
+  </div>
+  
+</div>
+
+
+<div id="copyright"><center>Copyright (C) 2014 <a href="https://www.100ten.info/">受験掲示板・100点BBS【大学受験解答速報掲示板・受験生応援掲示板】</a>. All Rights Reserved.</center></div>
+</body>
+</html>

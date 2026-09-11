@@ -1,0 +1,7 @@
+*.png
+*.jpg
+*.pdf
+*.bin
+node_modules/
+pylibs/
+*.log

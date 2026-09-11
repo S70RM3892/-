@@ -1,0 +1,260 @@
+<title>京大化学 出題地図</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#f4f6f9; --card:#fff; --ink:#16233a; --muted:#5b6a80; --faint:#8595aa;
+  --ao:#2c5f92; --ao-w:#eaf1f8; --shu:#b03426; --shu-w:#fbeeec; --rule:#d8dee8; --rule2:#eaeef4;
+  --d1:#bcd6ec; --d2:#dfe9f3; --d3:#eceef2; --d4:#f4d8d2; --d5:#e5aca1; --dna:#f2f4f7;
+  --don:#0f2033;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0f141d; --card:#18202c; --ink:#e7edf6; --muted:#94a3b8; --faint:#71829a;
+  --ao:#7ab0e2; --ao-w:#152535; --shu:#e88372; --shu-w:#2e1b19; --rule:#2b3544; --rule2:#212a37;
+  --d1:#1d4468; --d2:#1c2c3e; --d3:#232c39; --d4:#442722; --d5:#7d3527; --dna:#1b222d; --don:#e7edf6;
+}}
+:root[data-theme="dark"]{
+  --paper:#0f141d; --card:#18202c; --ink:#e7edf6; --muted:#94a3b8; --faint:#71829a;
+  --ao:#7ab0e2; --ao-w:#152535; --shu:#e88372; --shu-w:#2e1b19; --rule:#2b3544; --rule2:#212a37;
+  --d1:#1d4468; --d2:#1c2c3e; --d3:#232c39; --d4:#442722; --d5:#7d3527; --dna:#1b222d; --don:#e7edf6;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Zen Kaku Gothic New",system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;
+  line-height:1.78;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding-block:26px 60px;padding-left:18px;padding-right:18px}
+h1,h2,h3{font-family:"Shippori Mincho",serif;font-weight:700;text-wrap:balance;line-height:1.4;margin:0}
+.num,.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+.mast{border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:6px}
+.mast h1{font-size:25px;letter-spacing:.01em}
+.mast .sub{color:var(--muted);font-size:12.5px;margin-top:5px}
+.mast .sub a{color:var(--ao)}
+a{color:var(--ao)}
+.jump{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 92%,transparent);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);margin:0 -18px 22px;padding:7px 18px;
+  display:flex;gap:14px;overflow-x:auto;font-size:11.5px;letter-spacing:.06em}
+.jump a{color:var(--muted);text-decoration:none;white-space:nowrap;padding:2px 0;border-bottom:1.5px solid transparent}
+.jump a:hover,.jump a:focus{color:var(--ao);border-bottom-color:var(--ao)}
+
+section{margin-top:38px;scroll-margin-top:52px}
+.sh{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--rule);padding-bottom:7px;margin-bottom:14px}
+.sh .n{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.16em;color:var(--shu);
+  border:1px solid var(--shu);padding:1px 6px;border-radius:2px;flex:none}
+.sh h2{font-size:18.5px}
+p{margin:0 0 12px}
+.lead{font-size:14.5px}
+small,.hint{font-size:12.5px;color:var(--muted);line-height:1.7}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--rule);
+  border:1px solid var(--rule);margin:18px 0 4px}
+.facts>div{background:var(--card);padding:13px 14px}
+.facts dt{font-size:11px;letter-spacing:.1em;color:var(--muted);margin-bottom:4px}
+.facts dd{margin:0;font-family:"IBM Plex Mono",monospace;font-size:22px;font-weight:600;line-height:1.2}
+.facts .nt{font-size:11.5px;color:var(--faint);margin-top:5px;line-height:1.55}
+
+.scroll{overflow-x:auto;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th,td{padding:5px 7px;border-bottom:1px solid var(--rule2);text-align:left;vertical-align:top}
+thead th{background:var(--ao-w);color:var(--ao);font-size:10.5px;letter-spacing:.09em;font-weight:700;
+  position:sticky;top:0;border-bottom:1px solid var(--rule)}
+tbody tr:last-child td{border-bottom:none}
+td.y{font-family:"IBM Plex Mono",monospace;font-weight:600;white-space:nowrap;background:var(--card);
+  position:sticky;left:0;border-right:1px solid var(--rule);font-size:12px}
+td.c{font-size:11.5px;line-height:1.45;min-width:96px}
+td.c .f{display:block}
+td.c .h{font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--muted);letter-spacing:.04em}
+.d1{background:var(--d1)}.d2{background:var(--d2)}.d3{background:var(--d3)}
+.d4{background:var(--d4)}.d5{background:var(--d5)}.dna{background:var(--dna)}
+.d1,.d5{color:var(--don)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11px;color:var(--muted);margin-top:9px;align-items:center}
+.legend i{display:inline-block;width:15px;height:11px;border:1px solid var(--rule);margin-right:4px;vertical-align:-1px}
+
+.prof{display:grid;gap:5px;margin:4px 0 2px}
+.prof .r{display:grid;grid-template-columns:46px 1fr 92px;align-items:center;gap:9px;font-size:12px}
+.prof .lbl{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted)}
+.prof .bar{display:flex;height:19px;border:1px solid var(--rule);overflow:hidden}
+.prof .bar span{display:block}
+.prof .v{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);text-align:right}
+
+.mx{min-width:440px}
+.mx th:nth-child(n+2),.mx td:nth-child(n+2){text-align:right}
+.mx td.nm{text-align:left;font-weight:500;white-space:nowrap}
+.mx td:last-child,.mx th:last-child{text-align:right}
+.mini{display:inline-block;height:8px;background:var(--ao);vertical-align:1px;border-radius:1px}
+.mini.h{background:var(--shu)}
+.chip{display:inline-block;font-size:10px;letter-spacing:.05em;padding:1px 6px;border-radius:2px;
+  border:1px solid currentColor;white-space:nowrap}
+.c-top{color:var(--shu)}.c-keep{color:var(--ao)}.c-skip{color:var(--faint)}
+
+.note{border-left:3px solid var(--ao);background:var(--ao-w);padding:12px 14px;margin:16px 0;font-size:13px;line-height:1.8}
+.note.shu{border-left-color:var(--shu);background:var(--shu-w)}
+.note b{font-weight:700}
+.steps{counter-reset:s;list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+.steps li{counter-increment:s;position:relative;padding-left:37px;font-size:13.2px;line-height:1.75;min-height:24px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:4px;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--shu);
+  border:1px solid var(--shu);border-radius:50%;width:22px;height:22px;display:grid;place-items:center}
+ul.src{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:12.5px;line-height:1.65}
+ul.src li{padding-left:14px;position:relative;color:var(--muted)}
+ul.src li::before{content:"—";position:absolute;left:0;color:var(--faint)}
+.foot{margin-top:44px;padding-top:14px;border-top:1px solid var(--rule);font-size:12px;color:var(--faint)}
+@media (max-width:520px){.wrap{padding-block:20px 48px}.mast h1{font-size:21px}.sh h2{font-size:16.5px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+:focus-visible{outline:2px solid var(--ao);outline-offset:2px}
+</style>
+<style>
+.fld{display:inline-block;font-size:10px;letter-spacing:.04em;padding:1px 6px;border-radius:2px;white-space:nowrap}
+.f-r{background:var(--ao-w);color:var(--ao)}
+.f-o{background:var(--shu-w);color:var(--shu)}
+.tg{display:inline-block;font-size:9.5px;color:var(--muted);border:1px solid var(--rule);
+  border-radius:2px;padding:0 4px;margin-right:3px;white-space:nowrap}
+.tg.hot{color:var(--shu);border-color:var(--shu)}
+td.th{min-width:190px;white-space:normal;line-height:1.45;font-size:12px}
+.yr{display:grid;gap:7px;margin-top:14px}
+.yr .row{display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:start;
+  padding-bottom:7px;border-bottom:1px solid var(--rule2)}
+.yr .row:last-child{border-bottom:none}
+.yr .y{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;padding-top:2px}
+.yr .items{display:flex;flex-wrap:wrap;gap:4px}
+.yr .it{font-size:11px;padding:2px 7px;border-radius:2px;line-height:1.4}
+.it.r{background:var(--ao-w);color:var(--ink)}
+.it.o{background:var(--shu-w);color:var(--ink)}
+.tally{display:grid;gap:6px;margin-top:12px}
+.tally .t{display:grid;grid-template-columns:96px 1fr 74px;gap:10px;align-items:center;font-size:12px}
+.tally .lab{font-size:12px}
+.tally .bar{height:18px;border:1px solid var(--rule);background:var(--card);overflow:hidden}
+.tally .bar span{display:block;height:100%;background:var(--ao)}
+.tally .t.top .bar span{background:var(--shu)}
+.tally .v{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);text-align:right}
+.split{display:flex;height:26px;border:1px solid var(--rule);margin-top:12px;font-size:11px;
+  font-family:"IBM Plex Mono",monospace}
+.split div{display:grid;place-items:center;color:#fff}
+.split .a{background:var(--ao)} .split .b{background:var(--shu)}
+</style><div class="wrap">
+
+<header class="mast">
+  <h1>京大化学 出題地図</h1>
+  <div class="sub">2018–2026年度・9年 59中問　最終更新 2026-09-11<br>
+  <a href="https://claude.ai/code/artifact/d97dc510-2d24-41f0-a38f-aa3429c5107c">得点設計票</a>　/　
+  <a href="https://claude.ai/code/artifact/ec774bdf-d3c8-41cd-aa4c-2f41fc9343fa">数学の地図</a>　/　
+  <a href="https://claude.ai/code/artifact/3dab6b76-1403-4cd5-a356-0973a37697af">根拠ノート</a></div>
+</header>
+
+<nav class="jump" aria-label="目次">
+  <a href="#s-kouzou">構造</a><a href="#s-map">出題地図</a><a href="#s-theme">頻出</a>
+  <a href="#s-keishiki">形式</a><a href="#s-junjo">180分</a><a href="#s-shohou">処方</a><a href="#s-src">出典</a>
+</nav>
+
+<p class="lead">化学は理科250点の半分、二次800点の <b>15.6%</b> を占めます。数学の地図が「すでに強い科目を崩さない」ためのものだったのに対し、こちらは<b>いちばん低いところを持ち上げる</b>ための地図です。評価偏差値で +10 動かせば、それだけでボーダーを超えます。</p>
+
+<section id="s-kouzou">
+  <div class="sh"><span class="n">構造</span><h2>9年間まったく変わっていない</h2></div>
+  <dl class="facts">
+    <div><dt>構成</dt><dd class="num">4<small>題</small></dd>
+      <div class="nt">理論・無機 2題 ＋ 有機 2題。うち1題は必ず天然高分子</div></div>
+    <div><dt>時間</dt><dd class="num">90<small>分</small></dd>
+      <div class="nt">理科2科目180分の目安配分。物理との配分は<b>受験生の裁量</b></div></div>
+    <div><dt>形式</dt><dd class="num">全記述</dd>
+      <div class="nt">マークなし。各問に対応する解答欄</div></div>
+  </dl>
+  <p class="hint" style="margin-top:10px">Ｚ会は9年連続で「大問4題構成であるのはこれまでと同じ」と書いています。数学のように年で構成が動く科目ではありません ── <b>出るものが決まっている＝対策の利きが最も良い科目</b>です。</p>
+  <div class="note"><b>理論と有機はほぼ半々です。</b>9年59中問の内訳は 理論・無機 29 ／ 有機 30 ── <b>有機が51%</b>。「化学は理論が本体」という一般論は京大には当てはまりません。</div>
+  <div class="split"><div class="a" style="flex:29">理論・無機 29</div><div class="b" style="flex:30">有機 30</div></div>
+</section>
+
+<section id="s-map">
+  <div class="sh"><span class="n">地図</span><h2>9年 × 全中問</h2>
+    <p class="hint">青が理論・無機、朱が有機。Ｚ会の各年度分析から機械抽出しました。</p></div>
+  <div class="yr" id="yr"></div>
+</section>
+
+<section id="s-theme">
+  <div class="sh"><span class="n">頻出</span><h2>毎年出るものが2つある</h2></div>
+  <div class="tally" id="tally"></div>
+  <div class="legend"><span>横棒は9年間の中問数</span><span style="margin-left:auto">右は「何年に出たか／9年」</span></div>
+
+  <div class="note shu"><b>天然高分子は9年で9年、例外なしです。</b>糖類・アミノ酸・ペプチドを題材にした中問が12本。2018年アミノ酸の電気泳動と等電点、2020年糖類、2021年ペプチド、2022年糖類と糖鎖、2024年環状ペプチドとアミノ酸配列、2025年シクロデキストリンとペプチド、2026年糖脂質 ── <b>途切れた年がありません</b>。<br><br>
+  多くの受験生が最後に手をつける分野が、京大では<b>確実に出る分野</b>です。ここが空白のまま本番に行くと、250点中30点前後を無条件で失います。</div>
+
+  <div class="note"><b>構造決定は9年で8年、15中問（全体の25%）。</b>有機30中問の半分が構造決定系です。しかもこれは<b>解法が決まっている</b>タイプ ── リード文から分子式を出し、官能基を特定し、炭素数で絞る。手順が固定されているぶん、演習量がそのまま得点に変わります。<br><br>
+  理論側は 平衡 7/9年・溶液 7/9年・結晶 5/9年。<b>平衡（電離・気体・溶解度積・分配）と溶液（蒸気圧・沸点上昇・浸透圧）で理論の7割</b>を占めます。</div>
+</section>
+
+<section id="s-keishiki">
+  <div class="sh"><span class="n">形式</span><h2>数学と決定的に違う一点</h2></div>
+  <div class="note shu"><b>計算問題は、正しい答までたどりつかないと得点になりません。</b>Ｚ会が2022・2024年度の分析で明記しています ── 「立式だけでなく、正しい答までたどりつかないと得点につながらない解答形式」。<br><br>
+  数学は方針や途中式で部分点が入りますが、<b>化学の計算は 0 か満点</b>。同じ「わかっているのに落とす」でも、失点の仕方がまったく違います。<b>化学で伸ばすべきは理解よりも先に計算の完遂率</b>です。</div>
+  <div class="scroll"><table>
+    <thead><tr><th>形式</th><th>2018–2020</th><th>2021–2024</th><th>2025</th><th>2026</th></tr></thead>
+    <tbody>
+      <tr><td>導出過程を書かせる計算</td><td>毎年数題</td><td class="num">なし</td><td>復活</td><td class="num">なし</td></tr>
+      <tr><td>字数制限のある論述</td><td>年による</td><td>2021のみ</td><td>あり</td><td class="num">なし</td></tr>
+      <tr><td>問題ページ数</td><td>—</td><td>20（22年）／13（23年）</td><td>18（24年）</td><td>変化なし</td></tr>
+    </tbody>
+  </table></div>
+  <p class="hint">分量は13〜20ページと<b>1.5倍の幅</b>で動きます。ページ数が多い年は「全部解く」が成立しません。Ｚ会は2022年度について「すべての問題を解答するには時間が非常に厳しく、<b>解くべき問題の見極め力もカギ</b>」と書いています。</p>
+</section>
+
+<section id="s-junjo">
+  <div class="sh"><span class="n">180分</span><h2>物理との配分は自分で決める</h2></div>
+  <p>京大の理科は<b>2科目180分で、科目ごとの時間割り当てがありません</b>。物理を先に解いても化学からでもよく、90分ずつである必要もない。これは制度上の自由度であって、<b>最適化できる余地</b>です。</p>
+  <div class="note"><b>いまの配分の前提を疑ってください。</b>記述模試の推定偏差値は 物理 62.8 ／ 化学 48.4。<b>同じ125点の配点で14.4ポイント差</b>があります。差がついている科目に時間を多く割くか、追いつくまで化学に厚く割くか ── どちらが正しいかは、演習ログの「点／分」を科目別に測らないと決まりません。<br><br>
+  設計票の<a href="https://claude.ai/code/artifact/d97dc510-2d24-41f0-a38f-aa3429c5107c">演習タブ</a>に所要時間の欄があります。化学だけでなく物理も同じ形式で記録すれば、180分をどう割るのが最大得点かが実測で出ます。</div>
+  <div class="note ok"><b>大問間の難易度差が大きいのが京大化学の特徴です。</b>Ｚ会は繰り返し「大問間の難易度差はかなり大きい」「解答方針が比較的立ちやすい化学問題Ⅰは手際よく」と書いています。<b>4題を均等に25分ずつ</b>は誤り ── 最初に4題ざっと見て、取れる中問から埋めるのが正解です。</div>
+</section>
+
+<section id="s-shohou">
+  <div class="sh"><span class="n">処方</span><h2>化学に全振りするなら、この順</h2></div>
+  <p>上の頻度と、評価偏差値への寄与（化学 +10 ＝ 評価偏差値 +1.56、ボーダーまで −1.08 なので<b>これだけで超える</b>）から出る順序です。</p>
+  <ol class="steps">
+    <li><b>天然高分子（糖・アミノ酸・ペプチド）を最初に潰す。</b>9年で9年、例外なし。しかも多くの受験生の手薄な分野で、<b>周りとの差が最も開いている</b>可能性が高い。ここが空白なら他の何よりも先。</li>
+    <li><b>有機の構造決定を型で固める。</b>15中問＝全体の25%。分子式→不飽和度→官能基→炭素数の手順が固定なので、演習量が素直に返ります。京大は<b>リード文が長く誘導が丁寧</b>な出題が多く、読解して型に流し込めば取れる設計です。</li>
+    <li><b>理論は平衡と溶液の2本に絞る。</b>それぞれ7/9年。電離平衡・気体平衡・溶解度積・分配平衡／蒸気圧降下・沸点上昇・浸透圧・ヘンリー。結晶（5/9年）はその次。</li>
+    <li><b>計算を「答えまで合わせる」訓練に切り替える。</b>立式で止めた演習は化学では0点と同じです。時間を計って最後の数値まで出し、<b>合っていたかだけを記録</b>してください。理解度ではなく完遂率が得点です。</li>
+    <li><b>無機は単独では出ません。</b>9年で「理論・無機」と併記されたのは3中問のみ。金属イオンの分離・硫化物沈殿とpHのように<b>理論に埋め込まれて出ます</b>。無機の暗記に単独で時間を割く優先度は低い。</li>
+    <li><b>11月1日の京大オープンを化学の測定機会にする。</b>全統記述と違い母集団が京大志望に絞られます。ここで科目別の志望学科内順位が出れば、化学がどこまで戻ったかが<b>順位で</b>測れます。</li>
+  </ol>
+  <div class="note ok"><b>なぜ化学なのか、を数字で。</b>評価偏差値のボーダー差への寄与は 数学 +4.47／英語 +0.05／物理 −0.34／<b>化学 −2.59</b>／国語 −2.66。合計 −1.08。<br><br>
+  国語も同じだけ足を引っ張っていますが、<b>配点が100点（化学は125点）で、伸ばすのに要する時間あたりの効果が小さい</b>。そして化学は上で見たとおり<b>出題が固定されていて、やった分が返ってくる構造</b>です。国語の京大二次は現代文中心の記述で、記述模試の国語（現古漢200点）とは別物 ── 測定の精度自体が低い。<br><br>
+  だから化学。数学（偏差値79.3）は<b>崩さないための維持</b>に留め、増分は全部こちらへ。</div>
+</section>
+
+<section id="s-src">
+  <div class="sh"><span class="n">出典</span><h2>データの出どころ</h2></div>
+  <ul class="src">
+    <li><b>出題分野・形式 2018–2026年度</b>：<a href="https://www.zkai.co.jp/kyodai-exam/bunseki/kagaku/">Ｚ会「京大化学 徹底分析」</a>各年度版の「大問別のポイント」「分量と難度の変化」から59中問ぶんを機械抽出</li>
+    <li><b>「計算は正答までたどりつかないと得点にならない」</b>：Ｚ会 2022年度版・2024年度版に同一の記述</li>
+    <li><b>理科2科目180分・配分自由</b>：<a href="https://www.kyoto-u.ac.jp/sites/default/files/inline-files/senbatsuyokoR9_all-22d87b752c22c5b9d7bcb8ef94505625.pdf">令和9年度 京都大学 入学者選抜要項</a>（工学部の理科は物理・化学の2科目指定）</li>
+    <li><b>評価偏差値と配点加重</b>：<a href="https://claude.ai/code/artifact/3dab6b76-1403-4cd5-a356-0973a37697af#s-kousei">根拠ノート〈較正〉</a>（河合塾 全統記述模試の公式 得点↔偏差値対応表からの復元）</li>
+    <li><b>理科のσ 28.9（素点200）</b>：<a href="https://claude.ai/code/artifact/3dab6b76-1403-4cd5-a356-0973a37697af#s-jissoku">根拠ノート〈実測〉</a></li>
+  </ul>
+  <div class="foot">分野タグと難易度はＺ会の分析記事に基づく第三者評価で、京大の公式発表ではありません。中問の切り方も記事の記述に依存します（年により大問が中問に分かれたり分かれなかったりするため、59という総数は構成の変化を含みます）。</div>
+</section>
+
+</div>
+
+<script>
+const KMAP={"2018":[["理論","氷の結晶",["結晶"],null],["理論","陽イオン交換膜法",["電気化学"],null],["理論","溶液の凝固・融解",["溶液"],null],["理論","気体反応",["気体"],null],["有機","芳香族化合物の配向性",["芳香族"],null],["有機","芳香族化合物の反応",["芳香族"],null],["有機","脂肪酸の構造決定",["構造決定"],null],["有機","アミノ酸の電気泳動",["天然高分子","電気化学"],null],["有機","アミノ酸の等電点",["天然高分子"],null]],"2019":[["理論","モール法",[],null],["理論","溶解度積と濃淡電池",["平衡","溶液","電気化学"],null],["理論","電子式と分子の形",[],null],["理論","気体の平衡",["平衡","気体"],null],["有機","環境の異なる炭素",[],null],["有機","イミドの反応",[],null],["有機","アルドースの反応",["天然高分子"],null]],"2020":[["理論","電離平衡、溶解度積、錯形成定数",["平衡","溶液"],null],["理論","CdSの結晶構造",["結晶"],null],["理論","沸点上昇、蒸気圧降下、気体の法則、電気分解",["溶液","電気化学","気体"],null],["理論","気体の平衡",["平衡","気体"],null],["有機","有機化合物の構造決定",["構造決定"],null],["有機","糖類",["天然高分子"],null]],"2021":[["理論・無機","硫酸銅(II)水溶液の電気分解、酸化還元滴定（ヨウ素滴定）、緩衝液",["平衡","電気化学"],null],["理論","硫酸に関する電離平衡と反応熱",["平衡"],null],["有機","リグニンを題材にした有機化合物の構造決定",["構造決定","芳香族"],null],["有機","バニリンの合成経路の化合物推定",["構造決定","芳香族"],null],["有機","アスパルテームの合成経路の化合物推定",["構造決定"],null],["有機","ペプチド由来の構造をもつ有機化合物の構造決定",["天然高分子","構造決定"],null]],"2022":[["理論・無機","アルカリ土類金属の水酸化物の溶解度、熱分解",["溶液"],null],["理論","クロム酸塩の溶液内平衡",["平衡"],null],["理論","弱酸の分配平衡",["平衡"],null],["理論","浸透圧",["溶液"],null],["有機","アミンと酸ジクロリドの反応",[],null],["有機","アミドの構造決定",["構造決定"],null],["有機","糖類の性質と立体化学",["天然高分子"],null],["有機","糖鎖の分解",["天然高分子"],null]],"2023":[["理論","黒鉛の結晶、グラフェン",["結晶"],null],["理論","鉄の製錬、化学平衡",["平衡"],null],["理論","気液平衡（ラウールの法則）",["平衡","溶液"],null],["有機","ベンゼン環およびピリジン環をもつ化合物の構造決定",["構造決定","芳香族"],null],["有機","複素環化合物の構造決定",["構造決定"],null],["有機","ポリマーと糖鎖",["天然高分子"],null]],"2024":[["理論","チタンの結晶構造",["結晶"],null],["理論","パラジウムの水素吸蔵",["結晶"],null],["理論","ヘンリーの法則",["溶液"],null],["有機","脂肪族化合物の構造決定",["構造決定"],null],["有機","有機化合物の立体配置",["構造決定"],null],["有機","環状ペプチド",["天然高分子"],null],["有機","アミノ酸の配列",["天然高分子","構造決定"],null]],"2025":[["理論・無機","環境水の汚濁物質の定量、金属イオンの分離",[],null],["理論","ラウールの法則、蒸気圧降下",["溶液"],null],["理論","電離平衡、中和滴定",["平衡"],null],["有機","環構造をもつ有機化合物、ラクトンの構造決定",["構造決定"],null],["有機","シクロデキストリン、ペプチドの構造決定",["天然高分子","構造決定"],null]],"2026":[["理論・無機","結晶格子、限界イオン半径比、鉛蓄電池と電気分解",["結晶","電気化学"],"やや易"],["理論","吸着平衡と化学平衡",["平衡"],"標準"],["有機","アセタールの構造決定",["構造決定"],"標準"],["有機","鏡像異性体の選択的反応",[],"標準"],["有機","糖脂質の反応",["天然高分子"],"標準"]]};
+const KY=Object.keys(KMAP).map(Number).sort((a,b)=>b-a);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+document.getElementById("yr").innerHTML=KY.map(y=>
+  `<div class="row"><span class="y">${y}</span><span class="items">`+
+  KMAP[y].map(([f,t,tags,d])=>
+    `<span class="it ${f==="有機"?"o":"r"}" title="${esc(f)}">${esc(t)}${d?`<span class="tg" style="margin-left:5px">${esc(d)}</span>`:""}</span>`
+  ).join("")+`</span></div>`).join("");
+
+const TAGS=["天然高分子","構造決定","平衡","溶液","結晶","電気化学","芳香族","気体"];
+const cnt={},yrs={};
+TAGS.forEach(t=>{cnt[t]=0;yrs[t]=new Set();});
+KY.forEach(y=>KMAP[y].forEach(([f,t,tags])=>tags.forEach(g=>{
+  if(cnt[g]===undefined)return; cnt[g]++; yrs[g].add(y);})));
+const maxC=Math.max(...TAGS.map(t=>cnt[t]));
+document.getElementById("tally").innerHTML=TAGS
+  .sort((a,b)=>(yrs[b].size-yrs[a].size)||(cnt[b]-cnt[a]))
+  .map(t=>{
+    const every=yrs[t].size===KY.length;
+    return `<div class="t${every?" top":""}"><span class="lab">${t}${every?" ★":""}</span>`+
+      `<span class="bar"><span style="width:${cnt[t]/maxC*100}%"></span></span>`+
+      `<span class="v">${cnt[t]}本 · ${yrs[t].size}/${KY.length}年</span></div>`;}).join("");
+</script>

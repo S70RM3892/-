@@ -1,0 +1,305 @@
+<title>京大理系数学 出題地図</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#f4f6f9; --card:#fff; --ink:#16233a; --muted:#5b6a80; --faint:#8595aa;
+  --ao:#2c5f92; --ao-w:#eaf1f8; --shu:#b03426; --shu-w:#fbeeec; --rule:#d8dee8; --rule2:#eaeef4;
+  --d1:#bcd6ec; --d2:#dfe9f3; --d3:#eceef2; --d4:#f4d8d2; --d5:#e5aca1; --dna:#f2f4f7;
+  --don:#0f2033;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0f141d; --card:#18202c; --ink:#e7edf6; --muted:#94a3b8; --faint:#71829a;
+  --ao:#7ab0e2; --ao-w:#152535; --shu:#e88372; --shu-w:#2e1b19; --rule:#2b3544; --rule2:#212a37;
+  --d1:#1d4468; --d2:#1c2c3e; --d3:#232c39; --d4:#442722; --d5:#7d3527; --dna:#1b222d; --don:#e7edf6;
+}}
+:root[data-theme="dark"]{
+  --paper:#0f141d; --card:#18202c; --ink:#e7edf6; --muted:#94a3b8; --faint:#71829a;
+  --ao:#7ab0e2; --ao-w:#152535; --shu:#e88372; --shu-w:#2e1b19; --rule:#2b3544; --rule2:#212a37;
+  --d1:#1d4468; --d2:#1c2c3e; --d3:#232c39; --d4:#442722; --d5:#7d3527; --dna:#1b222d; --don:#e7edf6;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Zen Kaku Gothic New",system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;
+  line-height:1.78;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding-block:26px 60px;padding-left:18px;padding-right:18px}
+h1,h2,h3{font-family:"Shippori Mincho",serif;font-weight:700;text-wrap:balance;line-height:1.4;margin:0}
+.num,.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+.mast{border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:6px}
+.mast h1{font-size:25px;letter-spacing:.01em}
+.mast .sub{color:var(--muted);font-size:12.5px;margin-top:5px}
+.mast .sub a{color:var(--ao)}
+a{color:var(--ao)}
+.jump{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 92%,transparent);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);margin:0 -18px 22px;padding:7px 18px;
+  display:flex;gap:14px;overflow-x:auto;font-size:11.5px;letter-spacing:.06em}
+.jump a{color:var(--muted);text-decoration:none;white-space:nowrap;padding:2px 0;border-bottom:1.5px solid transparent}
+.jump a:hover,.jump a:focus{color:var(--ao);border-bottom-color:var(--ao)}
+
+section{margin-top:38px;scroll-margin-top:52px}
+.sh{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--rule);padding-bottom:7px;margin-bottom:14px}
+.sh .n{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.16em;color:var(--shu);
+  border:1px solid var(--shu);padding:1px 6px;border-radius:2px;flex:none}
+.sh h2{font-size:18.5px}
+p{margin:0 0 12px}
+.lead{font-size:14.5px}
+small,.hint{font-size:12.5px;color:var(--muted);line-height:1.7}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--rule);
+  border:1px solid var(--rule);margin:18px 0 4px}
+.facts>div{background:var(--card);padding:13px 14px}
+.facts dt{font-size:11px;letter-spacing:.1em;color:var(--muted);margin-bottom:4px}
+.facts dd{margin:0;font-family:"IBM Plex Mono",monospace;font-size:22px;font-weight:600;line-height:1.2}
+.facts .nt{font-size:11.5px;color:var(--faint);margin-top:5px;line-height:1.55}
+
+.scroll{overflow-x:auto;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th,td{padding:5px 7px;border-bottom:1px solid var(--rule2);text-align:left;vertical-align:top}
+thead th{background:var(--ao-w);color:var(--ao);font-size:10.5px;letter-spacing:.09em;font-weight:700;
+  position:sticky;top:0;border-bottom:1px solid var(--rule)}
+tbody tr:last-child td{border-bottom:none}
+td.y{font-family:"IBM Plex Mono",monospace;font-weight:600;white-space:nowrap;background:var(--card);
+  position:sticky;left:0;border-right:1px solid var(--rule);font-size:12px}
+td.c{font-size:11.5px;line-height:1.45;min-width:96px}
+td.c .f{display:block}
+td.c .h{font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--muted);letter-spacing:.04em}
+.d1{background:var(--d1)}.d2{background:var(--d2)}.d3{background:var(--d3)}
+.d4{background:var(--d4)}.d5{background:var(--d5)}.dna{background:var(--dna)}
+.d1,.d5{color:var(--don)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11px;color:var(--muted);margin-top:9px;align-items:center}
+.legend i{display:inline-block;width:15px;height:11px;border:1px solid var(--rule);margin-right:4px;vertical-align:-1px}
+
+.prof{display:grid;gap:5px;margin:4px 0 2px}
+.prof .r{display:grid;grid-template-columns:46px 1fr 92px;align-items:center;gap:9px;font-size:12px}
+.prof .lbl{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted)}
+.prof .bar{display:flex;height:19px;border:1px solid var(--rule);overflow:hidden}
+.prof .bar span{display:block}
+.prof .v{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);text-align:right}
+
+.mx{min-width:440px}
+.mx th:nth-child(n+2),.mx td:nth-child(n+2){text-align:right}
+.mx td.nm{text-align:left;font-weight:500;white-space:nowrap}
+.mx td:last-child,.mx th:last-child{text-align:right}
+.mini{display:inline-block;height:8px;background:var(--ao);vertical-align:1px;border-radius:1px}
+.mini.h{background:var(--shu)}
+.chip{display:inline-block;font-size:10px;letter-spacing:.05em;padding:1px 6px;border-radius:2px;
+  border:1px solid currentColor;white-space:nowrap}
+.c-top{color:var(--shu)}.c-keep{color:var(--ao)}.c-skip{color:var(--faint)}
+
+.note{border-left:3px solid var(--ao);background:var(--ao-w);padding:12px 14px;margin:16px 0;font-size:13px;line-height:1.8}
+.note.shu{border-left-color:var(--shu);background:var(--shu-w)}
+.note b{font-weight:700}
+.steps{counter-reset:s;list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+.steps li{counter-increment:s;position:relative;padding-left:37px;font-size:13.2px;line-height:1.75;min-height:24px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:4px;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--shu);
+  border:1px solid var(--shu);border-radius:50%;width:22px;height:22px;display:grid;place-items:center}
+ul.src{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:12.5px;line-height:1.65}
+ul.src li{padding-left:14px;position:relative;color:var(--muted)}
+ul.src li::before{content:"—";position:absolute;left:0;color:var(--faint)}
+.foot{margin-top:44px;padding-top:14px;border-top:1px solid var(--rule);font-size:12px;color:var(--faint)}
+@media (max-width:520px){.wrap{padding-block:20px 48px}.mast h1{font-size:21px}.sh h2{font-size:16.5px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+:focus-visible{outline:2px solid var(--ao);outline-offset:2px}
+</style>
+<div class="wrap">
+
+<header class="mast">
+  <h1>京大理系数学 出題地図</h1>
+  <div class="sub">1998–2026年度・29年 174問　最終更新 2026-09-11<br>
+  <a href="https://claude.ai/code/artifact/d97dc510-2d24-41f0-a38f-aa3429c5107c">得点設計票</a>　/　
+  <a href="https://claude.ai/code/artifact/569f8ec7-fe77-4f30-a1f7-f00fc245007d">化学の地図</a>　/　<a href="https://claude.ai/code/artifact/3dab6b76-1403-4cd5-a356-0973a37697af">根拠ノート</a></div>
+</header>
+
+<nav class="jump" aria-label="目次">
+  <a href="#s-jijitsu">前提</a><a href="#s-map">出題地図</a><a href="#s-ichi">大問位置</a>
+  <a href="#s-bunya">分野</a><a href="#s-junjo">解答順序</a><a href="#s-kensho">検証</a><a href="#s-src">出典</a>
+</nav>
+
+<p class="lead">得点設計票は「数学が変動の主因」（素点σ 43.0、4科目で最大）までを示しました。この地図は<b>その σ が数学のどこから来ているか</b>を分野の粒度まで降ろしたものです。29年分の出題分野は電数図書館、難易度はＺ会と受験生講評の二系統から取り、互いに独立に照合しています。</p>
+
+<section id="s-jijitsu">
+  <div class="sh"><span class="n">前提</span><h2>試験そのものの仕様</h2></div>
+  <dl class="facts">
+    <div><dt>形式</dt><dd class="num">150<small>分</small> 6<small>問</small></dd>
+      <div class="nt">200点。1問あたり25分だが、均等ではない</div></div>
+    <div><dt>大問別配点</dt><dd class="num">30 / 35 / 40</dd>
+      <div class="nt"><b>問題用紙に印刷されている</b>。試験開始直後に読める</div></div>
+    <div><dt>第1問に「難」</dt><dd class="num">0 <small>/ 17年</small></dd>
+      <div class="nt">難易度が取れた17年間、一度もない</div></div>
+  </dl>
+  <p class="hint" style="margin-top:10px">配点が問題用紙にある以上、「1問25分」の均等配分は誤りです。40点問題と30点問題では1点あたりの時間価値が33%違います。配点を読んでから解く順序を決める、が正しい手順。</p>
+</section>
+
+<section id="s-map">
+  <div class="sh"><span class="n">地図</span><h2>29年 × 6問</h2>
+  </div>
+  <p class="hint">セルの色は難易度。上段が分野（複数タグは複数行）、下段の数字は配点です。配点と難易度は判明した年のみ。</p>
+  <div class="scroll" style="max-height:520px;overflow-y:auto"><table id="map-t">
+    <thead><tr><th>年度</th><th>第1問</th><th>第2問</th><th>第3問</th><th>第4問</th><th>第5問</th><th>第6問</th></tr></thead>
+    <tbody id="map-b"></tbody>
+  </table></div>
+  <div class="legend">
+    <span><i class="d1"></i>易</span><span><i class="d2"></i>やや易</span><span><i class="d3"></i>標準</span>
+    <span><i class="d4"></i>やや難</span><span><i class="d5"></i>難</span><span><i class="dna"></i>評価なし</span>
+    <span style="margin-left:auto">難易度は 2008–2022・2025–2026 の17年分</span>
+  </div>
+  <div class="note"><b>2015年度から新課程です。</b>行列・1次変換が範囲外になり、複素数平面が戻りました。2014年度以前の行は<b>出題傾向の参考</b>として見て、演習の優先順位は次節の「現行課程12年」で決めてください。</div>
+</section>
+
+<section id="s-ichi">
+  <div class="sh"><span class="n">位置</span><h2>大問の位置は難易度を予告する</h2></div>
+  <p>17年100問の難易度を大問位置ごとに集計しました。<b>京大は易しい順に並べていません</b>が、両端には強い規則性があります。</p>
+  <div class="prof" id="prof"></div>
+  <div class="legend"><span><i class="d1"></i>易・やや易</span><span><i class="d3"></i>標準</span><span><i class="d5"></i>やや難・難</span>
+    <span style="margin-left:auto">右の数字は平均難易度（1易〜5難）</span></div>
+  <div class="note shu"><b>第1問は17年間「難」がゼロ、第6問は65%が「難」。</b>これは順序戦略をそのまま決めます ── 第1問は必ず取りにいく、第6問は最後に回す。中間の第2〜5問は平均で 2.97〜3.33 と団子で、<b>位置からは判別できません</b>。ここは配点と分野で決めることになります。</div>
+</section>
+
+<section id="s-bunya">
+  <div class="sh"><span class="n">分野</span><h2>頻度と難度の交差</h2></div>
+  <p>頻度は<b>現行課程12年（2015–2026）</b>で数え、難度は<b>17年全体</b>の平均です。優先順位はこの2軸の積で決まります ── 出ない分野は難しくても後回しでよく、毎年出て易しい分野は落とすと致命傷になる。</p>
+  <div class="scroll"><table class="mx">
+    <thead><tr><th>分野</th><th>頻度<br><small>回/12年</small></th><th></th><th>難度<br><small>1–5</small></th><th></th><th>扱い</th></tr></thead>
+    <tbody id="mx-b"></tbody>
+  </table></div>
+  <div class="note"><b>整数は「毎年出て、いちばん難しい」分野です。</b>現行課程12年で10回、平均難度 3.62 は n≥8 の分野で最高。対する確率も12年で10回とほぼ同じ頻度ですが、平均難度は 2.97 ── <b>同じだけ出るのに難度が0.65違う</b>。<br><br>この非対称が処方を決めます。<b>確率は取りこぼしが直接失点になる分野</b>（周りが取る）、<b>整数は差をつけられる分野</b>（周りが落とす）。同じ勉強時間でも役割が逆です。</div>
+  <div class="note shu"><b>論証（3.48）と漸化式（3.56）にも注意。</b>どちらも単独分野というより<b>他分野に混ざって出る形式</b>です。論証は12年で7回、漸化式は7回。「整数の論証」「確率の漸化式」という複合が京大の定番で、上の表で難度上位を占めているのは<b>ほぼこの複合形</b>です。分野別問題集では手当てしにくい層で、過去問でしか埋まりません。</div>
+</section>
+
+<section id="s-junjo">
+  <div class="sh"><span class="n">処方</span><h2>150分の使い方</h2></div>
+  <p>上の2節から導ける手順です。<b>本番で配点が読める</b>ことと、<b>位置が難易度を予告する</b>ことの2つを使います。</p>
+  <ol class="steps">
+    <li><b>最初の5分は解かない。</b>6問すべての分野と配点を読み、①確実に取る ②時間があれば ③捨てる、の3群に割る。配点が印刷されているので、この作業は推測ではなく読み取りです。</li>
+    <li><b>第1問から入る。</b>17年間「難」が出ていない唯一の位置。ここで躓いたら、その年は自分側の問題か、極めて稀な例外です。</li>
+    <li><b>確率・定積分の計算・四面体・微分と増減を優先。</b>いずれも平均難度3.0以下で、かつ現行課程で複数回出ている。ここは満点で通過する前提。</li>
+    <li><b>整数・論証・漸化式の複合に、余力の全部を使う。</b>差がつくのはここ。ただし配点を確認して、30点問題に40分使わない。</li>
+    <li><b>第6問は最後。</b>65%が「難」。方針だけ書いて部分点を狙う位置で、完答を前提に時間を積む位置ではありません。</li>
+    <li><b>残り20分で全問を見直す。</b>京大数学は論証の厳密性で減点されます（後述の開示例では自己採点から±13点動いています）。新しい問題に手を出すより、書いた答案の穴を塞ぐほうが期待値が高い。</li>
+  </ol>
+  <div class="note"><b>この順序は「易しい順」ではありません。</b>第1問→易しい分野→難しい分野→第6問、という<b>期待値の順</b>です。京大は難易度順に並べていないので、番号順に解くのは配点を捨てるのと同じことになります。</div>
+</section>
+
+<section id="s-kensho">
+  <div class="sh"><span class="n">検証</span><h2>この難易度評は当たっているか</h2></div>
+  <p>難易度は他人の主観です。使う前に、<b>我々が独立に持っている数字</b>と突き合わせました。得点設計票では合格最低点から切断正規で受験者分布を復元し、二次平均（800点換算）の系列を作っています。Ｚ会も講評者もこの系列を見ていないので、両者は完全に独立です。</p>
+  <div class="scroll"><table>
+    <thead><tr><th>年度</th><th>Ｚ会の難度評（数学）</th><th>難度指数</th><th>二次平均/800<br><small>我々の復元値</small></th></tr></thead>
+    <tbody class="num">
+      <tr><td>2021</td><td>易化</td><td>−0.5</td><td>405.2</td></tr>
+      <tr><td>2022</td><td>昨年並み</td><td>−0.5</td><td>445.4</td></tr>
+      <tr><td>2023</td><td>2022年度並み</td><td>−0.5</td><td>474.5</td></tr>
+      <tr><td>2024</td><td><b>やや難化</b></td><td><b>0.0</b></td><td><b>385.5</b></td></tr>
+      <tr><td>2025</td><td>やや易化</td><td>−0.5</td><td>453.0</td></tr>
+      <tr><td>2026</td><td><b>やや難化</b></td><td><b>0.0</b></td><td><b>391.9</b></td></tr>
+    </tbody>
+  </table></div>
+  <div class="note ok" style="border-left-color:var(--shu);background:var(--shu-w)">
+    <b>Ｚ会が「やや難化」と評した2年が、二次平均の最下位2年と一致しました。</b>385.5 と 391.9 で、他の4年（405.2〜474.5）と重なりがありません。r = <b>−0.788</b>（n=6）。<br><br>
+    並べ替え検定では、6年から2年を選ぶ15通りのうち<b>これ以下の平均になるのは1通りだけ</b>＝ p = 0.067（片側）。n=6 なので<b>有意とまでは言えません</b>が、偶然でこうなる確率は15分の1です。<br><br>
+    加えて、Ｚ会の相対評から積み上げた指数と、受験生講評の絶対評（1〜5段階）は <b>r = 0.940</b>（n=5）で一致しました。二つの難易度ソースは互いを支持しています。</div>
+  <p class="hint">留保：二次平均は4科目の合計なので、数学の難易度だけで動くわけではありません。この検証が言えるのは「Ｚ会の数学難度評は、年度の出来不出来と同じ向きに動いている」までで、「二次平均の変動が数学で説明できる」ではありません。後者は得点設計票の分散分析（数学の寄与が最大）が別途支えています。</p>
+</section>
+
+<section id="s-bubun">
+  <div class="sh"><span class="n">未完</span><h2>部分点の構造はまだ測れていない</h2></div>
+  <p>京大は採点基準を公表しません。得点開示制度はあるので、<b>答案再現と開示得点のペア</b>を集めれば逆算できるはずですが、現時点で集まったのは次の数例だけです。</p>
+  <div class="scroll"><table>
+    <thead><tr><th>出所</th><th>科目</th><th>自己採点</th><th>開示</th><th>差</th></tr></thead>
+    <tbody>
+      <tr><td>掲示板 #25</td><td>数学</td><td class="num">75/200</td><td class="num">88/200</td><td class="num" style="color:var(--ao)">+13</td></tr>
+      <tr><td>掲示板 #25</td><td>英語</td><td class="num">140/200</td><td class="num">132/200</td><td class="num" style="color:var(--shu)">−8</td></tr>
+      <tr><td>掲示板 #25</td><td>国語</td><td class="num">45/100</td><td class="num">68/100</td><td class="num" style="color:var(--ao)">+23</td></tr>
+      <tr><td>掲示板 #28</td><td>数学</td><td class="num">210/250</td><td class="num">200/250</td><td class="num" style="color:var(--shu)">−10</td></tr>
+      <tr><td>掲示板 #28</td><td>英語</td><td class="num">130/200</td><td class="num">156/200</td><td class="num" style="color:var(--ao)">+26</td></tr>
+      <tr><td>掲示板 #28</td><td>物理</td><td class="num">210/250</td><td class="num">200/250</td><td class="num" style="color:var(--shu)">−10</td></tr>
+      <tr><td>掲示板 #28</td><td>化学</td><td class="num">190/250</td><td class="num">196/250</td><td class="num" style="color:var(--ao)">+6</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note shu"><b>n=7 では何も言えません。</b>差は −10 〜 +26 に散っていて、符号すら定まらない。<b>「方針を書けば2〜3割入る」も「完答しないとほぼ0」も、このデータでは否定も肯定もできません。</b><br><br>
+  ただし幅そのものは情報です。<b>自己採点は ±10〜25点ずれる</b>。二次800点換算なら ±12〜31点で、合格最低点の年次変動と同じオーダーです。<b>自己採点を根拠に合否を判断しないこと</b>だけは、この7例からでも言えます。</div>
+  <p class="hint">埋めるには、開示スレッドを年度横断で集計し、「何完何半」の宣言と開示点のペアを50件以上そろえる必要があります。得点設計票の開示集計（n=10、σ実測に使用）と同じ手順が使えるので、工程としては既知です ── 足りないのは量だけです。</p>
+</section>
+
+<section id="s-src">
+  <div class="sh"><span class="n">出典</span><h2>データの出どころ</h2></div>
+  <ul class="src">
+    <li><b>出題分野 29年分（1998–2026）</b>：<a href="https://www.densu.jp/table/ifrkyoto2.htm">電数図書館「京大理系数学 出題分野一覧表」</a>。174問ぶんの分野タグを機械抽出</li>
+    <li><b>難易度評・2025/2026年度</b>：<a href="https://www.zkai.co.jp/kyodai-exam/bunseki/rikeisuugaku/">Ｚ会「京大理系数学 徹底分析」</a>（大問別の分野と難易度）。2025年度の分野タグは電数図書館と完全一致を確認</li>
+    <li><b>難易度の年次変化 2020–2026</b>：Ｚ会 各年度版の「分量と難度の変化」欄</li>
+    <li><b>難易度評・配点 2008–2022</b>：note「京大理系数学を数弱なりに講評するよ」
+      <a href="https://note.com/ukaraseroyo_13/n/n99a79add6825">②2008-12</a>
+      <a href="https://note.com/ukaraseroyo_13/n/nacef56a40835">③2013-17</a>
+      <a href="https://note.com/ukaraseroyo_13/n/n7168afa438e2">④2018-22</a>。
+      掲載配点は各年とも合計200点に一致しており、実在の配点と整合します</li>
+    <li><b>大問別配点が問題用紙に印刷される点</b>：<a href="https://ja.wikibooks.org/wiki/%E4%BA%AC%E5%A4%A7%E5%AF%BE%E7%AD%96/%E6%95%B0%E5%AD%A6">Wikibooks 京大対策/数学</a></li>
+    <li><b>二次平均の復元系列</b>：<a href="https://claude.ai/code/artifact/3dab6b76-1403-4cd5-a356-0973a37697af#s-jissoku">根拠ノート〈実測〉</a>（京大公式の合格最低点＋大学入試センター公式の得点分布から切断正規で復元）</li>
+    <li><b>開示得点の実例</b>：<a href="https://www.100ten.info/kyoto/203/">京都大学掲示板 開示スレ</a>、<a href="https://matsutanijuku.com/18006">まつたに数学塾</a>（情報学科合格者の科目別開示）</li>
+    <li><b>試験問題そのもの</b>：<a href="https://www.kyoto-u.ac.jp/ja/admissions/undergrad/past-eq">京都大学 一般選抜の試験問題等</a></li>
+  </ul>
+  <div class="foot">難易度は他者の主観評価であり、京大の公式発表ではありません。分野タグも第三者の分類です。本ページの数値はすべて上記から機械的に集計したもので、推定を加えた箇所は本文でその旨を明示しています。</div>
+</section>
+
+</div>
+<script>
+const MAP={"2026":[[["微分と増減","領域"],3,null],[["空間図形"],3,null],[["整式","論証"],4,null],[["図形の計量"],4,null],[["回転体の体積"],3,null],[["期待値"],3,null]],"2025":[[["複素数平面","定積分の計算"],2,null],[["整数"],3,null],[["微分と増減"],3,null],[["空間ベクトル","論証"],4,null],[["空間図形","双曲線"],3,null],[["確率","漸化式"],4,null]],"2024":[[["確率","極限"],null,null],[["複素数平面","軌跡"],null,null],[["空間ベクトル"],null,null],[["漸化式","整数"],null,null],[["定積分と面積","関数の極限"],null,null],[["整数","数列の極限"],null,null]],"2023":[[["定積分の計算","整式の除法"],null,null],[["空間ベクトル"],null,null],[["確率"],null,null],[["微分と増減"],null,null],[["通過領域","立体の体積"],null,null],[["三角関数","論証"],null,null]],"2022":[[["対数","論証"],3,30],[["確率"],2,35],[["整数"],4,35],[["三角比の応用","四面体"],1,30],[["微分と増減"],2.67,35],[["漸化式"],5,35]],"2021":[[["空間図形","確率"],1.5,40],[["微分と増減"],2,30],[["無限級数","複素数"],4,30],[["曲線の長さ"],3,30],[["外心と垂心","軌跡"],2.5,30],[["整数","平均値の定理"],4,40]],"2020":[[["複素数平面"],3,30],[["極限","数学的帰納法"],3.5,30],[["空間ベクトル","内積"],4,35],[["整数"],4,35],[["場合の数"],4,35],[["回転体の体積"],4,35]],"2019":[[["論証","定積分の計算"],2.33,40],[["整数"],3,30],[["軌跡","定積分と面積"],4,35],[["確率"],4,30],[["図形の計量","微分と増減"],3,30],[["複素数","対数計算"],3,35]],"2018":[[["接線","軌跡"],1.5,30],[["整数"],2,30],[["図形の計量","三角関数"],4,35],[["確率","漸化式"],2,35],[["法線","曲線の長さ"],3.5,35],[["空間ベクトル","立体の性質"],3,35]],"2017":[[["複素数","軌跡"],2.5,30],[["空間ベクトル","四面体"],3,30],[["三角関数","整数"],4,35],[["図形の計量","内心"],3.5,35],[["定積分と面積","微分と増減"],3,35],[["確率","漸化式"],2,35]],"2016":[[["微分と増減","数列の極限"],2.5,30],[["整数"],3,30],[["空間図形","論証"],1,35],[["回転体の体積"],3,35],[["確率","漸化式"],3,35],[["整式","複素数"],4,35]],"2015":[[["回転体の体積"],2,30],[["図形の計量","面積"],3,30],[["微分の応用","極限"],3,35],[["空間ベクトル","四面体"],2,35],[["論証","整式"],5,35],[["確率","漸化式"],5,35]],"2014":[[["空間ベクトル","直線"],2,30],[["確率","漸化式"],2,30],[["図形の計量","最大と最小"],2,35],[["関数の極限"],5,35],[["整数"],5,35],[["定積分と面積"],4,35]],"2013":[[["平面ベクトル","平行四辺形"],1,30],[["種々の数列","漸化式"],4,35],[["整式","整数"],4,35],[["微分と増減"],2,35],[["定積分と面積"],3,30],[["確率"],2,35]],"2012":[[["数列の極限","定積分の計算"],3,null],[["空間ベクトル","四面体"],3,null],[["最大と最小"],3,null],[["論証","整数"],2.5,null],[["命題と論証","平面図形"],4,null],[["確率","漸化式"],5,null]],"2011":[[["確率","定積分の計算"],2,null],[["１次変換"],null,null],[["定積分と面積"],1,null],[["数学的帰納法","不等式"],3,null],[["球面と平面","最大と最小"],3,null],[["論証","空間図形"],4,null]],"2010":[[["空間ベクトル","四面体"],2,35],[["最大と最小","三角形"],3,35],[["定積分と面積"],1,35],[["図形の計量","三角形"],3,35],[["整数","数列"],4,30],[["確率","区分求積"],3,30]],"2009":[[["空間ベクトル","直線"],3,30],[["論証","内心"],5,35],[["確率"],4,35],[["１次変換"],null,35],[["極方程式","回転体の体積"],3,30],[["整数","数学的帰納法"],4.5,35]],"2008":[[["微分の応用"],2,35],[["確率"],3,35],[["論証","空間図形"],4,30],[["２次関数","絶対値"],4,30],[["立体の体積"],2,35],[["図形の計量","球面"],5,35]],"2007":[[["定積分の計算","場合の数"],null,null],[["漸化式","極限"],null,null],[["整数"],null,null],[["平面ベクトル","円と三角形"],null,null],[["１次変換"],null,null],[["関数方程式"],null,null]],"2006":[[["整式"],null,null],[["空間図形","直線"],null,null],[["接線","定積分と面積"],null,null],[["整数"],null,null],[["平面ベクトル","重心"],null,null],[["定積分の計算"],null,null]],"2005":[[["放物線と直線"],null,null],[["整数","対数計算"],null,null],[["複素数と図形"],null,null],[["不定方程式"],null,null],[["微分の応用"],null,null],[["場合の数","漸化式"],null,null]],"2004":[[["三角関数","最大と最小"],null,null],[["定積分と面積"],null,null],[["整式","数列の極限"],null,null],[["行列の演算"],null,null],[["複素数と図形"],null,null],[["確率"],null,null]],"2003":[[["漸化式"],null,null],[["回転体の体積"],null,null],[["空間ベクトル","四面体"],null,null],[["整式","複素数"],null,null],[["行列の演算"],null,null],[["確率"],null,null]],"2002":[[["漸化式","極限"],null,null],[["図形の計量","最大と最小"],null,null],[["高次方程式","整数"],null,null],[["極方程式","曲線の長さ"],null,null],[["微分の応用"],null,null],[["複素数平面","漸化式"],null,null]],"2001":[[["接線"],null,null],[["高次方程式","複素数"],null,null],[["数列"],null,null],[["論証","空間ベクトル"],null,null],[["複素数","数列"],null,null],[["定積分の計算","数列の極限"],null,null]],"2000":[[["平面ベクトル","円と四角形"],null,null],[["２次方程式","複素数"],null,null],[["空間ベクトル","三角不等式"],null,null],[["複素数"],null,null],[["定積分の計算","数列の極限"],null,null],[["確率","漸化式と極限"],null,null]],"1999":[[["定積分と面積","軌跡"],null,null],[["平面ベクトル","楕円"],null,null],[["不等式","定積分"],null,null],[["複素数と図形"],null,null],[["論証","実数"],null,null],[["媒介変数表示","定積分と面積"],null,null]],"1998":[[["図形の計量","円と三角形"],null,null],[["整数"],null,null],[["空間ベクトル","四面体"],null,null],[["数列の極限","格子点"],null,null],[["確率と期待値"],null,null],[["回転体の体積","微分と増減"],null,null]]};
+const YEARS=Object.keys(MAP).map(Number).sort((a,b)=>b-a);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const dcls=d=>d==null?"dna":"d"+Math.max(1,Math.min(5,Math.round(d)));
+
+/* ── 地図 ── */
+document.getElementById("map-b").innerHTML=YEARS.map(y=>
+  `<tr><td class="y">${y}</td>`+MAP[y].map(([f,d,h])=>
+    `<td class="c ${dcls(d)}">${f.map(x=>`<span class="f">${esc(x)}</span>`).join("")}`+
+    `<span class="h">${h?h+"点":""}${h&&d!=null?" · ":""}${d!=null?d.toFixed(1):""}</span></td>`).join("")+
+  `</tr>`).join("");
+
+/* ── 大問位置プロファイル ── */
+const prof=[];
+for(let q=1;q<=6;q++){
+  const ds=YEARS.map(y=>MAP[y][q-1][1]).filter(d=>d!=null);
+  const e=ds.filter(d=>d<=2).length, hd=ds.filter(d=>d>=4).length;
+  prof.push({q,n:ds.length,e,m:ds.length-e-hd,hd,avg:ds.reduce((a,b)=>a+b,0)/ds.length});
+}
+document.getElementById("prof").innerHTML=prof.map(p=>{
+  const pc=x=>(x/p.n*100).toFixed(1)+"%";
+  return `<div class="r"><span class="lbl">第${p.q}問</span>`+
+   `<span class="bar">`+
+   `<span class="d1" style="width:${pc(p.e)}"></span>`+
+   `<span class="d3" style="width:${pc(p.m)}"></span>`+
+   `<span class="d5" style="width:${pc(p.hd)}"></span></span>`+
+   `<span class="v">難 ${(p.hd/p.n*100).toFixed(0)}%　${p.avg.toFixed(2)}</span></div>`;
+}).join("");
+
+/* ── 分野マトリクス ── */
+const CUR=YEARS.filter(y=>y>=2015);
+const freq={},diff={};
+for(const y of YEARS) for(const [f,d] of MAP[y]){
+  for(const nm of f){
+    if(CUR.includes(y)) freq[nm]=(freq[nm]||0)+1;
+    if(d!=null){(diff[nm]=diff[nm]||[]).push(d);}
+  }
+}
+const names=[...new Set([...Object.keys(freq),...Object.keys(diff)])]
+  .map(nm=>({nm,f:freq[nm]||0,
+             d:diff[nm]?diff[nm].reduce((a,b)=>a+b,0)/diff[nm].length:null,
+             n:diff[nm]?diff[nm].length:0}))
+  .filter(r=>r.f>=2)
+  .sort((a,b)=>(b.f*(b.d??3))-(a.f*(a.d??3)));
+const maxF=Math.max(...names.map(r=>r.f));
+document.getElementById("mx-b").innerHTML=names.map(r=>{
+  let chip,cls;
+  if(r.f>=5&&r.d>=3.3){chip="最優先";cls="c-top";}
+  else if(r.f>=4&&r.d<3.1){chip="取りこぼし厳禁";cls="c-keep";}
+  else if(r.f<=3&&r.d>=3.4){chip="深追い禁物";cls="c-skip";}
+  else {chip="標準";cls="c-skip";}
+  return `<tr><td class="nm">${esc(r.nm)}</td>`+
+   `<td class="num">${r.f}</td>`+
+   `<td style="width:78px"><span class="mini" style="width:${r.f/maxF*70}px"></span></td>`+
+   `<td class="num">${r.d==null?"—":r.d.toFixed(2)}</td>`+
+   `<td style="width:78px">${r.d==null?"":`<span class="mini h" style="width:${(r.d-1)/4*70}px"></span>`}</td>`+
+   `<td><span class="chip ${cls}">${chip}</span></td></tr>`;
+}).join("");
+</script>

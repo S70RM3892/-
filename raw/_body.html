@@ -1,0 +1,502 @@
+<title>京大二次 出題地図</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#f4f6f9; --card:#fff; --ink:#16233a; --muted:#5b6a80; --faint:#8595aa;
+  --ao:#2c5f92; --ao-w:#eaf1f8; --shu:#b03426; --shu-w:#fbeeec; --rule:#d8dee8; --rule2:#eaeef4;
+  --d1:#bcd6ec; --d2:#dfe9f3; --d3:#eceef2; --d4:#f4d8d2; --d5:#e5aca1; --dna:#f2f4f7;
+  --don:#0f2033;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0f141d; --card:#18202c; --ink:#e7edf6; --muted:#94a3b8; --faint:#71829a;
+  --ao:#7ab0e2; --ao-w:#152535; --shu:#e88372; --shu-w:#2e1b19; --rule:#2b3544; --rule2:#212a37;
+  --d1:#1d4468; --d2:#1c2c3e; --d3:#232c39; --d4:#442722; --d5:#7d3527; --dna:#1b222d; --don:#e7edf6;
+}}
+:root[data-theme="dark"]{
+  --paper:#0f141d; --card:#18202c; --ink:#e7edf6; --muted:#94a3b8; --faint:#71829a;
+  --ao:#7ab0e2; --ao-w:#152535; --shu:#e88372; --shu-w:#2e1b19; --rule:#2b3544; --rule2:#212a37;
+  --d1:#1d4468; --d2:#1c2c3e; --d3:#232c39; --d4:#442722; --d5:#7d3527; --dna:#1b222d; --don:#e7edf6;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Zen Kaku Gothic New",system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;
+  line-height:1.78;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding-block:26px 60px;padding-left:18px;padding-right:18px}
+h1,h2,h3{font-family:"Shippori Mincho",serif;font-weight:700;text-wrap:balance;line-height:1.4;margin:0}
+.num,.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+.mast{border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:6px}
+.mast h1{font-size:25px;letter-spacing:.01em}
+.mast .sub{color:var(--muted);font-size:12.5px;margin-top:5px}
+.mast .sub a{color:var(--ao)}
+a{color:var(--ao)}
+.jump{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 92%,transparent);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);margin:0 -18px 22px;padding:7px 18px;
+  display:flex;gap:14px;overflow-x:auto;font-size:11.5px;letter-spacing:.06em}
+.jump a{color:var(--muted);text-decoration:none;white-space:nowrap;padding:2px 0;border-bottom:1.5px solid transparent}
+.jump a:hover,.jump a:focus{color:var(--ao);border-bottom-color:var(--ao)}
+
+section{margin-top:38px;scroll-margin-top:52px}
+.sh{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--rule);padding-bottom:7px;margin-bottom:14px}
+.sh .n{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.16em;color:var(--shu);
+  border:1px solid var(--shu);padding:1px 6px;border-radius:2px;flex:none}
+.sh h2{font-size:18.5px}
+p{margin:0 0 12px}
+.lead{font-size:14.5px}
+small,.hint{font-size:12.5px;color:var(--muted);line-height:1.7}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--rule);
+  border:1px solid var(--rule);margin:18px 0 4px}
+.facts>div{background:var(--card);padding:13px 14px}
+.facts dt{font-size:11px;letter-spacing:.1em;color:var(--muted);margin-bottom:4px}
+.facts dd{margin:0;font-family:"IBM Plex Mono",monospace;font-size:22px;font-weight:600;line-height:1.2}
+.facts .nt{font-size:11.5px;color:var(--faint);margin-top:5px;line-height:1.55}
+
+.scroll{overflow-x:auto;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th,td{padding:5px 7px;border-bottom:1px solid var(--rule2);text-align:left;vertical-align:top}
+thead th{background:var(--ao-w);color:var(--ao);font-size:10.5px;letter-spacing:.09em;font-weight:700;
+  position:sticky;top:0;border-bottom:1px solid var(--rule)}
+tbody tr:last-child td{border-bottom:none}
+td.y{font-family:"IBM Plex Mono",monospace;font-weight:600;white-space:nowrap;background:var(--card);
+  position:sticky;left:0;border-right:1px solid var(--rule);font-size:12px}
+td.c{font-size:11.5px;line-height:1.45;min-width:96px}
+td.c .f{display:block}
+td.c .h{font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--muted);letter-spacing:.04em}
+.d1{background:var(--d1)}.d2{background:var(--d2)}.d3{background:var(--d3)}
+.d4{background:var(--d4)}.d5{background:var(--d5)}.dna{background:var(--dna)}
+.d1,.d5{color:var(--don)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11px;color:var(--muted);margin-top:9px;align-items:center}
+.legend i{display:inline-block;width:15px;height:11px;border:1px solid var(--rule);margin-right:4px;vertical-align:-1px}
+
+.prof{display:grid;gap:5px;margin:4px 0 2px}
+.prof .r{display:grid;grid-template-columns:46px 1fr 92px;align-items:center;gap:9px;font-size:12px}
+.prof .lbl{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted)}
+.prof .bar{display:flex;height:19px;border:1px solid var(--rule);overflow:hidden}
+.prof .bar span{display:block}
+.prof .v{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);text-align:right}
+
+.mx{min-width:440px}
+.mx th:nth-child(n+2),.mx td:nth-child(n+2){text-align:right}
+.mx td.nm{text-align:left;font-weight:500;white-space:nowrap}
+.mx td:last-child,.mx th:last-child{text-align:right}
+.mini{display:inline-block;height:8px;background:var(--ao);vertical-align:1px;border-radius:1px}
+.mini.h{background:var(--shu)}
+.chip{display:inline-block;font-size:10px;letter-spacing:.05em;padding:1px 6px;border-radius:2px;
+  border:1px solid currentColor;white-space:nowrap}
+.c-top{color:var(--shu)}.c-keep{color:var(--ao)}.c-skip{color:var(--faint)}
+
+.note{border-left:3px solid var(--ao);background:var(--ao-w);padding:12px 14px;margin:16px 0;font-size:13px;line-height:1.8}
+.note.shu{border-left-color:var(--shu);background:var(--shu-w)}
+.note b{font-weight:700}
+.steps{counter-reset:s;list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+.steps li{counter-increment:s;position:relative;padding-left:37px;font-size:13.2px;line-height:1.75;min-height:24px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:4px;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--shu);
+  border:1px solid var(--shu);border-radius:50%;width:22px;height:22px;display:grid;place-items:center}
+ul.src{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:12.5px;line-height:1.65}
+ul.src li{padding-left:14px;position:relative;color:var(--muted)}
+ul.src li::before{content:"—";position:absolute;left:0;color:var(--faint)}
+.foot{margin-top:44px;padding-top:14px;border-top:1px solid var(--rule);font-size:12px;color:var(--faint)}
+@media (max-width:520px){.wrap{padding-block:20px 48px}.mast h1{font-size:21px}.sh h2{font-size:16.5px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+:focus-visible{outline:2px solid var(--ao);outline-offset:2px}
+
+
+.fld{display:inline-block;font-size:10px;letter-spacing:.04em;padding:1px 6px;border-radius:2px;white-space:nowrap}
+.f-r{background:var(--ao-w);color:var(--ao)}
+.f-o{background:var(--shu-w);color:var(--shu)}
+.tg{display:inline-block;font-size:9.5px;color:var(--muted);border:1px solid var(--rule);
+  border-radius:2px;padding:0 4px;margin-right:3px;white-space:nowrap}
+.tg.hot{color:var(--shu);border-color:var(--shu)}
+td.th{min-width:190px;white-space:normal;line-height:1.45;font-size:12px}
+.yr{display:grid;gap:7px;margin-top:14px}
+.yr .row{display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:start;
+  padding-bottom:7px;border-bottom:1px solid var(--rule2)}
+.yr .row:last-child{border-bottom:none}
+.yr .y{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;padding-top:2px}
+.yr .items{display:flex;flex-wrap:wrap;gap:4px}
+.yr .it{font-size:11px;padding:2px 7px;border-radius:2px;line-height:1.4}
+.it.r{background:var(--ao-w);color:var(--ink)}
+.it.o{background:var(--shu-w);color:var(--ink)}
+.tally{display:grid;gap:6px;margin-top:12px}
+.tally .t{display:grid;grid-template-columns:96px 1fr 74px;gap:10px;align-items:center;font-size:12px}
+.tally .lab{font-size:12px}
+.tally .bar{height:18px;border:1px solid var(--rule);background:var(--card);overflow:hidden}
+.tally .bar span{display:block;height:100%;background:var(--ao)}
+.tally .t.top .bar span{background:var(--shu)}
+.tally .v{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);text-align:right}
+.split{display:flex;height:26px;border:1px solid var(--rule);margin-top:12px;font-size:11px;
+  font-family:"IBM Plex Mono",monospace}
+.split div{display:grid;place-items:center;color:#fff}
+.split .a{background:var(--ao)} .split .b{background:var(--shu)}
+</style>
+<style>
+.subtabs{display:flex;gap:2px;margin-top:16px;border-bottom:1px solid var(--rule);overflow-x:auto;
+  position:sticky;top:0;z-index:25;background:var(--paper)}
+.stab{font-family:"Zen Kaku Gothic New",system-ui,sans-serif;font-size:13.5px;font-weight:500;
+  background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);
+  padding:10px 14px;cursor:pointer;margin-bottom:-1px;white-space:nowrap;border-radius:0}
+.stab:hover{color:var(--ink)}
+.stab[aria-selected="true"]{color:var(--shu);border-bottom-color:var(--shu);font-weight:700}
+.stab .w{font-family:"IBM Plex Mono",monospace;font-size:10px;opacity:.6;margin-left:5px}
+.jump{top:43px}
+.panel-lead{font-size:14.5px;margin:18px 0 0;text-wrap:pretty}
+.wt{display:flex;height:24px;border:1px solid var(--rule);margin-top:12px;font-size:10.5px;
+  font-family:"IBM Plex Mono",monospace;overflow:hidden}
+.wt div{display:grid;place-items:center;color:#fff;min-width:0;overflow:hidden;white-space:nowrap}
+.wt .w1{background:var(--ao)}.wt .w2{background:var(--shu)}
+.wt .w3{background:var(--muted)}.wt .w4{background:var(--faint)}
+.pg{display:grid;gap:6px;margin-top:12px}
+.pg .r{display:grid;grid-template-columns:52px 64px 1fr 56px;gap:8px;align-items:center;font-size:11.5px}
+.pg .y{font-family:"IBM Plex Mono",monospace;font-weight:600}
+.pg .f{font-size:10.5px;text-align:center;border-radius:2px;padding:1px 0}
+.pg .t{font-size:11px;line-height:1.4;min-width:0}
+.pg .d{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--muted);text-align:right}
+.f-rik{background:var(--ao-w);color:var(--ao)}
+.f-den{background:var(--d2);color:var(--ink)}
+.f-net{background:var(--shu-w);color:var(--shu)}
+.f-ha{background:var(--d1);color:var(--don)}
+.f-gen{background:var(--d4);color:var(--don)}
+.spark{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;align-items:end;height:88px;margin-top:14px}
+.spark .b{background:var(--ao);border-radius:1px 1px 0 0;position:relative;min-height:3px}
+.spark .b.max{background:var(--shu)}
+.spark .lab{font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--muted);
+  text-align:center;margin-top:4px}
+.sparkx{display:grid;grid-template-columns:repeat(9,1fr);gap:4px}
+.klist{display:grid;gap:5px;margin-top:12px}
+.klist .r{display:grid;grid-template-columns:48px 58px 1fr;gap:9px;align-items:baseline;
+  font-size:11.5px;padding-bottom:5px;border-bottom:1px solid var(--rule2)}
+.klist .r:last-child{border-bottom:none}
+.klist .y{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:11.5px}
+.klist .k{font-size:10px;text-align:center;border-radius:2px;padding:1px 0}
+.klist .s{line-height:1.45}
+.k-gen{background:var(--ao-w);color:var(--ao)}
+.k-ko{background:var(--shu-w);color:var(--shu)}
+</style>
+
+<div class="wrap">
+<header class="mast">
+  <h1>京大二次 出題地図</h1>
+  <div class="sub">5科目・素点650点 ／ 工学部配点800点　最終更新 2026-09-11<br>
+  <a href="https://claude.ai/code/artifact/d97dc510-2d24-41f0-a38f-aa3429c5107c">得点設計票</a>　/　
+  <a href="https://claude.ai/code/artifact/3dab6b76-1403-4cd5-a356-0973a37697af">根拠ノート</a></div>
+</header>
+
+<div class="subtabs" role="tablist">
+  <button class="stab" role="tab" id="t-m" aria-controls="pan-m" aria-selected="true">数学<span class="w">250</span></button>
+  <button class="stab" role="tab" id="t-p" aria-controls="pan-p">物理<span class="w">125</span></button>
+  <button class="stab" role="tab" id="t-c" aria-controls="pan-c">化学<span class="w">125</span></button>
+  <button class="stab" role="tab" id="t-e" aria-controls="pan-e">英語<span class="w">200</span></button>
+  <button class="stab" role="tab" id="t-k" aria-controls="pan-k">国語<span class="w">100</span></button>
+</div>
+
+<div id="pan-m" role="tabpanel" aria-labelledby="t-m"><p class="panel-lead">数学は二次800点の <b>31.3%</b> で最大。素点σ 43.0 は4科目で最大＝<b>いちばん差がつく科目</b>です。ここは「すでに強いものを崩さない」ための地図です。</p>
+<nav class="jump" aria-label="数学の目次"><a href="#s-jijitsu">前提</a><a href="#s-map">地図</a><a href="#s-ichi">大問位置</a><a href="#s-bunya">分野</a><a href="#s-junjo">150分</a><a href="#s-kensho">検証</a><a href="#s-bubun">部分点</a></nav>
+<section id="s-jijitsu">
+  <div class="sh"><span class="n">前提</span><h2>試験そのものの仕様</h2></div>
+  <dl class="facts">
+    <div><dt>形式</dt><dd class="num">150<small>分</small> 6<small>問</small></dd>
+      <div class="nt">200点。1問あたり25分だが、均等ではない</div></div>
+    <div><dt>大問別配点</dt><dd class="num">30 / 35 / 40</dd>
+      <div class="nt"><b>問題用紙に印刷されている</b>。試験開始直後に読める</div></div>
+    <div><dt>第1問に「難」</dt><dd class="num">0 <small>/ 17年</small></dd>
+      <div class="nt">難易度が取れた17年間、一度もない</div></div>
+  </dl>
+  <p class="hint" style="margin-top:10px">配点が問題用紙にある以上、「1問25分」の均等配分は誤りです。40点問題と30点問題では1点あたりの時間価値が33%違います。配点を読んでから解く順序を決める、が正しい手順。</p>
+</section>
+<section id="s-map">
+  <div class="sh"><span class="n">地図</span><h2>29年 × 6問</h2>
+  </div>
+  <p class="hint">セルの色は難易度。上段が分野（複数タグは複数行）、下段の数字は配点です。配点と難易度は判明した年のみ。</p>
+  <div class="scroll" style="max-height:520px;overflow-y:auto"><table id="map-t">
+    <thead><tr><th>年度</th><th>第1問</th><th>第2問</th><th>第3問</th><th>第4問</th><th>第5問</th><th>第6問</th></tr></thead>
+    <tbody id="map-b"></tbody>
+  </table></div>
+  <div class="legend">
+    <span><i class="d1"></i>易</span><span><i class="d2"></i>やや易</span><span><i class="d3"></i>標準</span>
+    <span><i class="d4"></i>やや難</span><span><i class="d5"></i>難</span><span><i class="dna"></i>評価なし</span>
+    <span style="margin-left:auto">難易度は 2008–2022・2025–2026 の17年分</span>
+  </div>
+  <div class="note"><b>2015年度から新課程です。</b>行列・1次変換が範囲外になり、複素数平面が戻りました。2014年度以前の行は<b>出題傾向の参考</b>として見て、演習の優先順位は次節の「現行課程12年」で決めてください。</div>
+</section>
+<section id="s-ichi">
+  <div class="sh"><span class="n">位置</span><h2>大問の位置は難易度を予告する</h2></div>
+  <p>17年100問の難易度を大問位置ごとに集計しました。<b>京大は易しい順に並べていません</b>が、両端には強い規則性があります。</p>
+  <div class="prof" id="prof"></div>
+  <div class="legend"><span><i class="d1"></i>易・やや易</span><span><i class="d3"></i>標準</span><span><i class="d5"></i>やや難・難</span>
+    <span style="margin-left:auto">右の数字は平均難易度（1易〜5難）</span></div>
+  <div class="note shu"><b>第1問は17年間「難」がゼロ、第6問は65%が「難」。</b>これは順序戦略をそのまま決めます ── 第1問は必ず取りにいく、第6問は最後に回す。中間の第2〜5問は平均で 2.97〜3.33 と団子で、<b>位置からは判別できません</b>。ここは配点と分野で決めることになります。</div>
+</section>
+<section id="s-bunya">
+  <div class="sh"><span class="n">分野</span><h2>頻度と難度の交差</h2></div>
+  <p>頻度は<b>現行課程12年（2015–2026）</b>で数え、難度は<b>17年全体</b>の平均です。優先順位はこの2軸の積で決まります ── 出ない分野は難しくても後回しでよく、毎年出て易しい分野は落とすと致命傷になる。</p>
+  <div class="scroll"><table class="mx">
+    <thead><tr><th>分野</th><th>頻度<br><small>回/12年</small></th><th></th><th>難度<br><small>1–5</small></th><th></th><th>扱い</th></tr></thead>
+    <tbody id="mx-b"></tbody>
+  </table></div>
+  <div class="note"><b>整数は「毎年出て、いちばん難しい」分野です。</b>現行課程12年で10回、平均難度 3.62 は n≥8 の分野で最高。対する確率も12年で10回とほぼ同じ頻度ですが、平均難度は 2.97 ── <b>同じだけ出るのに難度が0.65違う</b>。<br><br>この非対称が処方を決めます。<b>確率は取りこぼしが直接失点になる分野</b>（周りが取る）、<b>整数は差をつけられる分野</b>（周りが落とす）。同じ勉強時間でも役割が逆です。</div>
+  <div class="note shu"><b>論証（3.48）と漸化式（3.56）にも注意。</b>どちらも単独分野というより<b>他分野に混ざって出る形式</b>です。論証は12年で7回、漸化式は7回。「整数の論証」「確率の漸化式」という複合が京大の定番で、上の表で難度上位を占めているのは<b>ほぼこの複合形</b>です。分野別問題集では手当てしにくい層で、過去問でしか埋まりません。</div>
+</section>
+<section id="s-junjo">
+  <div class="sh"><span class="n">処方</span><h2>150分の使い方</h2></div>
+  <p>上の2節から導ける手順です。<b>本番で配点が読める</b>ことと、<b>位置が難易度を予告する</b>ことの2つを使います。</p>
+  <ol class="steps">
+    <li><b>最初の5分は解かない。</b>6問すべての分野と配点を読み、①確実に取る ②時間があれば ③捨てる、の3群に割る。配点が印刷されているので、この作業は推測ではなく読み取りです。</li>
+    <li><b>第1問から入る。</b>17年間「難」が出ていない唯一の位置。ここで躓いたら、その年は自分側の問題か、極めて稀な例外です。</li>
+    <li><b>確率・定積分の計算・四面体・微分と増減を優先。</b>いずれも平均難度3.0以下で、かつ現行課程で複数回出ている。ここは満点で通過する前提。</li>
+    <li><b>整数・論証・漸化式の複合に、余力の全部を使う。</b>差がつくのはここ。ただし配点を確認して、30点問題に40分使わない。</li>
+    <li><b>第6問は最後。</b>65%が「難」。方針だけ書いて部分点を狙う位置で、完答を前提に時間を積む位置ではありません。</li>
+    <li><b>残り20分で全問を見直す。</b>京大数学は論証の厳密性で減点されます（後述の開示例では自己採点から±13点動いています）。新しい問題に手を出すより、書いた答案の穴を塞ぐほうが期待値が高い。</li>
+  </ol>
+  <div class="note"><b>この順序は「易しい順」ではありません。</b>第1問→易しい分野→難しい分野→第6問、という<b>期待値の順</b>です。京大は難易度順に並べていないので、番号順に解くのは配点を捨てるのと同じことになります。</div>
+</section>
+<section id="s-kensho">
+  <div class="sh"><span class="n">検証</span><h2>この難易度評は当たっているか</h2></div>
+  <p>難易度は他人の主観です。使う前に、<b>我々が独立に持っている数字</b>と突き合わせました。得点設計票では合格最低点から切断正規で受験者分布を復元し、二次平均（800点換算）の系列を作っています。Ｚ会も講評者もこの系列を見ていないので、両者は完全に独立です。</p>
+  <div class="scroll"><table>
+    <thead><tr><th>年度</th><th>Ｚ会の難度評（数学）</th><th>難度指数</th><th>二次平均/800<br><small>我々の復元値</small></th></tr></thead>
+    <tbody class="num">
+      <tr><td>2021</td><td>易化</td><td>−0.5</td><td>405.2</td></tr>
+      <tr><td>2022</td><td>昨年並み</td><td>−0.5</td><td>445.4</td></tr>
+      <tr><td>2023</td><td>2022年度並み</td><td>−0.5</td><td>474.5</td></tr>
+      <tr><td>2024</td><td><b>やや難化</b></td><td><b>0.0</b></td><td><b>385.5</b></td></tr>
+      <tr><td>2025</td><td>やや易化</td><td>−0.5</td><td>453.0</td></tr>
+      <tr><td>2026</td><td><b>やや難化</b></td><td><b>0.0</b></td><td><b>391.9</b></td></tr>
+    </tbody>
+  </table></div>
+  <div class="note ok" style="border-left-color:var(--shu);background:var(--shu-w)">
+    <b>Ｚ会が「やや難化」と評した2年が、二次平均の最下位2年と一致しました。</b>385.5 と 391.9 で、他の4年（405.2〜474.5）と重なりがありません。r = <b>−0.788</b>（n=6）。<br><br>
+    並べ替え検定では、6年から2年を選ぶ15通りのうち<b>これ以下の平均になるのは1通りだけ</b>＝ p = 0.067（片側）。n=6 なので<b>有意とまでは言えません</b>が、偶然でこうなる確率は15分の1です。<br><br>
+    加えて、Ｚ会の相対評から積み上げた指数と、受験生講評の絶対評（1〜5段階）は <b>r = 0.940</b>（n=5）で一致しました。二つの難易度ソースは互いを支持しています。</div>
+  <p class="hint">留保：二次平均は4科目の合計なので、数学の難易度だけで動くわけではありません。この検証が言えるのは「Ｚ会の数学難度評は、年度の出来不出来と同じ向きに動いている」までで、「二次平均の変動が数学で説明できる」ではありません。後者は得点設計票の分散分析（数学の寄与が最大）が別途支えています。</p>
+</section>
+<section id="s-bubun">
+  <div class="sh"><span class="n">未完</span><h2>部分点の構造はまだ測れていない</h2></div>
+  <p>京大は採点基準を公表しません。得点開示制度はあるので、<b>答案再現と開示得点のペア</b>を集めれば逆算できるはずですが、現時点で集まったのは次の数例だけです。</p>
+  <div class="scroll"><table>
+    <thead><tr><th>出所</th><th>科目</th><th>自己採点</th><th>開示</th><th>差</th></tr></thead>
+    <tbody>
+      <tr><td>掲示板 #25</td><td>数学</td><td class="num">75/200</td><td class="num">88/200</td><td class="num" style="color:var(--ao)">+13</td></tr>
+      <tr><td>掲示板 #25</td><td>英語</td><td class="num">140/200</td><td class="num">132/200</td><td class="num" style="color:var(--shu)">−8</td></tr>
+      <tr><td>掲示板 #25</td><td>国語</td><td class="num">45/100</td><td class="num">68/100</td><td class="num" style="color:var(--ao)">+23</td></tr>
+      <tr><td>掲示板 #28</td><td>数学</td><td class="num">210/250</td><td class="num">200/250</td><td class="num" style="color:var(--shu)">−10</td></tr>
+      <tr><td>掲示板 #28</td><td>英語</td><td class="num">130/200</td><td class="num">156/200</td><td class="num" style="color:var(--ao)">+26</td></tr>
+      <tr><td>掲示板 #28</td><td>物理</td><td class="num">210/250</td><td class="num">200/250</td><td class="num" style="color:var(--shu)">−10</td></tr>
+      <tr><td>掲示板 #28</td><td>化学</td><td class="num">190/250</td><td class="num">196/250</td><td class="num" style="color:var(--ao)">+6</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note shu"><b>n=7 では何も言えません。</b>差は −10 〜 +26 に散っていて、符号すら定まらない。<b>「方針を書けば2〜3割入る」も「完答しないとほぼ0」も、このデータでは否定も肯定もできません。</b><br><br>
+  ただし幅そのものは情報です。<b>自己採点は ±10〜25点ずれる</b>。二次800点換算なら ±12〜31点で、合格最低点の年次変動と同じオーダーです。<b>自己採点を根拠に合否を判断しないこと</b>だけは、この7例からでも言えます。</div>
+  <p class="hint">埋めるには、開示スレッドを年度横断で集計し、「何完何半」の宣言と開示点のペアを50件以上そろえる必要があります。得点設計票の開示集計（n=10、σ実測に使用）と同じ手順が使えるので、工程としては既知です ── 足りないのは量だけです。</p>
+</section></div>
+<div id="pan-p" role="tabpanel" aria-labelledby="t-p" hidden>
+<p class="panel-lead">物理は化学と合わせて理科250点、二次800点の <b>15.6%</b>。9年間で<b>大問の分野配置がほとんど動いていません</b> ── 第Ⅰ問は力学、第Ⅱ問は電磁気で9年連続、変わるのは第Ⅲ問だけです。</p>
+
+<nav class="jump" aria-label="物理の目次">
+  <a href="#p-kouzou">構造</a><a href="#p-map">9年表</a><a href="#p-3rd">第Ⅲ問</a><a href="#p-youkyu">要求</a>
+</nav>
+
+<section id="p-kouzou">
+  <div class="sh"><span class="n">構造</span><h2>2枠は固定、1枠だけ回る</h2></div>
+  <dl class="facts">
+    <div><dt>第Ⅰ問</dt><dd class="num">力学 9<small>/9年</small></dd><div class="nt">例外なし</div></div>
+    <div><dt>第Ⅱ問</dt><dd class="num">電磁気 9<small>/9年</small></dd><div class="nt">例外なし</div></div>
+    <div><dt>第Ⅲ問</dt><dd class="num">熱5 / 波3 / 原1</dd><div class="nt">ここだけが動く</div></div>
+  </dl>
+  <div class="wt" id="p-wt"></div>
+  <p class="hint" style="margin-top:10px">3題×9年＝27題の分野内訳。<b>力学と電磁気で2/3を占めます</b>。数学が「どの分野が出るか読めない」科目だったのに対し、物理は<b>2/3が確定している</b>のが最大の違いです。</p>
+</section>
+
+<section id="p-map">
+  <div class="sh"><span class="n">9年表</span><h2>2018–2026の全27題</h2>
+    <p class="hint">Ｚ会の各年度分析から抽出。右端は難易度評（2020年度以降のみ記載あり）。</p></div>
+  <div class="pg" id="p-tbl"></div>
+</section>
+
+<section id="p-3rd">
+  <div class="sh"><span class="n">第Ⅲ問</span><h2>熱・波動・原子のどれが来るか</h2></div>
+  <div class="klist" id="p-3list"></div>
+  <div class="note shu"><b>原子は9年で1回（2021年）だけです。</b>それ以前は2015年度が最後で、Ｚ会は2021年度について「6年ぶりの原子分野」と書いています ── <b>5〜6年に1度</b>の周期。<br><br>
+  一方<b>熱力学は2025・2026と2年連続</b>で、9年で5回と最多。波動は2019・2023・2024の3回。「原子は出ないから捨てる」は9年に1回の地雷を踏む賭けで、<b>配点250点の理科で1題＝約42点</b>を丸ごと失います。優先度は低くても、ゼロにはしないこと。</div>
+</section>
+
+<section id="p-youkyu">
+  <div class="sh"><span class="n">要求</span><h2>Ｚ会が挙げる3つ</h2></div>
+  <ol class="steps">
+    <li><b>問題文を読解する力。</b>「問題文が長く、設定が高度なこともあり、問題の設定の理解に時間がかかる」。問題文にヒントが含まれていることが多く、それを拾えるかで決まります。</li>
+    <li><b>正確かつ迅速に計算する力。</b>「設問で与えられる記号（物理量）が多く、設問数も計算量も多い」。煩雑な計算をミスなく速く。</li>
+    <li><b>解くべき問題を見極める力。</b>「時間内にすべて解くのは厳しい。試験開始直後に問題全体にざっと目を通して解くべき問題を見極め、時間を適切に配分することが合格点の条件」。</li>
+  </ol>
+  <div class="note"><b>3つとも化学と共通しています。</b>京大化学もＺ会は「長いリード文を正しく読解し」「解くべき問題の見極め力もカギ」と書いている。<b>理科180分は2科目まとめてで配分自由</b>なので、この「見極め」は物理と化学をまたいで働きます ── 化学の第Ⅰ問が易しい年に物理の第Ⅲ問で粘るのは、配分の失敗です。<br><br>
+  最初の10分を<b>6題（物理3＋化学4の計7題）全部の下見</b>に使い、取る順を決めてから書き始める。これが180分の正しい入り方です。</div>
+  <div class="note ok"><b>解答形式は空欄補充が主体です。</b>文章中の空欄を埋める形式で、大問ごとに1問程度の記述、そして<b>ほぼ毎年グラフの作図</b>が出ます。作図は対策していないと手が止まるので、過去問演習では必ず実際に描いてください。</div>
+</section>
+
+</div>
+<div id="pan-c" role="tabpanel" aria-labelledby="t-c" hidden><p class="panel-lead">化学は理科250点の半分、二次800点の <b>15.6%</b>。数学が「強いものを崩さない」地図だったのに対し、これは<b>いちばん低いところを持ち上げる</b>ための地図です。評価偏差値で +10 動かせばボーダーを超えます。</p>
+<nav class="jump" aria-label="化学の目次"><a href="#c-kouzou">構造</a><a href="#c-map">地図</a><a href="#c-theme">頻出</a><a href="#c-keishiki">形式</a><a href="#c-junjo">180分</a><a href="#c-shohou">処方</a></nav>
+<section id="s-kouzou">
+  <div class="sh"><span class="n">構造</span><h2>9年間まったく変わっていない</h2></div>
+  <dl class="facts">
+    <div><dt>構成</dt><dd class="num">4<small>題</small></dd>
+      <div class="nt">理論・無機 2題 ＋ 有機 2題。うち1題は必ず天然高分子</div></div>
+    <div><dt>時間</dt><dd class="num">90<small>分</small></dd>
+      <div class="nt">理科2科目180分の目安配分。物理との配分は<b>受験生の裁量</b></div></div>
+    <div><dt>形式</dt><dd class="num">全記述</dd>
+      <div class="nt">マークなし。各問に対応する解答欄</div></div>
+  </dl>
+  <p class="hint" style="margin-top:10px">Ｚ会は9年連続で「大問4題構成であるのはこれまでと同じ」と書いています。数学のように年で構成が動く科目ではありません ── <b>出るものが決まっている＝対策の利きが最も良い科目</b>です。</p>
+  <div class="note"><b>理論と有機はほぼ半々です。</b>9年59中問の内訳は 理論・無機 29 ／ 有機 30 ── <b>有機が51%</b>。「化学は理論が本体」という一般論は京大には当てはまりません。</div>
+  <div class="split"><div class="a" style="flex:29">理論・無機 29</div><div class="b" style="flex:30">有機 30</div></div>
+</section>
+<section id="c-map">
+  <div class="sh"><span class="n">地図</span><h2>9年 × 全中問</h2>
+    <p class="hint">青が理論・無機、朱が有機。Ｚ会の各年度分析から機械抽出しました。</p></div>
+  <div class="yr" id="yr"></div>
+</section>
+<section id="s-theme">
+  <div class="sh"><span class="n">頻出</span><h2>毎年出るものが2つある</h2></div>
+  <div class="tally" id="tally"></div>
+  <div class="legend"><span>横棒は9年間の中問数</span><span style="margin-left:auto">右は「何年に出たか／9年」</span></div>
+
+  <div class="note shu"><b>天然高分子は9年で9年、例外なしです。</b>糖類・アミノ酸・ペプチドを題材にした中問が12本。2018年アミノ酸の電気泳動と等電点、2020年糖類、2021年ペプチド、2022年糖類と糖鎖、2024年環状ペプチドとアミノ酸配列、2025年シクロデキストリンとペプチド、2026年糖脂質 ── <b>途切れた年がありません</b>。<br><br>
+  多くの受験生が最後に手をつける分野が、京大では<b>確実に出る分野</b>です。ここが空白のまま本番に行くと、250点中30点前後を無条件で失います。</div>
+
+  <div class="note"><b>構造決定は9年で8年、15中問（全体の25%）。</b>有機30中問の半分が構造決定系です。しかもこれは<b>解法が決まっている</b>タイプ ── リード文から分子式を出し、官能基を特定し、炭素数で絞る。手順が固定されているぶん、演習量がそのまま得点に変わります。<br><br>
+  理論側は 平衡 7/9年・溶液 7/9年・結晶 5/9年。<b>平衡（電離・気体・溶解度積・分配）と溶液（蒸気圧・沸点上昇・浸透圧）で理論の7割</b>を占めます。</div>
+</section>
+<section id="s-keishiki">
+  <div class="sh"><span class="n">形式</span><h2>数学と決定的に違う一点</h2></div>
+  <div class="note shu"><b>計算問題は、正しい答までたどりつかないと得点になりません。</b>Ｚ会が2022・2024年度の分析で明記しています ── 「立式だけでなく、正しい答までたどりつかないと得点につながらない解答形式」。<br><br>
+  数学は方針や途中式で部分点が入りますが、<b>化学の計算は 0 か満点</b>。同じ「わかっているのに落とす」でも、失点の仕方がまったく違います。<b>化学で伸ばすべきは理解よりも先に計算の完遂率</b>です。</div>
+  <div class="scroll"><table>
+    <thead><tr><th>形式</th><th>2018–2020</th><th>2021–2024</th><th>2025</th><th>2026</th></tr></thead>
+    <tbody>
+      <tr><td>導出過程を書かせる計算</td><td>毎年数題</td><td class="num">なし</td><td>復活</td><td class="num">なし</td></tr>
+      <tr><td>字数制限のある論述</td><td>年による</td><td>2021のみ</td><td>あり</td><td class="num">なし</td></tr>
+      <tr><td>問題ページ数</td><td>—</td><td>20（22年）／13（23年）</td><td>18（24年）</td><td>変化なし</td></tr>
+    </tbody>
+  </table></div>
+  <p class="hint">分量は13〜20ページと<b>1.5倍の幅</b>で動きます。ページ数が多い年は「全部解く」が成立しません。Ｚ会は2022年度について「すべての問題を解答するには時間が非常に厳しく、<b>解くべき問題の見極め力もカギ</b>」と書いています。</p>
+</section>
+<section id="c-junjo">
+  <div class="sh"><span class="n">180分</span><h2>物理との配分は自分で決める</h2></div>
+  <p>京大の理科は<b>2科目180分で、科目ごとの時間割り当てがありません</b>。物理を先に解いても化学からでもよく、90分ずつである必要もない。これは制度上の自由度であって、<b>最適化できる余地</b>です。</p>
+  <div class="note"><b>いまの配分の前提を疑ってください。</b>記述模試の推定偏差値は 物理 62.8 ／ 化学 48.4。<b>同じ125点の配点で14.4ポイント差</b>があります。差がついている科目に時間を多く割くか、追いつくまで化学に厚く割くか ── どちらが正しいかは、演習ログの「点／分」を科目別に測らないと決まりません。<br><br>
+  設計票の<a href="https://claude.ai/code/artifact/d97dc510-2d24-41f0-a38f-aa3429c5107c">演習タブ</a>に所要時間の欄があります。化学だけでなく物理も同じ形式で記録すれば、180分をどう割るのが最大得点かが実測で出ます。</div>
+  <div class="note ok"><b>大問間の難易度差が大きいのが京大化学の特徴です。</b>Ｚ会は繰り返し「大問間の難易度差はかなり大きい」「解答方針が比較的立ちやすい化学問題Ⅰは手際よく」と書いています。<b>4題を均等に25分ずつ</b>は誤り ── 最初に4題ざっと見て、取れる中問から埋めるのが正解です。</div>
+</section>
+<section id="s-shohou">
+  <div class="sh"><span class="n">処方</span><h2>化学に全振りするなら、この順</h2></div>
+  <p>上の頻度と、評価偏差値への寄与（化学 +10 ＝ 評価偏差値 +1.56、ボーダーまで −1.08 なので<b>これだけで超える</b>）から出る順序です。</p>
+  <ol class="steps">
+    <li><b>天然高分子（糖・アミノ酸・ペプチド）を最初に潰す。</b>9年で9年、例外なし。しかも多くの受験生の手薄な分野で、<b>周りとの差が最も開いている</b>可能性が高い。ここが空白なら他の何よりも先。</li>
+    <li><b>有機の構造決定を型で固める。</b>15中問＝全体の25%。分子式→不飽和度→官能基→炭素数の手順が固定なので、演習量が素直に返ります。京大は<b>リード文が長く誘導が丁寧</b>な出題が多く、読解して型に流し込めば取れる設計です。</li>
+    <li><b>理論は平衡と溶液の2本に絞る。</b>それぞれ7/9年。電離平衡・気体平衡・溶解度積・分配平衡／蒸気圧降下・沸点上昇・浸透圧・ヘンリー。結晶（5/9年）はその次。</li>
+    <li><b>計算を「答えまで合わせる」訓練に切り替える。</b>立式で止めた演習は化学では0点と同じです。時間を計って最後の数値まで出し、<b>合っていたかだけを記録</b>してください。理解度ではなく完遂率が得点です。</li>
+    <li><b>無機は単独では出ません。</b>9年で「理論・無機」と併記されたのは3中問のみ。金属イオンの分離・硫化物沈殿とpHのように<b>理論に埋め込まれて出ます</b>。無機の暗記に単独で時間を割く優先度は低い。</li>
+    <li><b>11月1日の京大オープンを化学の測定機会にする。</b>全統記述と違い母集団が京大志望に絞られます。ここで科目別の志望学科内順位が出れば、化学がどこまで戻ったかが<b>順位で</b>測れます。</li>
+  </ol>
+  <div class="note ok"><b>なぜ化学なのか、を数字で。</b>評価偏差値のボーダー差への寄与は 数学 +4.47／英語 +0.05／物理 −0.34／<b>化学 −2.59</b>／国語 −2.66。合計 −1.08。<br><br>
+  国語も同じだけ足を引っ張っていますが、<b>配点が100点（化学は125点）で、伸ばすのに要する時間あたりの効果が小さい</b>。そして化学は上で見たとおり<b>出題が固定されていて、やった分が返ってくる構造</b>です。国語の京大二次は現代文中心の記述で、記述模試の国語（現古漢200点）とは別物 ── 測定の精度自体が低い。<br><br>
+  だから化学。数学（偏差値79.3）は<b>崩さないための維持</b>に留め、増分は全部こちらへ。</div>
+</section></div>
+<div id="pan-e" role="tabpanel" aria-labelledby="t-e" hidden>
+<p class="panel-lead">英語は二次800点の <b>25%</b>、数学・理科に次ぐ第3の重量科目です。そして<b>9年間、出題形式がほぼ変わっていません</b> ── 長文2題＋和文英訳＋自由英作文。京大英語の中心は一貫して<b>和訳と英作文</b>で、選択問題はほとんど出ません。</p>
+
+<nav class="jump" aria-label="英語の目次">
+  <a href="#e-kouzou">構造</a><a href="#e-ryo">分量</a><a href="#e-shohou">処方</a>
+</nav>
+
+<section id="e-kouzou">
+  <div class="sh"><span class="n">構造</span><h2>4つの箱</h2></div>
+  <div class="scroll"><table>
+    <thead><tr><th>大問</th><th>形式</th><th>中身</th><th>9年の安定度</th></tr></thead>
+    <tbody>
+      <tr class="d3"><td>Ⅰ</td><td>長文読解</td><td>論説。下線部和訳が中心、年により内容説明・空所補充</td><td>9/9年</td></tr>
+      <tr class="d3"><td>Ⅱ</td><td>長文読解</td><td>論説。Ⅰと同構成。内容説明の比率が年で動く</td><td>9/9年</td></tr>
+      <tr class="d4"><td>Ⅲ</td><td><b>和文英訳</b></td><td>日本語特有の言い回しを噛み砕いて英語にする</td><td>9/9年「京大定番」</td></tr>
+      <tr class="d4"><td>Ⅳ</td><td><b>自由英作文</b></td><td>独立大問化は近年。以前はⅡの小問に埋め込み</td><td>形を変えて毎年</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note"><b>京大英語は「読む」より「書く」試験です。</b>4つの箱のうち2つ（Ⅲ・Ⅳ）が英作文で、残る2つも設問の主体は<b>下線部和訳</b>＝日本語を書く作業。<b>選択式でとれる点はほぼありません</b>。<br><br>
+  Ｚ会の分析には毎年「日本語特有の訳しにくい表現を、意味するところを伝えられる別の表現に言い換える工夫が必要」とあります（2026年度は「実りをもたらす」「腹をくくる」）。<b>英語力より先に、日本語を分解する力</b>が問われています。</div>
+</section>
+
+<section id="e-ryo">
+  <div class="sh"><span class="n">分量</span><h2>長文2題の語数（120分）</h2></div>
+  <div class="spark" id="e-spark"></div>
+  <div class="sparkx" id="e-sparkx"></div>
+  <p class="hint" style="margin-top:10px">Ⅰ＋Ⅱの合計語数。<b>1,050〜1,320語で、年ごとに1.26倍の幅</b>があります。これに和文英訳と自由英作文を足して120分。</p>
+  <div class="note ok"><b>語数は多くありません。</b>1,300語は難関大の長文としてはむしろ少ない部類で、京大が測っているのは<b>速読力ではなく精度</b>です。1語あたりにかけられる時間が長い＝<b>訳の粗さが直接失点になる</b>設計。<br><br>
+  だから対策は「速く読む」ではなく「<b>構文を取り違えない・訳し漏らさない</b>」に寄せるのが正しい。Ｚ会の設問解説も毎年、構造把握（関係詞節の範囲、省略の補い、just as 〜 so … の対応）を差がついた点として挙げています。</div>
+</section>
+
+<section id="e-shohou">
+  <div class="sh"><span class="n">処方</span><h2>いまの位置から</h2></div>
+  <div class="note"><b>英語は記述模試で偏差値65.2、ボーダー65.0とほぼ同着です。</b>評価偏差値への寄与は <b>+0.05</b> ── 貯金でも借金でもない。配点200点で換算率は全科目最大（×1.333）なので<b>崩れると最も痛い</b>科目ですが、いま追加投資して伸びる幅は化学より小さい。<br><br>
+  方針は<b>維持</b>です。週に和訳1題・英作文1題を切らさない程度に回し、増分は化学へ。<a href="https://claude.ai/code/artifact/d97dc510-2d24-41f0-a38f-aa3429c5107c">得点設計票</a>の Phase 3 も同じ結論を出しています。</div>
+</section>
+
+</div>
+<div id="pan-k" role="tabpanel" aria-labelledby="t-k" hidden>
+<p class="panel-lead">国語は二次800点の <b>12.5%</b>、4科目で最も軽い。しかし<b>全問記述</b>で、9年間ずっと 現代文2題＋古文1題です。理系でも古文から逃げられません。</p>
+
+<nav class="jump" aria-label="国語の目次">
+  <a href="#k-kouzou">構造</a><a href="#k-map">9年の出典</a><a href="#k-shohou">処方</a>
+</nav>
+
+<section id="k-kouzou">
+  <div class="sh"><span class="n">構造</span><h2>現代文2 ＋ 古文1</h2></div>
+  <dl class="facts">
+    <div><dt>時間・配点</dt><dd class="num">90<small>分</small> 100<small>点</small></dd><div class="nt">2月25日 9:30–11:00</div></div>
+    <div><dt>構成</dt><dd class="num">3<small>題</small></dd><div class="nt">現代文2・古文1。9年間不変</div></div>
+    <div><dt>形式</dt><dd class="num">全記述</dd><div class="nt">選択問題・漢文は<b>なし</b></div></div>
+  </dl>
+  <div class="note shu"><b>「問題文中の表現の切り貼りでは解答を作成できない」</b>── Ｚ会が繰り返し書いている京大国語の核心です。2018年度「筆者独自の表現を自分なりに噛み砕いてまとめなおす必要がある」、2022年度「自分なりに表現をふくらませて説明する必要がある京大らしい出題」。<br><br>
+  共通テスト国語（選択式・現古漢200点）とは<b>測っている能力が別物</b>です。共テ国語の点数は二次の指標になりません。</div>
+</section>
+
+<section id="k-map">
+  <div class="sh"><span class="n">出典</span><h2>9年で何が出たか</h2>
+    <p class="hint">青が現代文、朱が古文。傾向を読むというより、<b>射程の広さ</b>を見るための表です。</p></div>
+  <div class="klist" id="k-tbl"></div>
+  <div class="note"><b>範囲を絞る手がかりはありません。</b>現代文は 湯川秀樹・岡本太郎・多和田葉子・坂口安吾・中井久夫 ── 科学者から作家まで、評論と随筆の両方。古文は『落窪物語』（平安）から『肥後道記』『北辺随筆』（近世）まで、時代もジャンルもばらばらです。<br><br>
+  Ｚ会は2018年度の古文について「時代やジャンルを問わず、<b>幅広い文章の演習経験を積んでいると有利</b>」と書いています。<b>ヤマを張る対象ではない</b>ということです。</div>
+  <div class="note ok"><b>随筆が目立ちます。</b>ジャンルが明記された2025・2026年度はいずれも随筆を含み、2026年度は 現代文＝随筆＋評論、古文＝随筆。論理構造の明快な評論より、<b>言いたいことを直言しない文章</b>が好まれる傾向があります（Ｚ会 2026年度：「言いたいことを直言せず読者の理解に委ねる表現も目立つ文章」）。</div>
+</section>
+
+<section id="k-shohou">
+  <div class="sh"><span class="n">処方</span><h2>いちばん軽い科目の扱い方</h2></div>
+  <div class="note shu"><b>記述模試の推定偏差値は43.7、ボーダーまで −21.3 で全科目中いちばん低い。</b>それでも配点100点なので評価偏差値への寄与は <b>−2.66</b> ── 化学（−2.59）とほぼ同じです。<br><br>
+  つまり<b>「同じだけ足を引っ張っている」</b>。にもかかわらず化学を優先する理由は3つです。<b>①</b>配点が125点対100点 <b>②</b>化学は出題が固定していて（天然高分子9/9年）やった分が返る <b>③</b>記述模試の国語は現古漢200点で、<b>京大二次の国語（現代文中心100点）とは別物</b>なので、この −21.3 という測定自体の精度が低い。</div>
+  <div class="note"><b>捨てるのではなく、下限を上げる。</b>京大国語は全記述なので、<b>白紙は0点だが書けば部分点が入ります</b>（数学と同じで、化学の計算とは違う）。傍線部の指示語を特定して前後をまとめる、という最低限の作業を全問でやり切るだけで下限は上がります。<br><br>
+  古文も同じで、単語と文法の基礎だけは切らさないこと。9年すべてで出題されており、<b>逃げ場がありません</b>。</div>
+</section>
+</div>
+
+<section id="s-src">
+  <div class="sh"><span class="n">出典</span><h2>データの出どころ</h2></div>
+  <ul class="src">
+    <li><b>数学の出題分野 29年（1998–2026）</b>：<a href="https://www.densu.jp/table/ifrkyoto2.htm">電数図書館「京大理系数学 出題分野一覧表」</a>。174問ぶんの分野タグを機械抽出</li>
+    <li><b>難易度評・配点 2008–2022（数学）</b>：note「京大理系数学を数弱なりに講評するよ」
+      <a href="https://note.com/ukaraseroyo_13/n/n99a79add6825">②</a>
+      <a href="https://note.com/ukaraseroyo_13/n/nacef56a40835">③</a>
+      <a href="https://note.com/ukaraseroyo_13/n/n7168afa438e2">④</a>。掲載配点は各年とも合計200点に一致</li>
+    <li><b>5科目の年度別分析 2018–2026</b>：Ｚ会「京大入試分析」
+      <a href="https://www.zkai.co.jp/kyodai-exam/bunseki/rikeisuugaku/">理系数学</a>／
+      <a href="https://www.zkai.co.jp/kyodai-exam/bunseki/butsuri/">物理</a>／
+      <a href="https://www.zkai.co.jp/kyodai-exam/bunseki/kagaku/">化学</a>／
+      <a href="https://www.zkai.co.jp/kyodai-exam/bunseki/eigo/">英語</a>／
+      <a href="https://www.zkai.co.jp/kyodai-exam/bunseki/rikeikokugo/">理系国語</a>。
+      各年度版の「大問別のポイント」「分量と難度の変化」から機械抽出（化学59中問・物理27題・国語27題・英語の語数18本）</li>
+    <li><b>大問別配点が問題用紙に印刷される点（数学）</b>：<a href="https://ja.wikibooks.org/wiki/%E4%BA%AC%E5%A4%A7%E5%AF%BE%E7%AD%96/%E6%95%B0%E5%AD%A6">Wikibooks 京大対策/数学</a></li>
+    <li><b>試験時間・配点・試験日</b>：<a href="https://www.kyoto-u.ac.jp/sites/default/files/inline-files/senbatsuyokoR9_all-22d87b752c22c5b9d7bcb8ef94505625.pdf">令和9年度 京都大学 入学者選抜要項</a>（工学部：2/25 国語90分・数学150分／2/26 英語120分・理科180分）</li>
+    <li><b>二次平均の復元系列・科目別σ・評価偏差値</b>：<a href="https://claude.ai/code/artifact/3dab6b76-1403-4cd5-a356-0973a37697af">根拠ノート</a></li>
+    <li><b>試験問題そのもの</b>：<a href="https://www.kyoto-u.ac.jp/ja/admissions/undergrad/past-eq">京都大学 一般選抜の試験問題等</a></li>
+  </ul>
+  <div class="foot">分野タグと難易度は第三者（電数図書館・Ｚ会・受験生講評）による分類・評価で、京大の公式発表ではありません。本ページの集計はすべて上記から機械的に行い、推定を加えた箇所は本文で明示しています。</div>
+</section>
+</div>

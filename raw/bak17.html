@@ -1,0 +1,1085 @@
+<title>京大情報 得点設計票</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#f4f6f9; --surface:#fff; --surface-2:#eceff5;
+  --ink:#16233a; --ink-2:#2f3d54; --muted:#5f6b7e;
+  --ao:#2c5f92; --ao-soft:#e3edf7; --shu:#b03426; --shu-soft:#fbeceb;
+  --ok:#2c6b51; --ok-soft:#e5f0ea; --warn:#8a6212; --warn-soft:#f9f0dc;
+  --rule:#ccd4e0; --rule-soft:#e3e8f0;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --sans:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  --serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0c1119; --surface:#141a25; --surface-2:#1c2430;
+  --ink:#e0e7f1; --ink-2:#c3cede; --muted:#95a2b5;
+  --ao:#86b6e4; --ao-soft:#182838; --shu:#e5806e; --shu-soft:#2d1a18;
+  --ok:#7cc0a0; --ok-soft:#15271e; --warn:#d9b263; --warn-soft:#2a2213;
+  --rule:#2b3546; --rule-soft:#202836;
+}}
+:root[data-theme="dark"]{
+  --paper:#0c1119; --surface:#141a25; --surface-2:#1c2430;
+  --ink:#e0e7f1; --ink-2:#c3cede; --muted:#95a2b5;
+  --ao:#86b6e4; --ao-soft:#182838; --shu:#e5806e; --shu-soft:#2d1a18;
+  --ok:#7cc0a0; --ok-soft:#15271e; --warn:#d9b263; --warn-soft:#2a2213;
+  --rule:#2b3546; --rule-soft:#202836;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:14.5px;line-height:1.7;margin:0;padding-inline:18px;padding-block:0;-webkit-font-smoothing:antialiased}
+.wrap{max-width:780px;margin:0 auto;padding-block:30px 64px}
+
+/* masthead */
+.mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;
+  border-bottom:2px solid var(--ink);padding-bottom:12px}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(23px,4.6vw,30px);margin:0;letter-spacing:.02em;line-height:1.3}
+.mast .meta{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.04em;text-align:right;line-height:1.6}
+.mast .meta b{color:var(--ao);font-weight:600}
+
+/* tabs */
+.tabs{display:flex;gap:2px;margin-top:16px;border-bottom:1px solid var(--rule)}
+.tab{font-family:var(--sans);font-size:13.5px;font-weight:500;background:none;border:none;
+  border-bottom:2px solid transparent;color:var(--muted);padding:9px 15px;cursor:pointer;margin-bottom:-1px;border-radius:0}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ao);border-bottom-color:var(--ao);font-weight:700}
+.tab .n{font-family:var(--mono);font-size:10px;opacity:.65;margin-right:6px}
+
+/* sticky summary */
+.strip{position:sticky;top:0;z-index:20;display:flex;gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:3px;overflow:hidden;margin-top:18px;
+  box-shadow:0 2px 10px rgba(22,35,58,.07)}
+.strip .c{flex:1 1 0;min-width:0;background:var(--surface);padding:9px 12px}
+.strip dt{font-size:10px;letter-spacing:.07em;color:var(--muted);font-weight:700;margin:0;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.strip dd{margin:1px 0 0;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  font-size:19px;font-weight:600;line-height:1.25;letter-spacing:-.01em}
+.strip dd small{font-size:11px;font-weight:400;color:var(--muted);margin-left:2px}
+.strip .c.key dd{color:var(--ao)} .strip .c.good dd{color:var(--ok)} .strip .c.bad dd{color:var(--shu)}
+
+/* sections */
+section{margin-top:34px}
+.sh{display:flex;align-items:baseline;gap:11px;border-bottom:1px solid var(--rule);padding-bottom:7px;flex-wrap:wrap}
+.sh .n{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--ao);letter-spacing:.06em;flex:none}
+h2{font-family:var(--serif);font-size:18px;font-weight:700;margin:0;letter-spacing:.02em;flex:1 1 auto;line-height:1.4}
+.sh .hint{font-size:12px;color:var(--muted);flex-basis:100%;margin:2px 0 0}
+h3{font-size:12px;font-weight:700;letter-spacing:.07em;color:var(--muted);margin:26px 0 8px}
+p{margin:12px 0 0;max-width:62ch}
+p.tight{margin-top:7px;font-size:12.5px;color:var(--muted)}
+a{color:var(--ao)}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:1px 4px;border-radius:2px}
+
+/* tables */
+.tw{overflow-x:auto;margin-top:14px;border:1px solid var(--rule);border-radius:3px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:420px}
+th,td{padding:7px 11px;text-align:right;border-bottom:1px solid var(--rule-soft);white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+thead th{font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--muted);
+  background:var(--surface-2);border-bottom:1px solid var(--rule)}
+tbody tr:last-child td{border-bottom:none}
+tfoot td{border-top:1px solid var(--ink);border-bottom:none;font-weight:700;background:var(--surface-2)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:500}
+.k{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ao);font-weight:600}
+tr.hi td{background:var(--ao-soft)}
+tr.past td{color:var(--muted)}
+td.bad,.bad{color:var(--shu)}
+
+/* inputs */
+input[type=number],input[type=text]{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px;
+  background:var(--paper);color:var(--ink);border:1px solid var(--rule);border-radius:2px;padding:4px 7px;
+  width:72px;text-align:right}
+input[type=text]{text-align:left;width:100%;min-width:110px;font-family:var(--sans)}
+input:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--ao);outline-offset:2px}
+input[type=checkbox]{accent-color:var(--ao);width:15px;height:15px;flex:none;margin:0;cursor:pointer}
+.fields{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin-top:14px}
+.fields label{font-size:12.5px;color:var(--ink-2)}
+label.ck{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--rule-soft);
+  cursor:pointer;font-size:13.5px;line-height:1.55}
+label.ck:last-child{border-bottom:none}
+label.ck small{display:block;color:var(--muted);font-size:12px;line-height:1.5}
+button{font-family:var(--sans);font-size:12.5px;font-weight:500;cursor:pointer;background:var(--surface);
+  color:var(--ink);border:1px solid var(--rule);border-radius:2px;padding:5px 12px}
+button:hover{border-color:var(--ao);color:var(--ao)}
+button.ghost{border-color:transparent;color:var(--muted);padding:3px 6px}
+button.ghost:hover{color:var(--shu);border-color:var(--shu)}
+
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:15px;margin-top:14px}
+
+/* readouts */
+.ro{display:flex;flex-wrap:wrap;gap:1px;background:var(--rule);border:1px solid var(--rule);
+  border-radius:3px;overflow:hidden;margin-top:14px}
+.ro .c{flex:1 1 138px;background:var(--surface);padding:11px 13px}
+.ro dt{font-size:10.5px;letter-spacing:.06em;color:var(--muted);font-weight:700;margin:0}
+.ro dd{margin:3px 0 0;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:20px;font-weight:600;line-height:1.2}
+.ro dd small{font-size:11px;font-weight:400;color:var(--muted)}
+.ro .nt{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.45}
+.ro .c.key dd{color:var(--ao)} .ro .c.good dd{color:var(--ok)} .ro .c.bad dd{color:var(--shu)}
+
+/* ROI */
+.roi{margin-top:14px}
+.rr{display:grid;grid-template-columns:minmax(150px,1fr) 66px 1fr 58px;gap:10px;align-items:center;
+  padding:6px 0;border-bottom:1px solid var(--rule-soft)}
+.rr:last-child{border-bottom:none}
+.rn{font-size:13px;display:flex;align-items:center;gap:6px;min-width:0}
+.rn b{font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chip{font-family:var(--mono);font-size:9.5px;letter-spacing:.03em;padding:1px 5px;border-radius:2px;flex:none;
+  background:var(--surface-2);color:var(--muted)}
+.chip.ct{background:var(--ao-soft);color:var(--ao)}
+.trk{background:var(--surface-2);height:14px;border-radius:2px;overflow:hidden;min-width:36px}
+.fil{height:100%;background:var(--ao);transition:width .25s ease}
+.rr.top .fil{background:var(--shu)}
+.rv{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:12.5px;text-align:right;font-weight:500}
+.rr.top .rv{color:var(--shu);font-weight:600}
+.rg{font-family:var(--mono);font-size:11.5px;color:var(--muted);text-align:right}
+
+/* note */
+.note{border-left:3px solid var(--warn);background:var(--warn-soft);padding:10px 14px;margin-top:14px;
+  font-size:12.5px;color:var(--ink-2);border-radius:0 3px 3px 0;line-height:1.65}
+.note.shu{border-color:var(--shu);background:var(--shu-soft)}
+.note.ok{border-color:var(--ok);background:var(--ok-soft)}
+.note b{color:var(--ink)}
+.formula{font-family:var(--mono);font-size:12.5px;background:var(--surface-2);border:1px solid var(--rule);
+  border-radius:3px;padding:11px 13px;margin-top:14px;overflow-x:auto;line-height:1.95}
+.formula .v{color:var(--ao);font-weight:600}
+
+/* details */
+details{border:1px solid var(--rule);border-radius:3px;background:var(--surface);margin-top:9px}
+details[open]{background:var(--surface)}
+summary{cursor:pointer;padding:9px 13px;font-size:13px;font-weight:500;list-style:none;display:flex;
+  align-items:baseline;gap:9px}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"＋";font-family:var(--mono);font-size:11px;color:var(--ao);flex:none}
+details[open]>summary::before{content:"−"}
+details[open]>summary{border-bottom:1px solid var(--rule-soft)}
+.dbody{padding:11px 13px 14px}
+.dbody p{margin:0;font-size:12.5px;color:var(--ink-2)}
+.dbody p+p{margin-top:8px}
+.dbody .tw{margin-top:11px}
+summary .tag{font-family:var(--mono);font-size:9.5px;padding:1px 5px;border-radius:2px;
+  background:var(--shu-soft);color:var(--shu);flex:none;letter-spacing:.03em}
+
+/* mock log */
+.lg{display:grid;grid-template-columns:minmax(112px,1.15fr) repeat(4,minmax(42px,48px)) 60px minmax(42px,48px) minmax(46px,54px) 46px 24px;gap:4px;align-items:center;
+  padding:5px 0;border-bottom:1px solid var(--rule-soft)}
+.lgh{font-size:10.5px;letter-spacing:.04em;color:var(--muted);font-weight:700;border-bottom:1px solid var(--rule);padding-bottom:6px}
+.lg input[type=number]{width:100%}
+.lgt{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px;text-align:right;font-weight:600;color:var(--ao)}
+.lgz{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px;text-align:right;font-weight:600;color:var(--shu)}
+.scroll{overflow-x:auto} .scroll>div{min-width:690px}
+.ct{display:grid;grid-template-columns:minmax(118px,1.25fr) 54px 54px 46px 52px 54px 58px 24px;gap:4px;align-items:center;
+  padding:5px 0;border-bottom:1px solid var(--rule-soft)}
+.ct input{width:100%;padding:4px 5px;font-size:12.5px}
+.ctv{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px;text-align:right;font-weight:600}
+.ctv.pos{color:var(--ok)} .ctv.neg{color:var(--shu)}
+.lg input[type=text]{min-width:0}
+.lg input{padding:4px 5px;font-size:12.5px}
+.acts{display:flex;gap:9px;margin-top:12px;align-items:center;flex-wrap:wrap}
+.flag{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-left:auto}
+
+.srcs{margin-top:30px;border-top:1px solid var(--rule);padding-top:14px;font-size:11.5px;color:var(--muted)}
+.srcs ul{margin:7px 0 0;padding-left:1.1em}
+.srcs li{margin-bottom:5px;line-height:1.6}
+
+@media (max-width:620px){
+  .rr{grid-template-columns:1fr 58px;grid-template-areas:"n v" "g g" "b b";row-gap:4px}
+  .rn{grid-area:n}.rv{grid-area:v}.rg{grid-area:g;text-align:left}.trk{grid-area:b}
+  .strip{flex-wrap:wrap}.strip .c{flex:1 1 45%}
+  .tab{padding:9px 10px;font-size:12.5px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <h1>京大情報 得点設計票</h1>
+  <div class="meta">配点・実績 確認日 <b>2026-09-10</b><br>対象 <b>2026年度 工学部 情報学科</b></div>
+</header>
+
+<div class="tabs" role="tablist">
+  <button class="tab" role="tab" id="t-design" aria-selected="true" aria-controls="p-design"><span class="n">01</span>設計</button>
+  <button class="tab" role="tab" id="t-log" aria-selected="false" aria-controls="p-log"><span class="n">02</span>記録</button>
+  <button class="tab" role="tab" id="t-why" aria-selected="false" aria-controls="p-why"><span class="n">03</span>根拠</button>
+</div>
+
+<!-- ══════════ 01 設計 ══════════ -->
+<div id="p-design" role="tabpanel" aria-labelledby="t-design">
+
+  <dl class="strip">
+    <div class="c key"><dt>計画総点</dt><dd id="s-x">—</dd></div>
+    <div class="c" id="s-diffc"><dt>目標との差</dt><dd id="s-diff">—</dd></div>
+    <div class="c good"><dt>合格確率</dt><dd id="s-p">—<small>%</small></dd></div>
+  </dl>
+
+  <section>
+    <div class="sh"><span class="n">Phase 1</span><h2>目標総点</h2>
+      <p class="hint">予測ではなく安全域で決める。最低点は10年で <b>57.1〜69.8%</b> を振れており（幅12.7pt）、この幅は予測精度では縮まりません。</p></div>
+    <div class="fields">
+      <label>目標総点 <input type="number" id="target" value="730" min="0" max="1025" step="1"></label>
+      <label>満点 <input type="number" id="fullmark" value="1025" min="1" step="1"></label>
+    </div>
+    <dl class="ro">
+      <div class="c key"><dt>目標得点率</dt><dd id="ro-rate">—<small>%</small></dd><div class="nt">10年の実績上限 69.8%</div></div>
+      <div class="c"><dt>2026最低点との差</dt><dd id="ro-gmin">—</dd><div class="nt">645.49 から</div></div>
+      <div class="c"><dt>合格者平均との差</dt><dd id="ro-gavg">—</dd><div class="nt">694.29 から</div></div>
+    </dl>
+    <div class="note shu"><b>難易度用のマージンは不要です。</b>二次平均は6年で89点動きましたが、合格に必要な相対位置の変動は <b>8.4点相当</b>（上位23.5〜26.9%）だけ ── 難易度は全員に共通に効くので、<b>変動の90%は合格ラインが吸収します</b>。<br><br>だから目標は生の点数ではなく <b>「上位25%に入る」</b>で置くのが正しい。ここの目標総点は記入の足場にすぎません。実際の判定は記録タブの Phase 5（z基準）で見てください。</div>
+
+    <details id="d-hist"><summary>合格者成績の推移（2017–2026・10年）</summary><div class="dbody">
+      <div class="tw"><table>
+        <thead><tr><th>年度</th><th>満点</th><th>最低点</th><th>得点率</th><th>合格者平均</th><th>得点率</th></tr></thead>
+        <tbody>
+          <tr class="past"><td>2017</td><td class="num">1000</td><td class="num">611.10</td><td class="num">61.1%</td><td class="num">652.18</td><td class="num">65.2%</td></tr>
+          <tr class="past"><td>2018</td><td class="num">1000</td><td class="num">662.81</td><td class="num">66.3%</td><td class="num">703.18</td><td class="num">70.3%</td></tr>
+          <tr class="past"><td>2019</td><td class="num">1000</td><td class="num">638.58</td><td class="num">63.9%</td><td class="num">679.17</td><td class="num">67.9%</td></tr>
+          <tr class="past"><td>2020</td><td class="num">1000</td><td class="num bad">570.91</td><td class="num bad">57.1%</td><td class="num">622.03</td><td class="num">62.2%</td></tr>
+          <tr class="past"><td>2021</td><td class="num">1000</td><td class="num">634.45</td><td class="num">63.4%</td><td class="num">686.87</td><td class="num">68.7%</td></tr>
+          <tr class="past"><td>2022</td><td class="num">1000</td><td class="num">676.50</td><td class="num">67.7%</td><td class="num">721.63</td><td class="num">72.2%</td></tr>
+          <tr class="past"><td>2023</td><td class="num">1000</td><td class="num">697.70</td><td class="num">69.8%</td><td class="num">739.16</td><td class="num">73.9%</td></tr>
+          <tr class="past"><td>2024</td><td class="num">1000</td><td class="num">623.20</td><td class="num">62.3%</td><td class="num">676.54</td><td class="num">67.7%</td></tr>
+          <tr><td>2025</td><td class="num">1025</td><td class="num">707.52</td><td class="num">69.0%</td><td class="num">748.86</td><td class="num">73.1%</td></tr>
+          <tr><td>2026</td><td class="num">1025</td><td class="num">645.49</td><td class="num">63.0%</td><td class="num">694.29</td><td class="num">67.7%</td></tr>
+        </tbody>
+      </table></div>
+      <p style="margin-top:10px"><b>上限69.8%は10年間・2つの入試制度をまたいで動いていません。</b>センター試験期（2017–2020）と共通テスト期（2021–2026）で最高値が変わらないので、目標をこの上限で置く根拠はかなり強い。一方<b>下限は57.1%（2020年）まで落ちます</b> ── 年次変動は12.7ポイントあり、6年だけ見たときの1.7倍です。</p>
+      <p style="margin-top:8px"><b>この交互の振れを「平均回帰」と読まないこと。</b>独立同分布の系列でも差分の lag-1 自己相関は −0.5 になります。n=10 でも有意にできません（付録B）。「去年上がったから今年は下がる」で目標を下げないでください。</p>
+      <p style="color:var(--muted);margin-top:8px">2017–2020 は代々木ゼミナールと Copynight 氏の学部別合否判定サイトの2ソースで一致を確認。2019・2020 は両者完全一致。</p>
+    </div></details>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">Phase 2</span><h2>共通テスト換算</h2>
+      <p class="hint">素点が決まれば決定論的に確定します。推定の余地はありません。</p></div>
+    <div class="tw"><table>
+      <thead><tr><th>科目</th><th>素点</th><th>満点</th><th>κ</th><th>換算</th><th>伸びしろ</th></tr></thead>
+      <tbody id="ct-body"></tbody>
+      <tfoot><tr><td>共テ換算 計</td><td class="num" id="ct-raw">—</td><td class="num">—</td><td></td><td class="num"><span id="ct-total">—</span> / 225</td><td></td></tr></tfoot>
+    </table></div>
+
+    <h3>投資優先順位 ── 全10科目</h3>
+    <p class="tight">換算後1点の価値は全科目で等しいので、決定変数は σ ではなく <b>換算率 ×（あと何点伸ばせるか）</b>。棒の長さがそのまま総点への寄与です。</p>
+    <div class="roi" id="roi"></div>
+    <details><summary>上位帯で「実際に差がつく」共テ科目（定番の助言との照合）</summary><div class="dbody">
+      <p style="margin:0 0 10px">上のランキングは<b>あなたの伸びしろ</b>で並べたもの。こちらは<b>受験層の中に差が存在するか</b>を層内σ×κ で測ったものです（上位5%帯・2026年度実測）。</p>
+      <div class="tw" style="margin-top:0"><table>
+        <thead><tr><th>科目</th><th>κ</th><th>層内σ</th><th>換算での差</th><th>分散寄与</th></tr></thead>
+        <tbody>
+          <tr class="hi"><td>情報Ⅰ</td><td class="k">1/2</td><td class="num">3.88</td><td class="num">1.94</td><td class="num">45.9%</td></tr>
+          <tr class="hi"><td>地歴公民（地理）</td><td class="k">1/2</td><td class="num">2.74</td><td class="num">1.37</td><td class="num">22.9%</td></tr>
+          <tr><td>英語L</td><td class="k">1/4</td><td class="num">3.64</td><td class="num">0.91</td><td class="num">10.1%</td></tr>
+          <tr><td>国語</td><td class="k">1/8</td><td class="num">6.64</td><td class="num">0.83</td><td class="num">8.4%</td></tr>
+          <tr><td>数学ⅠA</td><td class="k">1/8</td><td class="num">4.81</td><td class="num">0.60</td><td class="num">4.4%</td></tr>
+          <tr><td>物理</td><td class="k">1/8</td><td class="num">4.76</td><td class="num">0.59</td><td class="num">4.3%</td></tr>
+          <tr class="past"><td>数学ⅡBC</td><td class="k">1/8</td><td class="num">2.82</td><td class="num">0.35</td><td class="num">1.5%</td></tr>
+          <tr class="past"><td>英語R</td><td class="k">1/4</td><td class="num">1.39</td><td class="num">0.35</td><td class="num">1.5%</td></tr>
+          <tr class="past"><td>化学</td><td class="k">1/8</td><td class="num">2.33</td><td class="num">0.29</td><td class="num">1.0%</td></tr>
+        </tbody>
+      </table></div>
+      <p style="margin-top:10px"><b>情報Ⅰと地歴公民の2科目だけで共テ内の差の69%</b>。理系が後回しにしがちな2科目が、共テで唯一差がつく場所です。</p>
+      <p><b>ネットの定番助言との矛盾：</b><br>
+      ・<b>「英語で差をつける」</b>→ 共テ英語Rは層内σ 1.39で<b>全科目中最小</b>、寄与1.5%。上位層では実質全員同点。一方<b>二次英語は換算率×1.333で最大</b>。同じ「英語」で共テと二次が正反対なのに、助言は一括で語られる。<br>
+      ・<b>「社会・情報は直前でいい」</b>→ 上の1位2位。<br>
+      ・<b>「国語で差がつく」</b>→ 層内σ 6.64 は全科目中最大なので<b>素点レベルでは正しい</b>。しかし κ=1/8 に潰されて換算0.83点。<b>差はつくが効かない。</b></p>
+      <p style="color:var(--muted)">→ 近道：情報Ⅰ・地歴公民に集中し、<b>英語R・化学・数学ⅡBC の共テ対策は打ち切る</b>（合計4.0%）。浮いた時間は二次へ。</p>
+    </div></details>
+
+    <details><summary>「共テで貯金を作る」は成立しない（2026年度で試算）</summary><div class="dbody">
+      <div class="tw" style="margin-top:0"><table>
+        <thead><tr><th>共テの立ち位置</th><th>換算 c_t</th><th>必要な二次/800</th><th>得点率</th></tr></thead>
+        <tbody>
+          <tr><td>上位20%</td><td class="num">187.2</td><td class="num">458.3</td><td class="num">57.3%</td></tr>
+          <tr><td>上位10%</td><td class="num">198.2</td><td class="num">447.3</td><td class="num">55.9%</td></tr>
+          <tr class="hi"><td>上位3%</td><td class="num">210.4</td><td class="num">435.1</td><td class="num">54.4%</td></tr>
+        </tbody>
+      </table></div>
+      <p style="margin-top:10px">共テを<b>上位20%から上位3%まで押し上げても、必要な二次得点率は2.9ポイント（二次素点で19点）しか下がりません</b>。総点の分散に占める共テの割合は <b>1%前後</b>。</p>
+      <p>「共テ8割ちょいで十分」という定番助言は水準としては正しいのですが、理由が違います。<b>配点が低いからではなく、みんな同じくらい取るから差にならない</b>のが正しい理由です。<br>なお「二次6割」は合格者平均62.0%のやや下・最低点55.9%より上で、<b>安全側の妥当な設定</b>でした。</p>
+    </div></details>
+
+    <div class="note"><b>共テは「追いつくまで」は高ROI、追いついたら打ち止めです。</b>センターの度数分布で測ると、共テ換算点の志望層内σは <b>7〜10点程度</b>と見積もられます（二次のσは約80点）。つまり京大工志望者どうし、共テでは大きな差がつかない。棒が長い共テ科目は<b>差をつける手段ではなく、事故を防ぐ守り</b>です。上限がないのは二次だけ。<br><br>棒の長さは「潜在利得」であって「簡単さ」ではありません。本当の優先順位は <b>棒 ÷ 必要時間</b>で、その分母は記録タブの模試推移からしか出ません。</div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">Phase 3</span><h2>二次の配分</h2>
+      <p class="hint">必要二次点 ＝ 目標総点 − 共テ換算点。入力は素点650点（得点開示・模試と同じ尺度）。</p>
+    <div class="note" style="margin-top:10px"><b>二次の科目別σが実測できました。</b>京大は科目別分布を公表しませんが、<b>模試σ</b>と<b>得点開示</b>という独立2ルートが4科目とも一致しました ── 素点で <b>数学43.0／理科28.9／英語18.5／国語11.3</b>、工学部配点での総点σ <b>95.4点</b>。右端の列がその要約で、詳細は根拠タブの〈実測〉節にあります。<br><br>ただし<b>測れたのはσと寄与率まで</b>。科目別の年次難易度シフトを分離する試みは失敗しました。生き残ったのは<b>「数学が変動の主因」という順位だけ</b>です。</div></div>
+    <div class="tw"><table>
+      <thead><tr><th>科目</th><th>目標素点</th><th>満点</th><th>換算率</th><th>換算</th><th>伸びしろ</th><th style="text-align:left">検証済みの性質</th></tr></thead>
+      <tbody id="ni-body"></tbody>
+      <tfoot><tr><td>二次 計</td><td class="num" id="ni-raw">—</td><td class="num">650</td><td></td><td class="num"><span id="ni-total">—</span> / 800</td><td class="num" id="ni-rate">—</td><td></td></tr></tfoot>
+    </table></div>
+    <dl class="ro">
+      <div class="c"><dt>必要二次点</dt><dd id="ro-need">—</dd><div class="nt">目標 − 共テ換算</div></div>
+      <div class="c"><dt>配分合計</dt><dd id="ro-plan">—</dd><div class="nt">上の換算の和</div></div>
+      <div class="c" id="ro-dbox"><dt>過不足</dt><dd id="ro-d">—</dd><div class="nt" id="ro-dn">—</div></div>
+    </dl>
+  </section>
+</div>
+
+<!-- ══════════ 02 記録 ══════════ -->
+<div id="p-log" role="tabpanel" aria-labelledby="t-log" hidden>
+  <section style="margin-top:22px">
+    <div class="sh"><span class="n">Phase 4A</span><h2>共通テスト模試</h2>
+      <p class="hint">全統共テ模試など。ここで分かるのは<b>共テ225点分の位置だけ</b>（総点の1025点中225点＝22%）。<b>合否判定には使いません。</b>使い道は「二次でいくら取り返すか」の1点です。</p></div>
+    <div class="panel">
+      <div class="scroll"><div>
+        <div class="ct lgh"><div>模試名・実施回</div><div style="text-align:right">換算得点</div><div style="text-align:right">ボーダー</div><div style="text-align:right">差</div><div style="text-align:right">順位</div><div style="text-align:right">母数</div><div style="text-align:right">上位</div><div></div></div>
+        <div id="ctlog-body"></div>
+      </div></div>
+      <div class="acts"><button id="addct" type="button">＋ 行を追加</button><span class="flag" style="margin-left:auto;color:var(--muted)">満点225（京大工の共テ配点）</span></div>
+    </div>
+    <dl class="ro">
+      <div class="c" id="ctgapbox"><dt>最新のボーダー差</dt><dd id="ct-gap">—</dd><div class="nt" id="ct-gapn">—</div></div>
+      <div class="c key"><dt>二次で取り返す量</dt><dd id="ct-need">—</dd><div class="nt" id="ct-needn">—</div></div>
+      <div class="c"><dt>共テでの位置</dt><dd id="ct-pos">—</dd><div class="nt" id="ct-posn">—</div></div>
+    </dl>
+    <div class="note"><b>共テと二次は同じ「点」です。</b>総合 ＝ 共テ225 ＋ 二次800。だから<b>共テでボーダーに8点足りない＝二次で8点多く取れば同着</b>。二次800点の8点は素点650点で6.5点、数学200点満点なら6.4点 ── <b>1問の部分点</b>です。<br><br>E判定という表示は総点の22%だけを見たものです。焦る材料にはなりません。ただし前提は「二次を志望者平均並みにこなす」こと。共テで上位39%なら二次でも同じ位置、では届きません。</div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">Phase 4B</span><h2>記述模試 ── 判定はこちらで出す</h2>
+      <p class="hint">京大オープン／実戦／東進京大本レ／全統記述。<b>Phase 5 が使うのはこの表だけです。</b>本体は<b>志望学科内の順位／母数</b> ── これだけで z が出ます。素点は<b>京大の素点尺度（数200・理200・英150・国100）のときだけ</b>入れてください。全統記述など満点が違う模試は空欄のままで構いません。</p></div>
+    <div class="panel">
+      <div class="scroll"><div>
+        <div class="lg lgh"><div>模試名・実施回</div><div style="text-align:right">数学</div><div style="text-align:right">理科</div><div style="text-align:right">英語</div><div style="text-align:right">国語</div><div style="text-align:right">換算/800</div><div style="text-align:right">順位</div><div style="text-align:right">母数</div><div style="text-align:right">z</div><div></div></div>
+        <div id="log-body"></div>
+      </div></div>
+      <div class="acts"><button id="addrow" type="button">＋ 行を追加</button><span class="flag" id="flag">—</span></div>
+    </div>
+    <div class="note"><b>傾きが立っている科目が、いま時間あたりのリターンが高い科目です。</b>設計タブの棒グラフをこの傾きで割ったものが、本当の投資優先順位になります。</div>
+    <div class="note shu"><b>順位を必ず入れてください。</b>得点の推移は難易度で動きますが、<b>順位は動きません</b>。そして Phase 5 が要求する σ_z ＝ <b>この z 列のばらつき</b> です。2回以上そろうと自動で実測値に切り替わり、既定の仮値0.35は使われなくなります。<br><br>いま入っているのは<b>26年度第1回 全統記述（161/349＝上位46.1%）の1行だけ</b>。2行目が入るまで σ_z は仮値のままです。</div>
+    <div class="note"><b>必要な順位は「上位◯%」ではなく人数で置くこと。</b>合格者は約99人。志望者が349人でも517人でも、<b>上位100位以内</b>が目安です（根拠タブ〈志望者〉節）。349人なら上位28.4%、517人なら上位19.3% ── パーセンタイルは母集団で動きます。<br><br>全統記述は京大二次より易しく、母集団も京大志望以外を大量に含みます。<b>京大オープン／実戦の代わりにはなりません。</b>暫定の1点として使ってください。</div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">Phase 5</span><h2>合格確率 ── 順位で判定する</h2>
+      <p class="hint">合格ラインは L=μ+aσ、自分の得点は X=μ+zσ。難易度μも分散σも両辺で消えます ── ただし<b>順位で入力したときだけ</b>。使うのは <b>Phase 4B（記述模試）</b>の順位です。共テ模試の順位は総点の22%しか見ていないので混ぜません。</p></div>
+
+    <div class="note shu"><b>絶対点で判定してはいけません。</b>この票は以前 z=(計画総点−μ)/σ を使っていましたが、μ と σ は<b>来年の値であり未知</b>です。満点1025の2年で同じ695点を評価すると：<br><br>
+    <span class="num">2026年基準 → z=1.248・上位10.6%・<b>P=96.2%</b></span><br>
+    <span class="num">2025年基準 → z=0.474・上位31.8%・<b>P=30.5%</b></span><br><br>
+    同じ点数で<b>66ポイントの差</b>。だから判定は下の<b>実測順位</b>で行います。計画総点は配分を考えるための足場であって、判定材料ではありません。</div>
+
+    <div class="formula">z̄ ＝ 記録タブの模試の <span class="v">志望者内順位</span> から　　a = z<sub>1−p</sub><br>P(合格) = Φ( ( <span class="v">z̄</span> − <span class="v">a</span> ) ⁄ <span class="v">σ_z</span> )</div>
+    <div class="fields">
+      <label>合格率 p <input type="number" id="rp" value="0.266" min="0.01" max="0.99" step="0.001"></label>
+      <label>σ_z（実測が出るまでの仮値） <input type="number" id="selfsd" value="0.35" min="0.01" step="0.01"></label>
+    </div>
+    <dl class="ro">
+      <div class="c key"><dt>実測 z̄ ／ 順位</dt><dd id="ro-z">—</dd><div class="nt" id="ro-zr">—</div></div>
+      <div class="c"><dt>σ_z</dt><dd id="ro-sz">—</dd><div class="nt" id="ro-szn">—</div></div>
+      <div class="c"><dt>必要な z ／ 順位</dt><dd id="ro-a">—</dd><div class="nt" id="ro-ar">—</div></div>
+      <div class="c good"><dt>合格確率</dt><dd id="ro-p">—<small>%</small></dd><div class="nt" id="ro-marg">—</div></div>
+    </dl>
+
+    <details><summary>計画総点を年ごとに評価する（参考・判定には使わない）</summary><div class="dbody">
+      <p>設計タブの配分合計を、過去2年それぞれの受験者分布に当てはめたものです。<b>年で結論がひっくり返ること</b>を確認するための表で、判定に使うものではありません。</p>
+      <div class="tw"><table>
+        <thead><tr><th>基準年</th><th>受験者μ</th><th>σ</th><th>z</th><th>順位</th><th>必要z</th><th>P(合格)</th></tr></thead>
+        <tbody id="band-body"></tbody>
+      </table></div>
+      <div class="fields">
+        <label>参照年の受験者μ <input type="number" id="rmu" value="595.4" step="0.1"></label>
+        <label>受験者σ <input type="number" id="rsd" value="80.1" step="0.1"></label>
+      </div>
+      <p>μ・σ は切断正規で復元した値（付録A）。ここを何年のものにするかで判定が変わる ── それがこの経路を捨てた理由です。</p>
+    </div></details>
+
+    <div class="note ok"><b>難易度は怖くありません。怖いのは易化です。</b>二次平均は6年で89点動きましたが、合格に必要な相対位置の変動は<b>8.4点相当（上位23.5〜26.9%）</b>だけ ── 変動の90%はラインが吸収します。<br><br>一方、難易度と受験者σは r=−0.88 で連動していて、<b>易しい年ほどσが小さい＝差がつかない</b>。同じ20点のミスがzに与える打撃は、最易年(2025)が最難年(2024)より<b>28%重い</b>。<br><br>だから残る唯一のリスクは <b>σ_z ＝ 自分の相対位置のブレ</b> です。下の記録から実測してここに入れてください。</div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">Phase 6</span><h2>検証</h2>
+      <p class="hint">同じデータから逆算した値で再現しても定義上一致するだけ。検証は out-of-sample のみ。</p></div>
+    <div class="panel">
+      <label class="ck"><input type="checkbox" id="ck5"><span><b>2025年度のデータだけ</b>でモデルを組んだ<small>2026年の情報を一切入れない</small></span></label>
+      <label class="ck"><input type="checkbox" id="ck6"><span>そのモデルで<b>2026年の最低点を予測</b>し、書いてから実測と比べた<small>予測値 <input type="number" id="oos" step="0.01" placeholder="—" style="width:86px"> → 実測645.49との誤差 <span class="num bad" id="oos-err">—</span></small></span></label>
+      <label class="ck"><input type="checkbox" id="ck7"><span>模試ごとの<b>順位（z）のばらつき</b>を計算し、上の σ_z に入れた<small>点数のブレではなく相対位置のブレ。難易度は消えるので、これが唯一の実リスク</small></span></label>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════ 03 根拠 ══════════ -->
+<div id="p-why" role="tabpanel" aria-labelledby="t-why" hidden>
+
+  <section style="margin-top:22px">
+    <div class="sh"><span class="n">毎年</span><h2>最初に確認すること</h2>
+      <p class="hint">京大は配点を予告で変更します。下の表が古ければ設計タブの計算はすべて無効です。</p></div>
+    <div class="panel">
+      <label class="ck"><input type="checkbox" id="ck1"><span>今年度の<b>募集要項／配点予告</b>を京大公式で開き、下の換算表と一致することを確認した</span></label>
+      <label class="ck"><input type="checkbox" id="ck2"><span>センターの<b>「科目別成績分布」CSV</b>（1点刻みの度数分布）を落とした<small>平均とσだけでなく<b>分位点を直読</b>する。正規分布を仮定してはいけない</small></span></label>
+      <label class="ck"><input type="checkbox" id="ck9"><span><b>「設問別得点率及び正答率表」CSV</b>で自分の失点と全国正答率を突き合わせた<small>全国正答率が高いのに落とした設問＝最優先。ここだけは推定ではなく実測で優先順位が決まる</small></span></label>
+      <label class="ck"><input type="checkbox" id="ck3"><span>京大オープン／実戦の<b>成績統計</b>から志望学科別の科目別平均・σを転記した<small>この数字を分散分解で逆算してはいけない</small></span></label>
+      <label class="ck"><input type="checkbox" id="ck4"><span>合格最低点の出所が<b>予備校の開示集計（推定値）</b>であり京大公式ではないことを踏まえた<small>京大が公表するのは志願者数・合格者数のみ</small></span></label>
+    </div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">配点</span><h2>換算表</h2>
+      <p class="hint">素点1点の価値は全10科目で 0.125 〜 1.333、<b>約11倍の開き</b>があります。</p></div>
+    <h3>共通テスト</h3>
+    <div class="tw"><table>
+      <thead><tr><th>科目</th><th>素点</th><th colspan="2">2025年度〜</th><th colspan="2">2021–2024年度</th></tr>
+      <tr><th></th><th>満点</th><th>配点</th><th>κ</th><th>配点</th><th>κ</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>情報Ⅰ</td><td class="num">100</td><td class="num">50</td><td class="k">1/2</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr class="hi"><td>地歴公民</td><td class="num">100</td><td class="num">50</td><td class="k">1/2</td><td class="num">100</td><td class="k">×1.00</td></tr>
+        <tr><td>外国語 R+L</td><td class="num">200</td><td class="num">50</td><td class="k">1/4</td><td class="num">50</td><td class="k">1/4</td></tr>
+        <tr><td>国語</td><td class="num">200</td><td class="num">25</td><td class="k">1/8</td><td class="num">50</td><td class="k">1/4</td></tr>
+        <tr><td>数学 ⅠA+ⅡBC</td><td class="num">200</td><td class="num">25</td><td class="k">1/8</td><td class="num">＊</td><td class="k">0</td></tr>
+        <tr><td>理科2科目</td><td class="num">200</td><td class="num">25</td><td class="k">1/8</td><td class="num">＊</td><td class="k">0</td></tr>
+      </tbody>
+      <tfoot><tr><td>計（＊＝第1段階選抜のみ）</td><td class="num">—</td><td class="num">225</td><td></td><td class="num">200</td><td></td></tr></tfoot>
+    </table></div>
+    <p class="tight"><b>2024年度まで、共テ200点の半分が地歴公民1科目で、唯一の無圧縮科目でした</b>（素点1点＝二次1点）。2025年度に半減。「京大理系は共テ社会が重い」という助言は<b>いま半分の重み</b>です。</p>
+
+    <h3>地歴公民の科目選択 ── 分布データでは決められない</h3>
+    <div class="tw"><table>
+      <thead><tr><th>上位3%点（素点）</th><th>2024<br>旧課程</th><th>2025</th><th>2026</th><th>年次の振れ</th></tr></thead>
+      <tbody>
+        <tr><td>世界史</td><td class="num">94</td><td class="num">94</td><td class="num">91</td><td class="num">3</td></tr>
+        <tr><td>日本史</td><td class="num">87</td><td class="num">85</td><td class="num">94</td><td class="num bad">9</td></tr>
+        <tr class="hi"><td>地理</td><td class="num">90</td><td class="num">86</td><td class="num">87</td><td class="num">4</td></tr>
+        <tr><td>倫理</td><td class="num">82</td><td class="num">85</td><td class="num">89</td><td class="num">7</td></tr>
+        <tr><td>政治・経済</td><td class="num">73</td><td class="num">88</td><td class="num">91</td><td class="num bad">18</td></tr>
+      </tbody>
+    </table></div>
+    <p class="tight">京大工の地歴公民は<b>共テ専用（二次になし）で κ=1/2</b> なので、素点1点が二次0.5点。一見すると上限の高い科目を選ぶ価値がありそうに見えます。<b>しかしこの表から科目選択を最適化することはできません。</b></p>
+    <div class="note shu"><b>この表を切り替え判断に使わないこと。</b>科目間の順位は年で入れ替わります。政治・経済は73→91、日本史は85→94。「地理は天井が低い」も新課程2年分だけの話で、旧課程の地理Ｂは ≥95%が0.60%と日本史Ｂ（0.33%）より上でした。世界史も ≥95%が 2.87→2.86→<b>0.60</b> と2026年に急落しています。<br><br>安定性の順位も測り方で反転します。上位裾（≥90率）で測ると地理が1位ですが、<b>分位点ラダー全体で測ると1位は政治・経済</b>（平均シフト2.5点）で地理は2位（3.5点）。地理の平均点自体、2025→2026 で +4.4点 動いています。<br><br><b>n=2〜3 から傾向を読むのは、付録Bで批判したのと同じ誤りです。</b>科目選択の根拠は「自分がどの科目で点を取れるか」＝模試の実測だけで、分布データが決められるのは<b>その年の目標水準</b>だけです。</div>
+
+    <details><summary>選んだ科目の目標水準を読む（例：地理）</summary><div class="dbody">
+      <div class="tw" style="margin-top:0"><table>
+        <thead><tr><th>上位</th><th>2025</th><th>2026</th><th>平均</th><th>換算 ×0.5</th></tr></thead>
+        <tbody>
+          <tr><td>1.0%</td><td class="num">90</td><td class="num">90</td><td class="num">90.0</td><td class="num">45.0</td></tr>
+          <tr class="hi"><td>2.0%</td><td class="num">87</td><td class="num">89</td><td class="num">88.0</td><td class="num">44.0</td></tr>
+          <tr><td>3.0%</td><td class="num">86</td><td class="num">87</td><td class="num">86.5</td><td class="num">43.2</td></tr>
+          <tr><td>5.0%</td><td class="num">83</td><td class="num">85</td><td class="num">84.0</td><td class="num">42.0</td></tr>
+          <tr><td>10.0%</td><td class="num">78</td><td class="num">81</td><td class="num">79.5</td><td class="num">39.8</td></tr>
+        </tbody>
+      </table></div>
+      <p style="margin-top:10px">科目を決めた<b>後</b>なら、この使い方は正当です。母数10万人超なので各年の分位点は精密で、「自分の狙う帯が素点何点か」が読めます。CSVから自分の選択科目で同じ表を作ってください。</p>
+      <p>上位1%と2%の差は素点2点＝換算1点しかない一方、5%から2%へは素点4点＝換算2点。<b>どこから急に薄くなるか</b>を見て、伸ばす帯と落とさない帯を分けるのがこの表の用途です。</p>
+    </div></details>
+
+    <h3>二次 ── 全学部共通の素点650点を学部配点に換算</h3>
+    <div class="tw"><table>
+      <thead><tr><th>科目</th><th>素点満点</th><th>工学部配点</th><th>換算率</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>英語</td><td class="num">150</td><td class="num">200</td><td class="k">×1.333</td></tr>
+        <tr><td>数学</td><td class="num">200</td><td class="num">250</td><td class="k">×1.250</td></tr>
+        <tr><td>理科</td><td class="num">200</td><td class="num">250</td><td class="k">×1.250</td></tr>
+        <tr><td>国語</td><td class="num">100</td><td class="num">100</td><td class="k">×1.000</td></tr>
+      </tbody>
+      <tfoot><tr><td>計 ／ 総合計</td><td class="num">650</td><td class="num">800</td><td class="num">1025</td></tr></tfoot>
+    </table></div>
+    <details><summary>換算率の検算（2025年度の実際の得点開示）</summary><div class="dbody">
+      <div class="formula" style="margin-top:0">55<span class="v">×1.000</span> + 160<span class="v">×1.250</span> + 139<span class="v">×1.250</span> + 108<span class="v">×1.333</span> = <b>572.75</b></div>
+      <p style="margin-top:9px">開示者本人の報告「換算後 約573点」と一致。国語55/100・数学160/200・理科139/200・英語108/150。</p>
+    </div></details>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">方法</span><h2>二次平均の推移をどう追うか</h2>
+      <p class="hint">二次800点は2021年度以降不変。断絶は共テ側だけなので、二次は年度をまたいで追えます（n=6）。</p></div>
+    <div class="tw"><table>
+      <thead><tr><th></th><th style="text-align:left">経路A ── 引き算</th><th style="text-align:left">経路B ── 得点開示</th></tr></thead>
+      <tbody>
+        <tr><td>やり方</td><td style="text-align:left">総点平均 − 共テ換算平均</td><td style="text-align:left">科目別素点を直接集計</td></tr>
+        <tr><td>年度の揃い</td><td style="text-align:left"><b>2021年度から n=6</b></td><td style="text-align:left" class="bad">古い年は集まらない</td></tr>
+        <tr><td>誤差</td><td style="text-align:left">24–26 ほぼゼロ／21–23 ±4.5点</td><td style="text-align:left"><b>小さい</b></td></tr>
+        <tr class="hi"><td>向く用途</td><td style="text-align:left"><b>推移の追跡</b></td><td style="text-align:left"><b>水準のアンカー</b></td></tr>
+      </tbody>
+    </table></div>
+    <p class="tight">競合ではなく補完です。2025年度は両方揃うので、そこで経路Aの系統バイアスを較正できます。</p>
+
+    <h3>二次平均の推定結果（2021–2026）</h3>
+    <div class="tw"><table>
+      <thead><tr><th>年度</th><th>換算/800</th><th>得点率</th><th>素点/650</th><th>c_t</th><th>出所</th></tr></thead>
+      <tbody>
+        <tr><td>2021</td><td class="num">405.2</td><td class="num">50.7%</td><td class="num">329.2</td><td class="num">176.3</td><td class="num">μσ＋較正</td></tr>
+        <tr><td>2022</td><td class="num">445.4</td><td class="num">55.7%</td><td class="num">361.9</td><td class="num">176.3</td><td class="num">μσ＋較正</td></tr>
+        <tr class="hi"><td>2023</td><td class="num">474.5</td><td class="num">59.3%</td><td class="num">385.5</td><td class="num">171.9</td><td class="num">μσ＋較正</td></tr>
+        <tr class="hi"><td>2024</td><td class="num">385.5</td><td class="num">48.2%</td><td class="num">313.2</td><td class="num">182.1</td><td class="num">分布直読</td></tr>
+        <tr><td>2025</td><td class="num">453.0</td><td class="num">56.6%</td><td class="num">368.1</td><td class="num">209.8</td><td class="num">分布直読</td></tr>
+        <tr><td>2026</td><td class="num">391.9</td><td class="num">49.0%</td><td class="num">318.4</td><td class="num">203.5</td><td class="num">分布直読</td></tr>
+      </tbody>
+      <tfoot><tr><td>6年平均／年次σ</td><td class="num">425.9</td><td class="num">53.2%</td><td class="num">346.0</td><td class="num">σ=33.4</td><td></td></tr></tfoot>
+    </table></div>
+    <p class="tight">京大工層を上位1%／2%／3%のどこに置いても<b>系列の形は変わりません</b>（水準が±7点動くだけ）。系統バイアスが差分で消えるという前提が実際に成立しています。受験者全体のμは合格率・合格者平均・最低点から切断正規で復元（付録A）。</p>
+    <div class="note shu"><b>この系列は合格最低点の焼き直しです。</b>二次平均と合格最低点得点率の相関は <b>r = 0.989</b>、6年の順位は完全一致。共テ換算点の層内σが2.4〜5.1点しかないのに二次のσは68〜88点なので、<b>引き算しても順序が変わりません</b>。経路Aは新しい情報を作っていない、というのが正直な結論です。<br><br>それでも残る価値は3つ：<b>①</b> 1000点と1025点を二次800点という共通軸に載せた <b>②</b> 素点650に戻せるので得点開示・模試と直接比較できる <b>③</b> 難易度変動の大きさが数字になった（下記）。</div>
+
+    <h3>この系列から出た、いちばん重要な帰結</h3>
+    <div class="tw"><table>
+      <thead><tr><th>年度</th><th>二次平均</th><th>受験者σ</th><th>合格率p</th><th>必要z</th><th>必要順位</th></tr></thead>
+      <tbody>
+        <tr><td>2021</td><td class="num">405.2</td><td class="num">85.8</td><td class="num">0.269</td><td class="num">0.616</td><td class="num">上位26.9%</td></tr>
+        <tr><td>2022</td><td class="num">445.4</td><td class="num">76.8</td><td class="num">0.238</td><td class="num">0.713</td><td class="num">上位23.8%</td></tr>
+        <tr class="hi"><td>2023</td><td class="num">474.5</td><td class="num">70.9</td><td class="num">0.235</td><td class="num">0.724</td><td class="num">上位23.5%</td></tr>
+        <tr class="hi"><td>2024</td><td class="num">385.5</td><td class="num">87.9</td><td class="num">0.264</td><td class="num">0.632</td><td class="num">上位26.4%</td></tr>
+        <tr><td>2025</td><td class="num">453.0</td><td class="num">68.7</td><td class="num">0.257</td><td class="num">0.652</td><td class="num">上位25.7%</td></tr>
+        <tr><td>2026</td><td class="num">391.9</td><td class="num">80.1</td><td class="num">0.266</td><td class="num">0.625</td><td class="num">上位26.6%</td></tr>
+      </tbody>
+      <tfoot><tr><td>幅</td><td class="num bad">89.0点</td><td class="num">19.2</td><td class="num">0.034</td><td class="num">0.108σ</td><td class="num">3.4pt</td></tr></tfoot>
+    </table></div>
+
+    <div class="note ok"><b>難易度変動の90%は合格ラインが吸収します。</b>合格最低点は L=μ+aσ、自分の得点は X=μ+zσ。<b>難易度μも分散σも両辺で消え、残るのは z &gt; a かだけ</b>です。二次平均が89点動いても、必要な相対位置は6年間ずっと上位23.5〜26.9%（点数換算でわずか8.4点相当）。<br><br>したがって<b>難易度用のマージンは不要</b>で、目標は生の点数ではなく「上位25%に入る」で置くのが正しい。残るリスクは合格率の変動（8点相当）と、<b>自分のzのブレ σ_z</b> だけです。</div>
+
+    <div class="note"><b>難易度と分散は連動しています（r = −0.881）。</b>難しい年ほど受験者σが大きい ── 帰結は直感に反します。同じ20点のミスがzに与える打撃は、最難年2024（σ87.9）で −0.228σ、最易年2025（σ68.7）で <b>−0.291σ</b>。<b>易しい年のほうが28%重い。</b>差がつかない年ほどミスの相対コストが上がるからです。恐れるべきは難化ではなく易化。</div>
+
+    <details><summary>センター公式データはどこまで遡れるか（アーカイブ調査）</summary><div class="dbody">
+      <div class="tw" style="margin-top:0"><table>
+        <thead><tr><th>資料</th><th>入手できる年度</th><th>中身</th></tr></thead>
+        <tbody>
+          <tr class="hi"><td>科目別成績分布 CSV</td><td class="num">2024–2026</td><td style="text-align:left">1点刻みの度数分布。<b>分位点が直読できる</b></td></tr>
+          <tr><td>実施結果の概要 PDF</td><td class="num">2021–2025</td><td style="text-align:left">平均・最高・最低・<b>標準偏差</b>（得点調整後）</td></tr>
+          <tr><td>受験者数・平均点の推移</td><td class="num">センター試験期〜</td><td style="text-align:left">平均点と受験者数のみ</td></tr>
+        </tbody>
+      </table></div>
+      <p style="margin-top:10px">概要PDFは <code>/kyotsu/kako_shiken_jouhou/r3〜r7/</code> に残っています。一方、<b>2023年度以前の度数分布CSVは失われています</b> ── 試験情報データのページ自体は Wayback Machine にありますが、CSV本体は <code>/albums/abm.php?d=…</code> というクエリ付きPHPで、クローラが辿っておらず未アーカイブ。ライブでも404です。</p>
+      <p><b>σ から分位点を復元できるか検定した結果：</b>上位3%点のズレ（実測 −(μ+zσ)）の年次幅は、日本史0.61／地理3.94／世界史3.00／英語R 9.4／物理9.3。<b>新配点では成立しません</b>（情報Ⅰ・英語のズレが補正量と同オーダー）。</p>
+      <p><b>旧配点（2021–2024）なら成立します。</b>総点に入るのが国語・地歴公民・外国語だけで、ズレが最大の数学・理科は足切り専用だからです。κで重み付けした残差は地歴公民の選択科目に依存し、<b>日本史なら±2.8点、地理なら±4.5点</b>。二次平均の年次変動40〜60点に対し S/N 約10倍で使えます。</p>
+      <p style="color:var(--muted)">→ 2024–2026 は分布から直読、2021–2023 は μ,σ＋較正補正。これで経路Aは n=6 になります。厚くなったのは<b>σの層であって分布の層ではない</b>点に注意。</p>
+    </div></details>
+
+    <h3>正規分布の仮定は捨てられる</h3>
+    <p class="tight">センターの<a href="https://www.dnc.ac.jp/kyotsu/hyouka/r7_hyouka/r7_data.html">試験情報データ</a>に1点刻みの度数分布CSVがあり、<b>上位◯%の点数を直接読めます</b>。これは精度改善ではなく<b>一次的な誤りの訂正</b>です。</p>
+    <div class="tw"><table>
+      <thead><tr><th>京大工層の置き方</th><th>c_t 経験分布</th><th>c_t 正規近似</th><th>差</th><th>正規の得点率</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>上位 2%</td><td class="num">210.2</td><td class="num">221.8</td><td class="num">−11.6</td><td class="num bad">98.6% 不合理</td></tr>
+        <tr><td>上位 3%</td><td class="num">206.4</td><td class="num">214.5</td><td class="num">−8.1</td><td class="num">95.3%</td></tr>
+        <tr><td>上位 5%</td><td class="num">201.1</td><td class="num">204.5</td><td class="num">−3.4</td><td class="num">90.9%</td></tr>
+      </tbody>
+      <tfoot><tr><td>共テ換算 満点</td><td class="num" colspan="4">225</td></tr></tfoot>
+    </table></div>
+    <p class="tight">令和7年度の実データ。正規近似は<b>満点100点の情報Ⅰに102.3点、英語R+Lに209.3点</b>を予測します。天井効果です。実測の層内σ（上位5%内で英語R 1.39点、化学 2.33点）を見ると、上位帯は正規分布どころか<b>ほぼ壁に張り付いた形</b>をしています。</p>
+    <div class="note ok"><b>だから経路Aはこう組む。</b>z を科目ごとに6個置くのをやめ、<b>「京大工層は上位◯%」という1つのスカラーだけを仮定して各科目の分位点をCSVから直読する</b>。仮定が6個から1個に減り、分布形の誤りも消えます。残る自由度は自分の共テ模試の全国順位から較正できます。</div>
+
+    <details><summary>誤差予算 ── すべてセンター実測値</summary><div class="dbody">
+      <p style="margin:0 0 10px">σ も正規分布も使いません。<b>分位点を1%ポイント外したとき換算点が何点動くか</b>を、度数分布の傾きから直読します（2026年度実データ）。参考に公表σも併記。</p>
+      <div class="tw" style="margin-top:0"><table>
+        <thead><tr><th>科目</th><th>κ</th><th>公表σ<br>24／25／26</th><th>上位3%点</th><th>感度<br>点/1%pt</th></tr></thead>
+        <tbody>
+          <tr class="hi"><td>情報Ⅰ</td><td class="k">1/2</td><td class="num">— / 16.1 / 15.7</td><td class="num">86</td><td class="num">1.00</td></tr>
+          <tr class="hi"><td>地歴公民</td><td class="k">1/2</td><td class="num">16.9 / 15.8 / 17.5</td><td class="num">94</td><td class="num">0.75</td></tr>
+          <tr><td>国語</td><td class="k">1/8</td><td class="num">35.3 / 34.9 / 32.9</td><td class="num">174</td><td class="num">0.44</td></tr>
+          <tr><td>英語L</td><td class="k">1/4</td><td class="num">17.1 / 20.1 / 18.4</td><td class="num">89</td><td class="num">0.38</td></tr>
+          <tr><td>数学ⅠA</td><td class="k">1/8</td><td class="num">20.7 / 21.4 / 19.4</td><td class="num">84</td><td class="num">0.31</td></tr>
+          <tr><td>物理</td><td class="k">1/8</td><td class="num">22.8 / 22.7 / 20.2</td><td class="num">85</td><td class="num">0.31</td></tr>
+          <tr><td>数学ⅡBC</td><td class="k">1/8</td><td class="num">20.7 / 24.2 / 21.8</td><td class="num">94</td><td class="num">0.25</td></tr>
+          <tr><td>化学</td><td class="k">1/8</td><td class="num">21.0 / 20.0 / 23.2</td><td class="num">96</td><td class="num">0.19</td></tr>
+          <tr><td>英語R</td><td class="k">1/4</td><td class="num">19.9 / 23.9 / 23.7</td><td class="num">97</td><td class="num">0.12</td></tr>
+        </tbody>
+        <tfoot><tr><td>合計</td><td></td><td class="num">—</td><td class="num">—</td><td class="num">3.75</td></tr></tfoot>
+      </table></div>
+      <p style="margin-top:10px"><b>分位点を1%ポイント外しても c_t は 3.8点しか動きません。</b>旧版が σ と正規分布から出していた ±8点より小さく、しかも仮定ゼロです。うち60%が高κ科目（情報Ⅰ・地歴公民・英語）に集中するので、<b>詰める価値があるのはそこだけ</b>。</p>
+      <p>公表σは年で7〜18%変動します。σ を固定して使う設計はその分だけ壊れますが、分位点を直読する方式なら毎年の分布をそのまま使うので影響しません。</p>
+      <p><b>ここだけは仮定が残ります：</b>合格者切断による c_t の上振れ +6.2点（ρ・p を動かして4.6〜7.9）。予備校データが合格者平均であることに由来します。年ごとにほぼ一定なので<b>差分では相殺</b>され、補正が要るのは水準を言うときだけです。</p>
+    </div></details>
+
+    <details><summary>共テの散らばりはどれくらいか（切り方への依存に注意）</summary><div class="dbody">
+      <div class="tw" style="margin-top:0"><table>
+        <thead><tr><th>切り出す幅</th><th>換算平均 c_t</th><th>層内σ（換算点）</th></tr></thead>
+        <tbody>
+          <tr><td>上位 3%</td><td class="num">210.4 / 225</td><td class="num">2.35</td></tr>
+          <tr class="hi"><td>上位 5%</td><td class="num">205.9 / 225</td><td class="num">2.86</td></tr>
+          <tr><td>上位 10%</td><td class="num">198.2 / 225</td><td class="num">3.74</td></tr>
+          <tr><td>上位 20%</td><td class="num">187.2 / 225</td><td class="num">5.14</td></tr>
+        </tbody>
+      </table></div>
+      <p style="margin-top:10px"><b>この数字は切る幅で決まります</b>（上位1%なら1.78、30%なら5.88）。分布の性質ではなく、こちらが選んだ切り方の性質です。しかも京大工志望層は「全国上位x%を横一列に切った集団」ではありません ── <b>数学は上位1%だが国語は上位15%、という人が普通にいます</b>。科目ごとに順位が違う集団を単一のパーセンタイルで代表させることはできません。</p>
+      <p>志望層が全国上位1%〜15%に散らばると見ると c_t は 214.4〜189.7 の24.7点幅で、<b>σ_ct ≈ 7〜10点、総点分散への寄与は 0.8〜1.5%</b> が妥当な見積もりです。</p>
+      <p>結論の向きは変わりません ── <b>共テで大きな差はつかず、追いついた後の追加投資はほぼ返ってこない</b>。ただし「0.2%」のような断定は、切り方の産物でした。</p>
+    </div></details>
+
+    <div class="note"><b>用途を限定すること。</b>母集団は年ごとにほぼ一定なので、二次平均の変動が測っているのは主に<b>その年の問題の難易度</b>です。予測には使えません。使えるのは「素点650点中どのくらいで受かるか」の水準を知るキャリブレーションだけです。</div>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">実測</span><h2>二次の科目別 ── 測れたこと、測れなかったこと</h2>
+      <p class="hint">京大は科目別分布を公表しません。ここに載るのは、公表されている量から復元できた範囲だけです。</p></div>
+
+    <h3>本番σ ── 独立2ルートが4科目とも一致した</h3>
+    <p class="tight">得点開示の集計者が2022年度理系数学の実測σ <b>43</b> を書き残していました。これを東進京大本レ最終1月の σ 38.71 で割った倍率 <b>1.111</b> を、他の3科目にも当てます。倍率は<b>数学1科目だけから決まっている</b>ので、残り3科目の一致は独立な検証です。</p>
+    <div class="tw"><table>
+      <thead><tr><th>科目</th><th>模試σ×1.111</th><th>個人開示 n=10</th><th>差</th><th>採用値（素点）</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>数学 /200</td><td class="num">43.0</td><td class="num">43.0</td><td class="num">±0.0</td><td class="num">43.0</td></tr>
+        <tr><td>理科 /200</td><td class="num">28.9</td><td class="num">28.8</td><td class="num">−0.1</td><td class="num">28.9</td></tr>
+        <tr><td>英語 /150</td><td class="num">17.5</td><td class="num">19.6</td><td class="num">+2.1</td><td class="num">18.5</td></tr>
+        <tr><td>国語 /100</td><td class="num">11.5</td><td class="num">11.1</td><td class="num">−0.5</td><td class="num">11.3</td></tr>
+      </tbody>
+    </table></div>
+    <p class="tight">科目間相関も仮定せず実測できます。東進は合成科目のσも公表しているので、<b>Var(英+数) − Var(英) − Var(数) = 2Cov</b> を解くだけです ── 4回分の平均で <b>ρ(英,数) = 0.334</b>、同じ手で <b>ρ(英数,理科) = 0.59</b>。共分散はこの実測値で入れています。</p>
+
+    <h3>三つの指標 ── 別々の問いに答えるもの</h3>
+    <div class="tw"><table>
+      <thead><tr><th>科目</th><th>①分散寄与<br><small>共分散込み</small></th><th>②合否差寄与<br><small>線形 Δ×換算率</small></th><th>③効果量<br>Δ ⁄ σ</th><th>④1σの価値<br><small>総点で</small></th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>数学</td><td class="num">48.4%</td><td class="num">55.5%</td><td class="num">1.18</td><td class="num">53.8点</td></tr>
+        <tr><td>理科</td><td class="num">30.4%</td><td class="num">27.3%</td><td class="num">0.86</td><td class="num">36.1点</td></tr>
+        <tr><td>英語</td><td class="num">17.0%</td><td class="num">13.5%</td><td class="num">0.63</td><td class="num">24.7点</td></tr>
+        <tr><td>国語</td><td class="num">4.2%</td><td class="num">3.7%</td><td class="num">0.38</td><td class="num">11.3点</td></tr>
+      </tbody>
+      <tfoot><tr><td>総点σ（工学部800）</td><td class="num">95.4点</td><td class="num" colspan="3" style="text-align:left">ρ感度で 86〜104。理系全体（医・理・工混合）なので情報学科単独より広い</td></tr></tfoot>
+    </table></div>
+    <p class="tight"><b>①</b>順位の散らばりがどこで生まれているか＝差がつく場所。<b>②</b>受かった人と落ちた人の点差の内訳。<b>③</b>1σ動いたとき合格ラインにどれだけ近づくか＝投資効率。<b>④</b>1σ分の実力が総点で何点になるか。</p>
+    <div class="note"><b>③と④を並べて読んでください。</b>効果量は数学1.18・国語0.38で<b>3.1倍</b>ですが、1σの絶対価値は数学53.8点・英語24.7点で<b>2.2倍しかありません</b>。数学の①②③が突出しているのは、数学だけσが飛び抜けて大きい（43 vs 18.5）＝<b>周りが崩れている</b>からです。裏を返すと、数学は上を取る資産ではなく<b>崩れないことの期待値が高い</b>科目です。</div>
+    <div class="note shu"><b>撤回：「4ルートが一致」は成立していません。</b>以前ここには4経路の寄与率が揃ったと書いていました。しかし並べていたのは<b>線形指標（Δ×換算率）と2乗指標（σ²×換算率²）</b>で、別物です。同じ指標にそろえると 線形どうし 55.5% vs 42.3%、2乗どうし 76.6% vs 57.9% で一致しません。上の表はこの3指標を<b>分けたまま</b>並べています。</div>
+
+    <h3>プランD ── 京大公式データだけで検定する</h3>
+    <p class="tight">19学部・学科の<b>合格最低点から共テ実測分を引く</b>と、学部ごとの「合格ボーダーにおける二次得点」が出ます。二次配点は学部で違う ── <b>経済(理)は理科が0点、教育(理)は半分、医は英語が工の1.5倍</b>。全学部が同じ問題を解いているので、これは連立方程式になります。</p>
+    <div class="note shu"><b>点推定は失敗しました。</b>設計行列の固有値は <b>[84.07, 2.05, 0.47, 0.27]</b>、条件数 κ = <b>17.5</b>。全学部が全科目を換算率1.0〜1.5で使うので、行列は実質ランク1です。ジャックナイフ（14学部を1つずつ除外）で係数が <b>30〜48点</b>振れました。しかも識別性を作っているのが<b>定員25名の経済(理)と10名の教育(理)</b>という最も脆い2学部です。「数学 −42.9点」のような数字は報告できません。</div>
+    <p class="tight">パラメータを1個に絞れば共線性は原理的に消えます。<b>「その科目だけが動いた」</b>と仮定して学部間パターンの説明力を比べました。</p>
+    <div class="tw"><table>
+      <thead><tr><th>モデル</th><th>2024→2025 R²</th><th>JK 1位回数</th><th>2025→2026 R²</th><th>JK 1位回数</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>数学だけが動いた</td><td class="num">0.625</td><td class="num">15 / 15</td><td class="num">0.177</td><td class="num">13 / 15</td></tr>
+        <tr><td>理科だけが動いた</td><td class="num">0.279</td><td class="num">0</td><td class="num">−0.545</td><td class="num">1</td></tr>
+        <tr><td>外国語だけが動いた</td><td class="num">0.111</td><td class="num">0</td><td class="num">0.083</td><td class="num">1</td></tr>
+        <tr><td>国語だけが動いた</td><td class="num">−0.359</td><td class="num">0</td><td class="num">−0.316</td><td class="num">0</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note ok"><b>合計 28/30 で数学が1位。</b>4科目のうち<b>ジャックナイフで符号が反転しないのは数学だけ</b>でした（両年とも）。掲示板の開示集計とは完全に独立に ── <b>京大公式の合格最低点と大学入試センター公式の分布だけで</b> ── 同じ結論に着いています。<br><br>ただし強さは年で違います。2025年の変動は強く支持（R²=0.63）、2026年は弱い（R²=0.18）。<b>「数学が主因」は言えるが「何点動いた」は言えない</b>、が到達点です。</div>
+
+    <details><summary>独立2経路の突き合わせ（相互検証）</summary><div class="dbody">
+      <p>プランDは合格ボーダーの二次点、経路Aは受験者全体の二次平均 ── <b>別々の量</b>ですが、年次変化は一致すべきです。</p>
+      <div class="tw"><table>
+        <thead><tr><th>経路</th><th>2024</th><th>2025</th><th>2026</th><th>Δ24→25</th><th>Δ25→26</th></tr></thead>
+        <tbody>
+          <tr><td>D：ボーダー二次（公式最低点−共テ実測）</td><td class="num">441.1</td><td class="num">497.8</td><td class="num">442.0</td><td class="num">+56.7</td><td class="num">−55.8</td></tr>
+          <tr><td>A：受験者二次平均（切断正規）</td><td class="num">385.5</td><td class="num">453.0</td><td class="num">391.9</td><td class="num">+67.5</td><td class="num">−61.1</td></tr>
+        </tbody>
+      </table></div>
+      <p>完全に独立な2つの計算が、変化量で<b>11点以内</b>に一致しました。両方の共テ換算が正しいことの相互検証になっています。</p>
+    </div></details>
+
+    <details><summary>学部別 合格最低点 19学部 × 8年（2019–2026）と二次配点</summary><div class="dbody">
+      <p>京大が公表するのは志願者数・合格者数・合格最高／平均／最低点まで。<b>配点は募集要項、最低点は入試結果</b>で、いずれも公式です。二次配点は 国語／数学／理科／外国語 の順。</p>
+      <div class="tw"><table>
+        <thead><tr><th>学部・学科</th><th>二次配点</th><th>2026</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th></tr></thead>
+        <tbody>
+          <tr><td>総合人間学部(文)</td><td class="num" style="font-size:11px">150／100／200／200</td><td class="num">530.5</td><td class="num">510.8</td><td class="num">472.6</td><td class="num">534.8</td><td class="num">532.0</td><td class="num">532.4</td><td class="num">448.9</td><td class="num">464.5</td></tr>
+          <tr><td>文学部</td><td class="num" style="font-size:11px">150／100／100／150</td><td class="num">488.2</td><td class="num">497.8</td><td class="num">461.7</td><td class="num">512.3</td><td class="num">501.6</td><td class="num">492.3</td><td class="num">470.2</td><td class="num">476.0</td></tr>
+          <tr><td>教育学部(文)</td><td class="num" style="font-size:11px">200／100／150／200</td><td class="num">564.7</td><td class="num">571.1</td><td class="num">526.9</td><td class="num">593.8</td><td class="num">586.3</td><td class="num">580.2</td><td class="num">525.1</td><td class="num">559.6</td></tr>
+          <tr><td>法学部</td><td class="num" style="font-size:11px">150／100／150／150</td><td class="num">558.1</td><td class="num">568.4</td><td class="num">484.8</td><td class="num">545.4</td><td class="num">544.1</td><td class="num">519.8</td><td class="num">507.5</td><td class="num">505.5</td></tr>
+          <tr><td>経済学部(文)</td><td class="num" style="font-size:11px">150／100／150／150</td><td class="num">555.8</td><td class="num">552.8</td><td class="num">486.9</td><td class="num">545.4</td><td class="num">526.6</td><td class="num">538.5</td><td class="num">491.6</td><td class="num">490.8</td></tr>
+          <tr><td>総合人間学部(理)</td><td class="num" style="font-size:11px">150／200／200／150</td><td class="num">454.0</td><td class="num">487.8</td><td class="num">447.0</td><td class="num">485.5</td><td class="num">476.0</td><td class="num">438.5</td><td class="num">413.0</td><td class="num">467.5</td></tr>
+          <tr><td>教育学部(理)</td><td class="num" style="font-size:11px">150／200／100／200</td><td class="num">523.2</td><td class="num">603.8</td><td class="num">488.3</td><td class="num">561.5</td><td class="num">546.5</td><td class="num">519.7</td><td class="num">542.9</td><td class="num">578.6</td></tr>
+          <tr><td>経済学部(理)</td><td class="num" style="font-size:11px">150／300／0／200</td><td class="num">555.6</td><td class="num">653.5</td><td class="num">534.0</td><td class="num">621.7</td><td class="num">562.9</td><td class="num">553.7</td><td class="num">506.9</td><td class="num">593.5</td></tr>
+          <tr><td>理学部</td><td class="num" style="font-size:11px">150／300／300／225</td><td class="num">730.2</td><td class="num">776.1</td><td class="num">657.2</td><td class="num">795.8</td><td class="num">711.9</td><td class="num">704.4</td><td class="num">629.4</td><td class="num">749.5</td></tr>
+          <tr><td>医学部(医学科)</td><td class="num" style="font-size:11px">150／250／300／300</td><td class="num">876.6</td><td class="num">942.5</td><td class="num">844.2</td><td class="num">935.9</td><td class="num">916.6</td><td class="num">871.5</td><td class="num">790.0</td><td class="num">915.6</td></tr>
+          <tr><td>医学部(人間健康学科)</td><td class="num" style="font-size:11px">150／200／200／200</td><td class="num">518.5</td><td class="num">568.3</td><td class="num">481.1</td><td class="num">562.3</td><td class="num">518.3</td><td class="num">502.8</td><td class="num">481.6</td><td class="num">559.1</td></tr>
+          <tr><td>薬学部</td><td class="num" style="font-size:11px">100／200／200／200</td><td class="num">512.1</td><td class="num">551.2</td><td class="num">511.6</td><td class="num">626.6</td><td class="num">578.0</td><td class="num">534.7</td><td class="num">504.0</td><td class="num">599.9</td></tr>
+          <tr><td>工学部(地球工学科)</td><td class="num" style="font-size:11px">100／250／250／200</td><td class="num">581.2</td><td class="num">636.9</td><td class="num">529.7</td><td class="num">625.2</td><td class="num">600.7</td><td class="num">559.8</td><td class="num">513.6</td><td class="num">580.1</td></tr>
+          <tr><td>工学部(建築学科)</td><td class="num" style="font-size:11px">100／250／250／200</td><td class="num">596.3</td><td class="num">648.5</td><td class="num">541.8</td><td class="num">648.0</td><td class="num">608.8</td><td class="num">587.8</td><td class="num">534.4</td><td class="num">594.5</td></tr>
+          <tr><td>工学部(物理工学科)</td><td class="num" style="font-size:11px">100／250／250／200</td><td class="num">615.3</td><td class="num">665.6</td><td class="num">556.4</td><td class="num">648.5</td><td class="num">630.5</td><td class="num">597.0</td><td class="num">539.0</td><td class="num">618.8</td></tr>
+          <tr><td>工学部(電気電子工学科)</td><td class="num" style="font-size:11px">100／250／250／200</td><td class="num">602.1</td><td class="num">658.6</td><td class="num">548.2</td><td class="num">641.3</td><td class="num">625.8</td><td class="num">576.3</td><td class="num">524.9</td><td class="num">605.8</td></tr>
+          <tr class="hi"><td>工学部(情報学科)</td><td class="num" style="font-size:11px">100／250／250／200</td><td class="num">645.5</td><td class="num">707.5</td><td class="num">623.2</td><td class="num">697.7</td><td class="num">676.5</td><td class="num">634.5</td><td class="num">570.9</td><td class="num">638.6</td></tr>
+          <tr><td>工学部(理工化学科(旧工化))</td><td class="num" style="font-size:11px">100／250／250／200</td><td class="num">581.1</td><td class="num">633.8</td><td class="num">527.8</td><td class="num">613.1</td><td class="num">592.8</td><td class="num">550.5</td><td class="num">503.1</td><td class="num">578.1</td></tr>
+          <tr><td>農学部</td><td class="num" style="font-size:11px">100／200／200／200</td><td class="num">630.0</td><td class="num">661.5</td><td class="num">612.3</td><td class="num">679.8</td><td class="num">644.5</td><td class="num">608.5</td><td class="num">594.0</td><td class="num">667.7</td></tr>
+        </tbody>
+      </table></div>
+      <p>2025年度から共テが 200 → 225点（情報Ⅰ追加）。二次配点は理系学部では2019年以降変わっていません。</p>
+    </div></details>
+
+    <details><summary>共テ旧配点の外国語比率 ── 訂正済み</summary><div class="dbody">
+      <p>2024年度までの共テ外国語50点の内訳は、<b>リーディング37.5点・リスニング12.5点（3:1）</b>でした。この票は以前これを 25:25 の等分で計算していました。訂正して2021–2024の二次平均系列を引き直した影響は<b>いずれも1点以内</b>です（2021 −1.3／2022 −0.4／2023 +0.9／2024 +0.5）。上の表はすべて訂正後の値です。</p>
+    </div></details>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">志望者</span><h2>模試の志望者数から本番の母集団を推す</h2>
+      <p class="hint">河合塾の志望別成績分布表は「第1志望者」と「総志望者」を両方出します。ここから流出入が測れます。</p></div>
+
+    <h3>京大工 情報学科（26年度 全統共通テスト模試・全国値）</h3>
+    <div class="tw"><table>
+      <thead><tr><th></th><th>総受験者</th><th>第1志望</th><th>総志望</th><th>総志/第1</th><th>ボーダー</th><th>ボーダー超え</th></tr></thead>
+      <tbody>
+        <tr><td>第1回（5月）</td><td class="num">198,338</td><td class="num">335</td><td class="num">756</td><td class="num">2.257</td><td class="num">191/225</td><td class="num">84人</td></tr>
+        <tr class="hi"><td>第2回（8月）</td><td class="num">319,518</td><td class="num">517</td><td class="num">1165</td><td class="num">2.253</td><td class="num">194/225</td><td class="num">115人</td></tr>
+        <tr><td>実際（2021–26）</td><td class="num">—</td><td class="num">志願 352〜408</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">合格 99人</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="note ok"><b>保存されるのはパーセンタイルではなく人数です。</b>第1志望者が 335→517 と1.54倍になっても、ボーダーを超えるのは 84→115人 にしか増えず、<b>実際の合格者99人とほぼ同じ帯</b>にいます。抜けていく134人（517→383）はほぼ全員ボーダーより下、ということです。<br><br>だから見るべきは「第1志望内で上位◯%」ではなく <b>「上位100位以内か」</b>。同じ実力でも、上位100位は第1回では上位29.9%、第2回では上位19.3% ── <b>パーセンタイルは10ポイント動きます</b>。</div>
+
+    <div class="note shu"><b>模試の第1志望者数から志願者数は予測できません。</b>実志願者383人（6年平均）に対し、第1回335人（比1.14）、第2回517人（比0.74）。<b>補正係数の符号が逆になります</b>。原因は母集団で、第1回→第2回で総受験者が +61%（12万人増、ほぼ全員が現役）。難関志望のシェアはそれで希釈されます ── 東大理一のシェアは −28.6% ですが絶対数は 2308→2653 と<b>増えています</b>。</div>
+
+    <h3>総志望 ÷ 第1志望 ＝ 2.25（両回で一致）</h3>
+    <p class="tight">756/335 = 2.257、1165/517 = 2.253。京大情報を第2志望以下に書く人は第1志望者の1.25倍。これは構造定数で、流入候補プールの大きさを表します。ただしこの表にクロス集計はないので、内訳（東大から何人、阪大から何人）は分かりません。</p>
+
+    <h3>工学部内の志望集中（26年度第2回）</h3>
+    <div class="tw"><table>
+      <thead><tr><th>学科</th><th>第1志望</th><th>定員</th><th>倍率</th><th>共テボーダー</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>情報</td><td class="num">517</td><td class="num">94</td><td class="num bad">5.50</td><td class="num">194</td></tr>
+        <tr><td>建築</td><td class="num">302</td><td class="num">77</td><td class="num">3.92</td><td class="num">191</td></tr>
+        <tr><td>物理工</td><td class="num">680</td><td class="num">225</td><td class="num">3.02</td><td class="num">191</td></tr>
+        <tr><td>電気電子</td><td class="num">314</td><td class="num">128</td><td class="num">2.45</td><td class="num">189</td></tr>
+        <tr><td>地球工</td><td class="num">280</td><td class="num">175</td><td class="num">1.60</td><td class="num">187</td></tr>
+        <tr><td>理工化学</td><td class="num">254</td><td class="num">215</td><td class="num">1.18</td><td class="num">187</td></tr>
+        <tr class="past"><td>（参考）東大 理科一類</td><td class="num">2653</td><td class="num">1071</td><td class="num">2.48</td><td class="num">870/1000</td></tr>
+      </tbody>
+    </table></div>
+    <p class="tight"><b>情報学科の志望集中は東大理一の2.2倍で、工学部内で最大。</b>同じ「京大工」でも学科によって競争環境が全く違います。共テボーダーの差は情報194 − 電気電子189 ＝ <b>5点</b>。</p>
+
+    <h3>京大情報 第1志望層の共テ科目別偏差値</h3>
+    <div class="tw"><table>
+      <thead><tr><th>科目</th><th>第1回</th><th>第2回</th><th>κ</th><th style="text-align:left">読み方</th></tr></thead>
+      <tbody>
+        <tr><td>数学</td><td class="num">63.8</td><td class="num">64.9</td><td class="k">1/8</td><td style="text-align:left">志望層が最も強い。差はつきにくい</td></tr>
+        <tr class="hi"><td>情報Ⅰ</td><td class="num">62.9</td><td class="num">64.0</td><td class="k">1/2</td><td style="text-align:left">2番目に強く、<b>配点は最重量</b></td></tr>
+        <tr><td>英語R</td><td class="num">61.2</td><td class="num">62.1</td><td class="k">1/4</td><td style="text-align:left">—</td></tr>
+        <tr><td>理科</td><td class="num">60.7</td><td class="num">62.0</td><td class="k">1/8</td><td style="text-align:left">—</td></tr>
+        <tr><td>英語L</td><td class="num">60.2</td><td class="num">61.2</td><td class="k">1/4</td><td style="text-align:left">—</td></tr>
+        <tr><td>国語</td><td class="num">59.6</td><td class="num">60.5</td><td class="k">1/8</td><td style="text-align:left">—</td></tr>
+        <tr class="hi"><td><b>地歴公民</b></td><td class="num">57.5</td><td class="num">59.8</td><td class="k">1/2</td><td style="text-align:left"><b>両回とも最下位。κも最大級</b></td></tr>
+      </tbody>
+    </table></div>
+    <div class="note"><b>京大情報志望者の弱点は地歴公民です。</b>両回とも全科目中で最下位、しかも κ=1/2 で共テ内の配点は情報Ⅰと並んで最大。Phase 2 で「情報Ⅰと地歴公民の2科目で共テ内の差の69%」と出しましたが、<b>そのうち情報Ⅰは志望層がすでに強い</b>（偏差値64.0、全科目中2位）。<br><br>差をつけられる場所は実質<b>地歴公民1科目</b>、という結論になります。</div>
+
+    <details><summary>偏差値は回をまたいで比較できない</summary><div class="dbody">
+      <p>上の表で全科目が +0.9〜+2.3 上がっていますが、これは<b>志望層が強くなったのではなく母集団が薄まった</b>効果が主です。第2回で加わった12万人はほぼ全員が現役で、5月に受ける層より下。同じ実力の集団でも偏差値は上がります。</p>
+      <p>同じ理由で、<b>異なる回の順位パーセンタイルをそのまま並べると母集団の変化がノイズとして入ります</b>。Phase 5 の σ_z を計算するときは、できるだけ同一シリーズ・同一回次の系列で見てください。2025年度実績では 第1回168,561 → 第2回273,791 → 第3回263,640 で、<b>第2回と第3回はほぼ同じ母集団</b>です。</p>
+    </div></details>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">付録A</span><h2>切断正規で受験者分布を復元する</h2>
+      <p class="hint">合格者は上位打ち切りの切断分布。合格率・合格者平均・最低点から σ と μ が一意に解けます。最高点は極値なので使いません。</p></div>
+    <div class="formula">a = z<sub>1−p</sub>,  λ(a) = φ(a) ⁄ (1 − Φ(a))<br><span class="v">σ</span> = ( x̄ − L ) ⁄ ( λ(a) − a )    <span class="v">μ</span> = L − a·σ</div>
+    <div class="panel">
+      <div class="fields" style="margin-top:0">
+        <label>合格率 p <input type="number" id="tp" value="0.35" min="0.01" max="0.99" step="0.01"></label>
+        <label>合格者平均 x̄ <input type="number" id="tbar" value="694.29" step="0.01"></label>
+        <label>最低点 L <input type="number" id="tl" value="645.49" step="0.01"></label>
+        <label>共テ換算平均 <input type="number" id="ctavg" value="198" step="0.5"></label>
+      </div>
+      <dl class="ro">
+        <div class="c"><dt>受験者 σ</dt><dd id="ro-sig">—</dd><div class="nt">総点の標準偏差</div></div>
+        <div class="c"><dt>受験者 μ</dt><dd id="ro-mu">—</dd><div class="nt">合格者ではなく全受験者</div></div>
+        <div class="c"><dt>推定 二次平均</dt><dd id="ro-ni">—</dd><div class="nt">μ − 共テ換算平均</div></div>
+      </dl>
+    </div>
+    <p class="tight">x̄ と L は予備校の自己申告集計なので、出てくる二次平均は誤差の大きい参考値です。共テ換算平均の初期値198は上位10%で切ったときの実測値です。京大工受験層をどこで切るかに応じて 187（上位20%）〜210（上位3%）を入れ替えてください。</p>
+  </section>
+
+  <section>
+    <div class="sh"><span class="n">付録B</span><h2>削除した4ステップ</h2>
+      <p class="hint">旧手順書11ステップのうち4つは統計的に無効でした。</p></div>
+
+    <details><summary><span class="tag">削除</span>ステップ2 ── 年差の自己相関による「平均回帰」</summary><div class="dbody">
+      <p>元系列が<b>完全に独立同分布</b>でも、差分系列の lag-1 自己相関は理論値で <b>−0.5</b> になります。Cov(ΔXₜ,ΔXₜ₋₁)=−Var(X)、Var(ΔX)=2Var(X) だからです。</p>
+      <p>つまり「年差の符号が交互になる」のは平均回帰がなくても必ず起きます。利用可能な平均回帰を主張するには ρ₁&lt;−0.5 が有意に必要ですが、差分9個での標準誤差は約0.33。有意領域は ρ₁&lt;−1.16 で、<b>数学的に存在しません</b>。検出力がゼロです。</p>
+    </div></details>
+
+    <details><summary><span class="tag">削除</span>ステップ4 ── 学部横断回帰による Δc / Δs の分離</summary><div class="dbody">
+      <p>京大理系学部は5〜6個、w のレンジも狭く、n≒5で2パラメータ回帰は標準誤差が推定値と同オーダーになります。</p>
+      <p>さらに識別の仮定が誤りです。二次問題が全学部共通でも<b>受験層が違う</b>。難化年は上位層ほど相対的に落ちにくいので Δs は層依存で、その層は w と相関します。これは誤差ではなく<b>交絡</b>なので、サンプルを増やしても消えません。</p>
+      <p>なお素点650点という共通尺度があるので、<b>Δs は推定ではなく観測できます</b>。同じ年の工・理・農の二次素点平均を並べれば、難化が層によってどう効くかがそのまま見えます。</p>
+    </div></details>
+
+    <details><summary><span class="tag">削除</span>ステップ9 ── 分散分解による科目別σの逆算</summary><div class="dbody">
+      <p>Var(総点)=Var(二次)+Var(共テ)+2ρσσ で ρ が未知、さらに二次4科目に分ける際に科目間相関を仮定しています。<b>未知数が式より多く識別不能</b>で、仮定した ρ が答えを支配するのに感度分析もありません。</p>
+      <p>そして根本的に<b>逆算する必要がありません</b>。京大入試実戦模試／京大入試オープンの成績統計資料には志望学科別の科目別平均点・標準偏差が印刷されています。10ステップかけて逆算した量が、手元の成績表に載っています。</p>
+    </div></details>
+
+    <details><summary><span class="tag">削除</span>ステップ10 ── 合格者数での整合性検証</summary><div class="dbody">
+      <p>μ と σ を「合格率と最低点」から逆算したのだから、それを使って合格者数を再現すれば<b>必ず一致します。自由度がゼロ</b>で、検証になっていません。記録タブの Phase 6（out-of-sample）に置き換えました。</p>
+    </div></details>
+  </section>
+
+  <div class="srcs">
+    <b style="color:var(--ink)">出典</b>
+    <ul>
+      <li><b>配点の一次資料</b>：<a href="https://www.kyoto-u.ac.jp/sites/default/files/inline-files/r7-ippan-haiten.20230720-fef9e3eeb820f21604ccbd19081ff0fe.pdf">令和7年度 配点等について（予告）</a>p.9 ／ 令和<a href="https://www.kyoto-u.ac.jp/sites/default/files/inline-files/ippansenbatsuyokoR6_all-07b8b962e2fd29d307295bdd8912253b.pdf">6</a>・<a href="https://www.kyoto-u.ac.jp/sites/default/files/inline-files/ippanbosyuyokoR5_all-148f76f3e429f4770aa207794915241d.pdf">5</a>・<a href="https://www.kyoto-u.ac.jp/sites/default/files/inline-files/ippansenbatsuyokoR4-0_all-9d71516249ceb74d0032a991e06793d9.pdf">4</a>・<a href="https://www.kyoto-u.ac.jp/sites/default/files/embed/jaadmissionsundergradrequirementsdocumentsr3R3_02.pdf">3</a>年度 要項（4年間とも同一構造）</li>
+      <li><b>共テ度数分布（2024–2026のみ）</b>：<a href="https://www.dnc.ac.jp/kyotsu/hyouka/r7_hyouka/r7_data.html">大学入試センター 試験情報データ</a>（科目別成績分布CSV／設問別正答率CSV）。年度で <code>r6_hyouka</code>／<code>r8_hyouka</code> と URL が変わります</li>
+      <li><b>平均・最高・最低・標準偏差（2021–2025）</b>：<a href="https://www.dnc.ac.jp/kyotsu/kako_shiken_jouhou/r5/">過去試験情報</a> 各年度の「実施結果の概要」PDF 内「平均点等一覧」。<code>/kako_shiken_jouhou/r3〜r7/</code> に生存</li>
+      <li><b>合格者成績（予備校の開示集計＝推定値）</b>：<a href="https://www.keinet.ne.jp/exam/past/score/2026/national/1280.html">河合塾 Kei-Net</a>／<a href="https://www.yozemi.ac.jp/nyushi/data/kyodai/kyodai_data_4.html">代々木ゼミナール</a>。京大公式が公表するのは<a href="https://www.kyoto-u.ac.jp/ja/admissions/undergrad/statistics">志願者数・合格者数</a>のみ</li>
+      <li><b>二次素点650点</b>：<a href="https://www.zkai.co.jp/kyodai-exam/kihon/">Z会</a>／換算率は<a href="https://matsutanijuku.com/18006">2025年度の得点開示例</a>で検算。<a href="https://www.kyoto-u.ac.jp/ja/admissions/undergrad/johokaiji">得点開示</a>は科目別素点が本人に返ります</li>
+      <li><b>模試の志望者分布</b>：河合塾 全統共通テスト模試「志望別成績分布表」「合格可能性評価基準」（26年度第1回・第2回、学校配付の成績統計資料）。<a href="https://www.kawai-juku.ac.jp/zento/statistics/">成績統計資料データ</a>／回ごとの受験者数は<a href="https://kanagaku.com/zentomoshi">この集計</a></li>
+      <li><b>学部別合格最低点 19学部×8年</b>：<a href="https://copynight.net/sites/CheckScore">Copynight「学部別合否判定サイト」</a>に埋め込まれた京大公式データ（2019–2026）。2019・2020は代ゼミと完全一致を確認</li>
+      <li><b>配点表の裏取り</b>：<a href="https://passnavi.obunsha.co.jp/univ/0560/subject/?facultyID=045">旺文社パスナビ</a>／<a href="https://manabi.benesse.ne.jp/daigaku/school/1300/nyushi/kou/index.html">ベネッセ</a>（2独立ソースで一致）</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<script>
+"use strict";
+const CT=[
+ {id:"ct_kokugo", name:"国語",           raw:200, pts:25, grow:20},
+ {id:"ct_chireki",name:"地歴公民",       raw:100, pts:50, grow:15},
+ {id:"ct_sugaku", name:"数学 ⅠA+ⅡBC",   raw:200, pts:25, grow:15},
+ {id:"ct_rika",   name:"理科（物理＋1）", raw:200, pts:25, grow:20},
+ {id:"ct_eigo",   name:"外国語 R+L",      raw:200, pts:50, grow:20},
+ {id:"ct_joho",   name:"情報Ⅰ",          raw:100, pts:50, grow:25}];
+CT.forEach(s=>s.kappa=s.pts/s.raw);
+const NI=[
+ {id:"ni_sugaku",name:"数学",raw:200,pts:250,grow:25,note:"σ43.0／分散寄与48%／効果量1.18。<b>年次変動の主因</b>。崩れないことが最優先"},
+ {id:"ni_rika",  name:"理科",raw:200,pts:250,grow:25,note:"σ28.9／寄与30%／効果量0.86。重量級で最も<b>努力が順位に素直に返る</b>"},
+ {id:"ni_eigo",  name:"英語",raw:150,pts:200,grow:15,note:"σ18.5／寄与17%／効果量0.63。<b>換算率は最大</b>だが散らばりが小さい"},
+ {id:"ni_kokugo",name:"国語",raw:100,pts:100,grow:8, note:"σ11.3／寄与4%／効果量0.38。換算率も散らばりも<b>最小</b>"}];
+NI.forEach(s=>s.kappa=s.pts/s.raw);
+const DEF={ct_kokugo:150,ct_chireki:80,ct_sugaku:180,ct_rika:170,ct_eigo:170,ct_joho:70,
+           ni_sugaku:120,ni_rika:132,ni_eigo:109,ni_kokugo:55};
+
+function erf(x){const s=x<0?-1:1;x=Math.abs(x);const t=1/(1+.3275911*x);
+  return s*(1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-.284496736)*t+.254829592)*t*Math.exp(-x*x));}
+const Phi=x=>.5*(1+erf(x/Math.SQRT2));
+const phi=x=>Math.exp(-x*x/2)/Math.sqrt(2*Math.PI);
+function invPhi(p){if(p<=0)return -8;if(p>=1)return 8;let lo=-8,hi=8;
+  for(let i=0;i<80;i++){const m=(lo+hi)/2;if(Phi(m)<p)lo=m;else hi=m;}return (lo+hi)/2;}
+const fmt=(n,d=1)=>Number.isFinite(n)?n.toFixed(d):"—";
+const val=id=>{const e=document.getElementById(id);const v=e?parseFloat(e.value):NaN;return Number.isFinite(v)?v:0;};
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+function buildCt(){document.getElementById("ct-body").innerHTML=CT.map(s=>
+  `<tr${s.kappa>=.5?' class="hi"':''}><td>${s.name}</td>`+
+  `<td><input type="number" id="${s.id}" min="0" max="${s.raw}" step="1"></td>`+
+  `<td class="num">${s.raw}</td><td class="k">1/${Math.round(1/s.kappa)}</td>`+
+  `<td class="num" id="${s.id}_c">—</td>`+
+  `<td><input type="number" id="${s.id}_g" min="0" step="1"></td></tr>`).join("");}
+function buildNi(){document.getElementById("ni-body").innerHTML=NI.map(s=>
+  `<tr${s.kappa>=1.3?' class="hi"':''}><td>${s.name}</td>`+
+  `<td><input type="number" id="${s.id}" min="0" max="${s.raw}" step="1"></td>`+
+  `<td class="num">${s.raw}</td><td class="k">×${s.kappa.toFixed(2)}</td>`+
+  `<td class="num" id="${s.id}_c">—</td>`+
+  `<td><input type="number" id="${s.id}_g" min="0" step="1"></td>`+
+  `<td style="white-space:normal;text-align:left;font-size:11.5px;color:var(--muted)">${s.note}</td></tr>`).join("");}
+
+// 満点1025で比較できる2年。切断正規で復元した受験者分布（付録A）
+const YRS=[{y:2025,mu:662.8,sd:68.7,p:0.257},{y:2026,mu:595.4,sd:80.1,p:0.266}];
+let rows=[],seq=0,ctrows=[],ctseq=0;
+function addCt(name="",score=null,border=null,rk=null,pop=null){
+  ctrows.push({rid:"c"+(++ctseq),name,score,border,rk,pop});}
+function renderCt(){
+  const b=document.getElementById("ctlog-body");
+  b.innerHTML=ctrows.map(r=>`<div class="ct" data-rid="${r.rid}">`+
+    `<div><input type="text" data-f="name" value="${esc(r.name)}" placeholder="第3回 全統共テ"></div>`+
+    ["score","border"].map(f=>`<div><input type="number" data-f="${f}" value="${r[f]===null?"":r[f]}" step="1" min="0" max="225"></div>`).join("")+
+    `<div class="ctv" data-d>—</div>`+
+    ["rk","pop"].map(f=>`<div><input type="number" data-f="${f}" value="${r[f]===null?"":r[f]}" step="1" min="1"></div>`).join("")+
+    `<div class="ctv" data-p>—</div><div><button class="ghost" type="button" data-del title="削除">✕</button></div></div>`).join("");
+  b.querySelectorAll(".ct").forEach(row=>{
+    const rec=ctrows.find(x=>x.rid===row.dataset.rid);
+    row.querySelectorAll("input").forEach(inp=>inp.addEventListener("input",()=>{
+      const f=inp.dataset.f;
+      rec[f]=f==="name"?inp.value:(inp.value===""?null:parseFloat(inp.value));
+      ctCell(row,rec);recompute();save();}));
+    row.querySelector("[data-del]").addEventListener("click",()=>{
+      ctrows=ctrows.filter(x=>x.rid!==rec.rid);renderCt();recompute();save();});
+    ctCell(row,rec);});
+}
+function ctCell(row,rec){
+  const d=(Number.isFinite(rec.score)&&Number.isFinite(rec.border))?rec.score-rec.border:NaN;
+  const c=row.querySelector("[data-d]");
+  c.textContent=Number.isFinite(d)?(d>=0?"+":"")+d.toFixed(0):"—";
+  c.className="ctv"+(Number.isFinite(d)?(d>=0?" pos":" neg"):"");
+  const z=zOf(rec);
+  row.querySelector("[data-p]").textContent=Number.isFinite(z)?(Phi(-z)*100).toFixed(1)+"%":"—";
+}
+const LK={m:1.25,s:1.25,e:200/150,j:1};
+function addRow(name="",m=null,s=null,e=null,j=null,rk=null,pop=null){rows.push({rid:"r"+(++seq),name,m,s,e,j,rk,pop});}
+// 志望学科内の順位 → z（連続性補正つき）。難易度によらない唯一の量
+function zOf(r){const k=r.rk,N=r.pop;
+  if(!Number.isFinite(k)||!Number.isFinite(N)||k<1||N<k)return NaN;
+  return invPhi(1-(k-0.5)/N);}
+function renderLog(){
+  const b=document.getElementById("log-body");
+  b.innerHTML=rows.map(r=>`<div class="lg" data-rid="${r.rid}">`+
+    `<div><input type="text" data-f="name" value="${esc(r.name)}" placeholder="第1回 京大オープン"></div>`+
+    ["m","s","e","j"].map(f=>`<div><input type="number" data-f="${f}" value="${r[f]===null?"":r[f]}" step="1" min="0"></div>`).join("")+
+    `<div class="lgt" data-t>—</div>`+
+    ["rk","pop"].map(f=>`<div><input type="number" data-f="${f}" value="${r[f]===null?"":r[f]}" step="1" min="1" placeholder="${f==="rk"?"順位":"母数"}"></div>`).join("")+
+    `<div class="lgz" data-z>—</div><div><button class="ghost" type="button" data-del title="削除">✕</button></div></div>`).join("");
+  b.querySelectorAll(".lg").forEach(row=>{
+    const rec=rows.find(x=>x.rid===row.dataset.rid);
+    row.querySelectorAll("input").forEach(inp=>inp.addEventListener("input",()=>{
+      const f=inp.dataset.f;
+      rec[f]=f==="name"?inp.value:(inp.value===""?null:parseFloat(inp.value));
+      total(row,rec);save();}));
+    row.querySelector("[data-del]").addEventListener("click",()=>{
+      rows=rows.filter(x=>x.rid!==rec.rid);renderLog();save();});
+    total(row,rec);});
+}
+function total(row,rec){const f=["m","s","e","j"];
+  row.querySelector("[data-t]").textContent=f.some(k=>Number.isFinite(rec[k]))
+    ?f.reduce((a,k)=>a+(Number.isFinite(rec[k])?rec[k]*LK[k]:0),0).toFixed(1):"—";
+  const z=zOf(rec);
+  row.querySelector("[data-z]").textContent=Number.isFinite(z)?z.toFixed(2):"—";}
+
+function recompute(){
+  const roi=[];
+  let ctT=0,ctR=0;
+  CT.forEach(s=>{const raw=Math.min(val(s.id),s.raw),c=raw*s.kappa;ctT+=c;ctR+=raw;
+    document.getElementById(s.id+"_c").textContent=fmt(c,2);
+    const g=Math.max(0,Math.min(val(s.id+"_g"),s.raw-raw));
+    roi.push({name:s.name,kind:"共テ",kappa:s.kappa,gain:g*s.kappa,grow:g,ct:true});});
+  document.getElementById("ct-raw").textContent=fmt(ctR,0);
+  document.getElementById("ct-total").textContent=fmt(ctT,2);
+
+  let niT=0,niR=0;
+  NI.forEach(s=>{const raw=Math.min(val(s.id),s.raw),c=raw*s.kappa;niT+=c;niR+=raw;
+    document.getElementById(s.id+"_c").textContent=fmt(c,2);
+    const g=Math.max(0,Math.min(val(s.id+"_g"),s.raw-raw));
+    roi.push({name:s.name,kind:"二次",kappa:s.kappa,gain:g*s.kappa,grow:g,ct:false});});
+  document.getElementById("ni-raw").textContent=fmt(niR,0);
+  document.getElementById("ni-total").textContent=fmt(niT,1);
+  document.getElementById("ni-rate").textContent=fmt(niR/650*100,1)+"%";
+
+  const target=val("target"),full=val("fullmark")||1025;
+  document.getElementById("ro-rate").innerHTML=fmt(target/full*100,1)+'<small>%</small>';
+  document.getElementById("ro-gmin").textContent=(target-645.49>=0?"+":"")+fmt(target-645.49,1);
+  document.getElementById("ro-gavg").textContent=(target-694.29>=0?"+":"")+fmt(target-694.29,1);
+
+  const need=target-ctT,diff=niT-need;
+  document.getElementById("ro-need").textContent=fmt(need,1);
+  document.getElementById("ro-plan").textContent=fmt(niT,1);
+  document.getElementById("ro-d").textContent=(diff>=0?"+":"")+fmt(diff,1);
+  document.getElementById("ro-dbox").className="c "+(diff>=0?"good":"bad");
+  document.getElementById("ro-dn").textContent=diff>=0?"必要点を満たしている":"この分だけ足りない";
+
+  const sorted=roi.slice().sort((a,b)=>b.gain-a.gain);
+  const mx=Math.max(...sorted.map(r=>r.gain),.001);
+  document.getElementById("roi").innerHTML=sorted.map((r,i)=>{
+    const rate=r.ct?"1/"+Math.round(1/r.kappa):"×"+r.kappa.toFixed(2);
+    return `<div class="rr${i===0?" top":""}">`+
+      `<div class="rn"><span class="chip ${r.ct?"ct":""}">${r.kind} ${rate}</span><b>${r.name}</b></div>`+
+      `<div class="rg">+${r.grow}素点</div>`+
+      `<div class="trk"><div class="fil" style="width:${(r.gain/mx*100).toFixed(1)}%"></div></div>`+
+      `<div class="rv">+${fmt(r.gain,2)}</div></div>`;}).join("");
+
+  const x=ctT+niT;
+  const zReq=invPhi(1-Math.min(Math.max(val("rp"),.01),.99));
+  const zs=rows.map(zOf).filter(Number.isFinite), nz=zs.length;
+  let zbar,zSd,noteZ,noteS;
+  if(nz>=1){zbar=zs.reduce((p,q)=>p+q,0)/nz; noteZ="模試 "+nz+" 回の実測平均";}
+  else{zbar=(x-val("rmu"))/(val("rsd")||1);
+       noteZ="順位が未記録 ── 計画総点からの暫定値（年次条件つき）";}
+  if(nz>=2){const v=zs.reduce((p,q)=>p+(q-zbar)*(q-zbar),0)/(nz-1);
+       zSd=Math.max(Math.sqrt(v),0.01); noteS="実測（模試 "+nz+" 回のばらつき）";}
+  else{zSd=val("selfsd")||0.01; noteS="仮値 ── 順位を2回以上記録すると実測に替わります";}
+  const pPass=Phi((zbar-zReq)/zSd);
+  document.getElementById("ro-z").textContent=fmt(zbar,3);
+  document.getElementById("ro-zr").textContent=noteZ+" ／ 上位 "+fmt(Phi(-zbar)*100,1)+"%";
+  document.getElementById("ro-sz").textContent=fmt(zSd,3);
+  document.getElementById("ro-szn").textContent=noteS;
+  document.getElementById("ro-a").textContent=fmt(zReq,3);
+  document.getElementById("ro-ar").textContent="上位 "+fmt(Phi(-zReq)*100,1)+"% に入れば合格";
+  document.getElementById("ro-p").innerHTML=fmt(pPass*100,1)+'<small>%</small>';
+  document.getElementById("ro-marg").textContent="余裕 "+fmt(zbar-zReq,3)+"σ";
+  document.getElementById("s-x").textContent=fmt(x,0);
+  document.getElementById("s-p").innerHTML=fmt(pPass*100,1)+'<small>%</small>';
+
+  // Phase 4A：共テ模試の最新行から「二次で取り返す量」を出す
+  const ct=[...ctrows].reverse().find(r=>Number.isFinite(r.score)&&Number.isFinite(r.border));
+  const gapEl=document.getElementById("ct-gap");
+  if(ct){
+    const d=ct.score-ct.border;
+    gapEl.textContent=(d>=0?"+":"")+d.toFixed(0)+"点";
+    document.getElementById("ctgapbox").className="c "+(d>=0?"good":"bad");
+    document.getElementById("ct-gapn").textContent=esc(ct.name||"最新回")+"："+ct.score+" / ボーダー"+ct.border;
+    if(d>=0){
+      document.getElementById("ct-need").textContent="不要";
+      document.getElementById("ct-needn").textContent="共テだけでボーダーを超えています";
+    }else{
+      document.getElementById("ct-need").textContent=(-d).toFixed(0)+"点";
+      document.getElementById("ct-needn").textContent="二次800点で。素点650なら "+(-d*650/800).toFixed(1)+"点、数学200点満点なら "+(-d/1.25).toFixed(1)+"点";
+    }
+  }else{
+    gapEl.textContent="—"; document.getElementById("ctgapbox").className="c";
+    document.getElementById("ct-gapn").textContent="得点とボーダーを入れてください";
+    document.getElementById("ct-need").textContent="—"; document.getElementById("ct-needn").textContent="—";
+  }
+  const ctz=[...ctrows].reverse().find(r=>Number.isFinite(zOf(r)));
+  document.getElementById("ct-pos").textContent=ctz?"上位 "+fmt(Phi(-zOf(ctz))*100,1)+"%":"—";
+  document.getElementById("ct-posn").textContent=ctz?("第1志望者 "+ctz.rk+" / "+ctz.pop+"　z="+fmt(zOf(ctz),3)):"順位と母数を入れてください";
+
+  // 参考：同じ計画総点を年ごとの分布で評価すると結論が変わる
+  document.getElementById("band-body").innerHTML=YRS.map(y=>{
+    const zy=(x-y.mu)/y.sd, ay=invPhi(1-y.p), py=Phi((zy-ay)/zSd);
+    return `<tr${py>=.5?' class="hi"':''}><td>${y.y}</td><td class="num">${y.mu.toFixed(1)}</td>`+
+      `<td class="num">${y.sd.toFixed(1)}</td><td class="num">${zy.toFixed(3)}</td>`+
+      `<td class="num">上位${(Phi(-zy)*100).toFixed(1)}%</td><td class="num">${ay.toFixed(3)}</td>`+
+      `<td class="num${py<.5?" bad":""}">${(py*100).toFixed(1)}%</td></tr>`;}).join("");
+  const sd2=x-target;
+  document.getElementById("s-diff").textContent=(sd2>=0?"+":"")+fmt(sd2,0);
+  document.getElementById("s-diffc").className="c "+(sd2>=0?"good":"bad");
+
+  const tp=Math.min(Math.max(val("tp"),.01),.99),a=invPhi(1-tp),lam=phi(a)/(1-Phi(a));
+  const sig=(val("tbar")-val("tl"))/(lam-a), mu=val("tl")-a*sig;
+  document.getElementById("ro-sig").textContent=fmt(sig,1);
+  document.getElementById("ro-mu").textContent=fmt(mu,1);
+  document.getElementById("ro-ni").textContent=fmt(mu-val("ctavg"),1);
+
+  const ov=parseFloat(document.getElementById("oos").value);
+  document.getElementById("oos-err").textContent=Number.isFinite(ov)?((ov-645.49>=0?"+":"")+fmt(ov-645.49,2)):"—";
+}
+
+const FIELDS=["target","fullmark","selfsd","rmu","rsd","rp","tp","tbar","tl","ctavg","oos",
+  ...CT.map(s=>s.id),...CT.map(s=>s.id+"_g"),...NI.map(s=>s.id),...NI.map(s=>s.id+"_g")];
+const CHECKS=["ck1","ck2","ck3","ck4","ck5","ck6","ck7","ck9"];
+function collect(){const values={},checks={};
+  FIELDS.forEach(i=>{const e=document.getElementById(i);if(e)values[i]=e.value;});
+  CHECKS.forEach(i=>{const e=document.getElementById(i);if(e)checks[i]=e.checked;});
+  return {values,checks,log:rows,ctlog:ctrows,tab:current,savedAt:new Date().toISOString()};}
+function apply(st){if(!st)return;
+  if(st.values)Object.entries(st.values).forEach(([i,v])=>{const e=document.getElementById(i);if(e&&v!=null)e.value=v;});
+  if(st.checks)Object.entries(st.checks).forEach(([i,v])=>{const e=document.getElementById(i);if(e)e.checked=!!v;});
+  if(Array.isArray(st.log)&&st.log.length){
+    rows=st.log.map(r=>({rid:"r"+(++seq),name:r.name??"",m:r.m??null,s:r.s??null,e:r.e??null,j:r.j??null,rk:r.rk??null,pop:r.pop??null}));
+    renderLog();}
+  if(Array.isArray(st.ctlog)&&st.ctlog.length){
+    ctrows=st.ctlog.map(r=>({rid:"c"+(++ctseq),name:r.name??"",score:r.score??null,border:r.border??null,rk:r.rk??null,pop:r.pop??null}));
+    renderCt();}
+  if(st.tab)showTab(st.tab);}
+
+let dbRef=null,timer=null;
+const flag=m=>document.getElementById("flag").textContent=m;
+function save(){if(!dbRef)return;flag("保存中…");clearTimeout(timer);
+  timer=setTimeout(async()=>{try{await dbRef.set(collect());
+    flag("保存済 "+new Date().toLocaleTimeString("ja-JP",{hour:"2-digit",minute:"2-digit"}));}
+    catch(e){flag(e&&e.code==="quota_exceeded"?"容量上限で保存不可":"保存に失敗");}},700);}
+
+let current="t-design";
+function showTab(id){
+  current=id;
+  ["t-design","t-log","t-why"].forEach(t=>{
+    const btn=document.getElementById(t), panel=document.getElementById(t.replace("t-","p-"));
+    const on=t===id;
+    btn.setAttribute("aria-selected",on?"true":"false");
+    panel.hidden=!on;});
+}
+["t-design","t-log","t-why"].forEach(t=>
+  document.getElementById(t).addEventListener("click",()=>{showTab(t);save();window.scrollTo({top:0});}));
+
+buildCt();buildNi();
+[...CT,...NI].forEach(s=>{document.getElementById(s.id).value=DEF[s.id];
+  document.getElementById(s.id+"_g").value=s.grow;});
+addRow("26年度 第1回 全統記述",null,null,null,null,161,349);
+addRow("");
+addCt("26年度 第1回 全統共テ",181,191,133,335);
+addCt("26年度 第2回 全統共テ",186,194,201,517);
+renderLog();renderCt();recompute();
+
+document.addEventListener("input",e=>{if(e.target.matches("input")){recompute();save();}});
+document.addEventListener("change",e=>{if(e.target.matches("input[type=checkbox]"))save();});
+document.getElementById("addrow").addEventListener("click",()=>{addRow("");renderLog();save();});
+document.getElementById("addct").addEventListener("click",()=>{addCt("");renderCt();recompute();save();});
+
+(async()=>{
+  const db=await window.claude?.use?.("db");
+  if(!db){flag("この表示では保存できません");return;}
+  dbRef=db.doc("sheet/main");
+  try{const snap=await dbRef.get();
+    if(snap.exists){apply(snap.data());recompute();flag("読み込み済");}
+    else flag("自動保存が有効です");}
+  catch(e){flag("読み込めませんでした");}
+})();
+</script>
