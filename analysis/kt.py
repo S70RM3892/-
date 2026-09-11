@@ -30,7 +30,8 @@ for fn,lab in [('dist_r8.csv','令和8年度'),('dist_r7.csv','令和7年度')]:
     rows=[]
     for lab2,key,co in K:
         s=S.get(key)
-        if not s: print(lab2,"なし"); continue
+        # 科目名が変わると黙って合計から消えるので、落ちたら止める
+        if not s: raise KeyError(f"{fn}: 科目『{key}』が見つからない（CSVの科目名変更を疑う）")
         v={p:pct(s,p) for p in (50,80,90,95,99)}
         d=v[99]-v[90]; g=d*co
         rows.append((lab2,co,v,d,g))

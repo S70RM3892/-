@@ -24,14 +24,18 @@ for p in deps:
     else: a+=res
 vj=sum(x*x for x in ji)/6; vo=sum(x*x for x in a)/(5*6)
 print(f"\n情報 トレンド除去分散 {vj:.4f} (df6) vs 他5学科プール {vo:.4f} (df30)  F={vj/vo:.2f}")
-# 並べ替え: 学科ラベルを年内でシャッフルし、情報のトレンド除去SDがこれ以上になる確率
+# 【注意】以下は「6学科の水準が全部同じ」という帰無の下での検定になっている。
+# 生の dv を年内でシャッフルすると、情報が毎年 +5pt 高いという争点でない事実まで
+# 壊れるので、帰無分布の SD が観測値よりはるかに大きくなり p→1 に張り付く。
+# 検定として意味のある値ではない（F=4.45 の反証ではない）。
+# 構造を保存した正しい版は sd5.py（残差プール入替）と rb.py の 3.（年内残差入替）。
 random.seed(11); obs=math.sqrt(vj); cnt=0; N=100000
 base={y:[R[(p,y)]['dv'] for p in deps] for y in yrs}
 for _ in range(N):
     perm={y:random.sample(base[y],6) for y in yrs}
     v=[perm[y][0] for y in yrs]; b,res=fit(v)
     if math.sqrt(sum(x*x for x in res)/6)>=obs: cnt+=1
-print(f"年内ラベル並べ替え検定 p={cnt/N:.4f}  (N={N})")
+print(f"[参考・帰無が不適切] 生dvの年内ラベル入替 p={cnt/N:.4f}  (N={N})  → rb.py 3. 参照")
 
 # leave-one-year-out
 print("\n1年ずつ除いたときの情報のトレンド除去SD:")

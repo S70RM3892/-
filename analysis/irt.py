@@ -27,7 +27,8 @@ def items(fn,subject):
             on = (f[0][3:]==subject); continue
         if not on or len(f)<6 or f[1] in('解答番号','合計') or f[0]=='大問': continue
         try: out.append((f[0],f[1],float(f[3]),float(f[4])))
-        except: pass
+        except ValueError: pass   # 数値でない行（注記など）だけを捨てる
+    if not out: raise KeyError(f"{fn}: 科目『{subject}』の設問が 1 つも取れない")
     return out
 
 # 34点ガウス求積で z~N(0,1) 上の積分
@@ -54,6 +55,11 @@ def calib(it,target_sd):
         if model(it,mid)[1]<target_sd: lo=mid
         else: hi=mid
     return (lo+hi)/2
+
+def check_max(it,expected):
+    """配点合計が公表満点と一致するか（設問のパース欠落の検出）"""
+    got=sum(x[2] for x in it)
+    assert abs(got-expected)<1e-6, f"配点合計 {got} != 公表満点 {expected}: 設問を取りこぼしている"
 
 def at(it,r,z):
     return sum(mx*ndf((iphi(min(max(p,1e-4),1-1e-4))+r*z)/math.sqrt(1-r*r)) for _,_,mx,p in it)
