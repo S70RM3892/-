@@ -13,7 +13,7 @@ SPEC=[('国語','国語',None,0.125),
       ('物理','物理',None,0.125),('化学','化学',None,0.125),
       ('英語（リーディング）','英語（リーディング）',None,0.25),
       ('英語（リスニング）','英語（リスニング）',None,0.25),
-      ('情報Ⅰ','情報Ⅰ',None,0.5),('公共，政治・経済','公共，政治・経済',None,0.5)]
+      ('情報Ⅰ','情報Ⅰ',None,0.5),('地理総合，地理探究','地理総合，地理探究',None,0.5)]
 print(f"{'科目':<16}{'満点':>5}{'較正r':>7}{'公表SD':>7}{'平均(模型/公表)':>16}{'p90':>11}{'p97.7':>11}")
 FIT={}
 for lab,key,cmb,co in SPEC:
@@ -39,7 +39,7 @@ for l,mx,e,co in sorted(rows,key=lambda x:-(x[1]-x[2])*x[3]):
     g=(mx-e)*co; tot+=g
     print(f"{l:<16}{mx:>5.0f}{e:>9.1f}{mx-e:>10.1f}{co:>6.3f}{g:>9.1f}")
 print(f"{'合計':<16}{'':>5}{'':>9}{'':>10}{'':>6}{tot:>9.1f}")
-a=sum((mx-e)*co for l,mx,e,co in rows if l in('情報Ⅰ','公共，政治・経済'))
+a=sum((mx-e)*co for l,mx,e,co in rows if l in('情報Ⅰ','地理総合，地理探究'))
 b=sum((mx-e)*co for l,mx,e,co in rows if l in('数学Ⅰ，数学Ａ','数学ⅡBC','物理','化学'))
 print(f"  情報Ⅰ+地歴公民 = {a:.1f}点 ({a/tot*100:.0f}%)   理系4科目 = {b:.1f}点 ({b/tot*100:.0f}%)")
 
@@ -52,7 +52,7 @@ for loss,d,q,mx,p in L[:10]:
 print(f"  上位10設問だけで 情報Ⅰの取りこぼしの {sum(x[0] for x in L[:10])/sum(x[0] for x in L)*100:.0f}%")
 
 print("\n=== 大問別: z=+2 の期待失点（京大工点換算）===")
-for lab in ['情報Ⅰ','公共，政治・経済','物理','化学','数学Ⅰ，数学Ａ']:
+for lab in ['情報Ⅰ','地理総合，地理探究','物理','化学','数学Ⅰ，数学Ａ']:
     it,r,co=FIT[lab]; d={}
     for dd,q,mx,p in it:
         d.setdefault(dd,[0,0])
