@@ -7,7 +7,8 @@ def sel(it,keep): return [x for x in it if x[0] in keep]
 # 数学ⅡBC: 第1-3問必答(52点) + 第4-7問から3問選択(16x3=48点)
 base=items('../data/q_r8.csv','数学Ⅱ，数学Ｂ，数学Ｃ')
 combos=[('1','2','3')+c for c in itertools.combinations(('4','5','6','7'),3)]
-SPEC=[('数学Ⅰ，数学Ａ','数学Ⅰ，数学Ａ',None,0.125),
+SPEC=[('国語','国語',None,0.125),
+      ('数学Ⅰ，数学Ａ','数学Ⅰ，数学Ａ',None,0.125),
       ('数学ⅡBC','数学Ⅱ，数学Ｂ，数学Ｃ',combos,0.125),
       ('物理','物理',None,0.125),('化学','化学',None,0.125),
       ('英語（リーディング）','英語（リーディング）',None,0.25),
@@ -66,6 +67,6 @@ for l,(it,r,co) in FIT.items():
     key={'数学ⅡBC':'数学Ⅱ，数学Ｂ，数学Ｃ'}.get(l,l); s=S[key]
     mx=sum(x[2] for x in it); e=at(it,r,2.0); o=pct(s,97.7)
     if l=='数学ⅡBC': o=min(o,100)
-    g1=(mx-e)*co; g2=(100-o)*co; t1+=g1; t2+=g2
+    g1=(mx-e)*co; g2=(mx-o)*co; t1+=g1; t2+=g2
     print(f"{l:<16}{e:>9.1f}{o:>10}{co:>6.3f}{g1:>7.1f}{g2:>7.1f}")
 print(f"{'合計':<16}{'':>9}{'':>10}{'':>6}{t1:>7.1f}{t2:>7.1f}")

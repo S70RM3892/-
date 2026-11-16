@@ -312,7 +312,7 @@ table.dtab tr.hi td{background:var(--shu-soft)}
     <div class="note shu"><b>この2本目の数字は σ_z に強く依存します。</b>0.63σ の緩みが確率に効く度合いは σ_z で割った量（いまは仮値0.35なので 1.8σ_z 分）。<b>σ_z が実測で大きく出れば差は縮みます</b>。11月の京大オープン・実戦で順位が2つ揃うまでは、桁の目安として読んでください。</div>
     <div class="note ok"><b>第2志望は「浪人しない確率」を上げますが、情報学科に入る確率は上げません。</b>電気電子で合格した場合、情報学科には行けません（学科は合格時に確定します）。<br><br>
     だから使い方は2つに分かれます ── <b>①保険として書く</b>（京大工なら学科は問わない）、<b>②書かない</b>（情報学科でなければ他大学・浪人を選ぶ）。①なら上の2本目の数字が実質的な合格確率、②なら1本目だけを見てください。<b>出願は2027年1月25日〜2月3日</b>、決めるのはそれまでです。</div>
-    <div class="note"><b>第1志望に書くか第2志望に書くかで評価は変わりません。</b>同じ答案が両学科について判定され、それぞれの最低点と比較されます。だから「情報を第2志望にして通りやすくする」といった操作はできません。</div>
+    <div class="note"><b>第1志望に書くか第2志望に書くかで答案の評価は変わりません。</b>ただし割り振りの手順について、公式の記載は「成績及び志望順位に基づき合格者を決定」（選抜要項）の一文だけです。この票は「総点が各学科の最低点を超えていれば、志望順位の高い学科で合格する」という通説どおりの仕組みを前提にしています（情報が8年連続で最低点1位という実績とは矛盾しない）。どちらの仕組みでも「情報を第2志望にして通りやすくする」操作はできません。</div>
   </section>
 
   <section id="s-honban">
@@ -336,7 +336,7 @@ table.dtab tr.hi td{background:var(--shu-soft)}
       <label class="ck"><input type="checkbox" id="ck2"><span>センターの<b>「科目別成績分布」CSV</b>（1点刻みの度数分布）を落とした<small>平均とσだけでなく<b>分位点を直読</b>する。正規分布を仮定してはいけない</small></span></label>
       <label class="ck"><input type="checkbox" id="ck9"><span><b>「設問別得点率及び正答率表」CSV</b>で自分の失点と全国正答率を突き合わせた<small>全国正答率が高いのに落とした設問＝最優先。ここだけは推定ではなく実測で優先順位が決まる</small></span></label>
       <label class="ck"><input type="checkbox" id="ck3"><span>京大オープン／実戦の<b>成績統計</b>から志望学科別の科目別平均・σを転記した<small>この数字を分散分解で逆算してはいけない</small></span></label>
-      <label class="ck"><input type="checkbox" id="ck4"><span>合格最低点の出所が<b>予備校の開示集計（推定値）</b>であり京大公式ではないことを踏まえた<small>京大が公表するのは志願者数・合格者数のみ</small></span></label>
+      <label class="ck"><input type="checkbox" id="ck4"><span>合格最低点・平均点を<b>京大公式の「一般選抜諸統計」</b>（合格者 最高点・最低点・平均点〈総点〉）で確認した<small>総点は公式値。推定なのは科目別の内訳と受験者全体の μ・σ だけ</small></span></label>
     </div></details>
 
   <section>
@@ -475,8 +475,8 @@ table.dtab tr.hi td{background:var(--shu-soft)}
       <div class="acts"><button id="addrow" type="button">＋ 行を追加</button><span class="flag" id="flag">—</span></div>
     </div>
     <div class="note"><b>見るのは「差」の列です。</b>評価偏差値 − ボーダーランク。<b>0 以上で合格可能性50%</b>。得点そのものは難易度で動きますが、ボーダーは河合塾が回ごとに較正しているので、<b>差は回をまたいで比較できます</b>。<br><br>第1回 −3.3 → 第2回 −1.1。縮んでいますが、内訳は数学 +6.6・英語 +5.8 に対して<b>理科 −1.6</b>（物理+5.4 を化学−8.7 が打ち消し）。配点250点の科目で、志望層平均にまだ届いていません。</div>
-    <div class="note shu"><b>順位を必ず入れてください。</b>得点の推移は難易度で動きますが、<b>順位は動きません</b>。そして Phase 5 が要求する σ_z ＝ <b>この z 列のばらつき</b> です。2回以上そろうと自動で実測値に切り替わり、既定の仮値0.35は使われなくなります。<br><br>いま入っているのは<b>26年度第1回 全統記述（161/349＝上位46.1%）の1行だけ</b>。2行目が入るまで σ_z は仮値のままです。</div>
-    <div class="note"><b>必要な順位は「上位◯%」ではなく人数で置くこと。</b>合格者は約99人。志望者が349人でも517人でも、<b>上位100位以内</b>が目安です（<a href="https://claude.ai/code/artifact/3dab6b76-1403-4cd5-a356-0973a37697af#s-shibou">根拠ノート〈志望者〉</a>）。349人なら上位28.4%、517人なら上位19.3% ── パーセンタイルは母集団で動きます。<br><br>全統記述は京大二次より易しく、母集団も京大志望以外を大量に含みます。<b>京大オープン／実戦の代わりにはなりません。</b>暫定の1点として使ってください。</div>
+    <div class="note shu"><b>順位を必ず入れてください。</b>得点の推移は難易度で動きますが、<b>順位は動きません</b>。そして Phase 5 が要求する σ_z ＝ <b>この z 列のばらつき</b> です。2回以上そろうと実測のばらつきが事前値0.35に混ざり始めます（2〜3回の標本SDだけでは σ_z は決まらないので、置き換えはしません。回数が増えるほど実測の重みが上がります）。<br><br>いま入っているのは<b>26年度第1回 全統記述（161/349＝上位46.1%）の1行だけ</b>。1回ぶんなので σ_z は事前値×√2（0.35→0.49）で計算されます。z̄ が1回の測定にすぎない不確かさを足したものです。</div>
+    <div class="note"><b>必要な順位は「上位◯%」ではなく人数で置くこと。</b>令和9年度の情報学科の受入目安は94人（令和8年度は目安97人・合格者99人）。志望者が349人でも517人でも、<b>上位100位以内</b>が目安です（<a href="https://claude.ai/code/artifact/3dab6b76-1403-4cd5-a356-0973a37697af#s-shibou">根拠ノート〈志望者〉</a>）。349人なら上位28.4%、517人なら上位19.3% ── パーセンタイルは母集団で動きます。<br><br>全統記述は京大二次より易しく、母集団も京大志望以外を大量に含みます。<b>京大オープン／実戦の代わりにはなりません。</b>暫定の1点として使ってください。</div>
   </section>
 
   <section>
@@ -491,7 +491,7 @@ table.dtab tr.hi td{background:var(--shu-soft)}
     <div class="formula">z̄ ＝ 記録タブの模試の <span class="v">志望者内順位</span> から　　a = z<sub>1−p</sub><br>P(合格) = Φ( ( <span class="v">z̄</span> − <span class="v">a</span> ) ⁄ <span class="v">σ_z</span> )</div>
     <div class="fields">
       <label>合格率 p <input type="number" id="rp" value="0.266" min="0.01" max="0.99" step="0.001"></label>
-      <label>σ_z（実測が出るまでの仮値） <input type="number" id="selfsd" value="0.35" min="0.01" step="0.01"></label>
+      <label>σ_z の事前値（実測はこれに混ぜる） <input type="number" id="selfsd" value="0.35" min="0.01" step="0.01"></label>
     </div>
     <dl class="ro">
       <div class="c key"><dt>実測 z̄ ／ 順位</dt><dd id="ro-z">—</dd><div class="nt" id="ro-zr">—</div></div>
@@ -735,9 +735,14 @@ function recompute(){
   if(nz>=1){zbar=zs.reduce((p,q)=>p+q,0)/nz; noteZ="模試 "+nz+" 回の実測平均";}
   else{zbar=(x-val("rmu"))/(val("rsd")||1);
        noteZ="順位が未記録 ── 計画総点からの暫定値（年次条件つき）";}
-  if(nz>=2){const v=zs.reduce((p,q)=>p+(q-zbar)*(q-zbar),0)/(nz-1);
-       zSd=Math.max(Math.sqrt(v),0.01); noteS="実測（模試 "+nz+" 回のばらつき）";}
-  else{zSd=val("selfsd")||0.01; noteS="仮値 ── 順位を2回以上記録すると実測に替わります";}
+  // σ_z は模試数回の標本SDでは決まらない（n=2 のSDの95%区間は真値の0.45〜32倍）。
+  // 事前値 s0（入力欄）を自由度 NU0 ぶんの観測として混ぜ、さらに z̄ 自体の推定誤差 √(1+1/n) を掛ける。
+  const NU0=4, s0=val("selfsd")||0.01;
+  if(nz>=2){const ss=zs.reduce((p,q)=>p+(q-zbar)*(q-zbar),0);
+       const sPost=Math.sqrt((NU0*s0*s0+ss)/(NU0+nz-1));
+       zSd=Math.max(sPost*Math.sqrt(1+1/nz),0.01);
+       noteS="模試 "+nz+" 回の実測（生SD "+fmt(Math.sqrt(ss/(nz-1)),3)+"）を事前値 "+fmt(s0,2)+" に縮約 × √(1+1/n)";}
+  else{zSd=s0*(nz===1?Math.SQRT2:1); noteS=nz===1?"事前値 × √2（模試1回ぶんの z̄ の誤差込み）":"事前値 ── 順位を記録すると実測が混ざります";}
   const pPass=Phi((zbar-zReq)/zSd);
   document.getElementById("ro-z").textContent=fmt(zbar,3);
   document.getElementById("ro-zr").textContent=noteZ+" ／ 上位 "+fmt(Phi(-zbar)*100,1)+"%";

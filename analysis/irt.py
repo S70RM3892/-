@@ -30,7 +30,7 @@ def items(fn,subject):
         except: pass
     return out
 
-# 34点ガウス求積で z~N(0,1) 上の積分
+# z~N(0,1) 上の積分: [-5,5] の81点等間隔格子（重みは正規密度を正規化）
 NQ=81
 Z=[-5+10*i/(NQ-1) for i in range(NQ)]
 W=[math.exp(-z*z/2)/math.sqrt(2*math.pi) for z in Z]
